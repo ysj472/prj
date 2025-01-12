@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8.visibility예제(display:none).html</title>
+    <style>
+        /*
+            공통점:둘다 화면에 안보임.
+            visibility 속성=> 보이지 않을 뿐 영역을 차지하고 있음.
+            visibility:hidden <-> visible
+            display:none;
+            display 속성은 영역 자체까지 사라지기 때문에 
+            인접한 요소의 레이아웃에 영향을 미칠 수 있다.
+        */
+        div{
+            width: 100px;
+            height: 100px;
+            background: dodgerblue;
+            border: 1px solid blue;
+            float: left; /* 왼쪽->오른쪽으로 배치 */
+            margin: 5px;/* 바깥여백 */
+            /*text-align: center;/*가로*/
+            /*vertical-align: middle;/*세로*/
+            padding-top: 60px;
+            padding-left: 75px;
+        }
+        /* .square.sq12{
+            display: none; } 영역 자체가 없어짐.*/
+        
+        .square.sq12{
+            visibility: hidden;/*공간(영역)은 존재하는데 화면에서 숨김.*/
+        }
+    </style>
+</head>
+<body><!--div.square.sq1*3-->
+    <div class="square sq11">A</div>
+    <div class="square sq12">B</div>
+    <div class="square sq13">C</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-2.let,const,var의 차이점.html</title>
+</head>
+<body>
+    <script>
+/*
+        const 상수화 시킬때 사용=>React에서 많이 사용
+
+        1) const를 사용할때에는 반드시 상수화 된 변수의 초기값을 설정해야 한다.(선언하자마자 값을 저장)
+        2) 중간에 값을 변경할 수 없음.(상수이기 때문에)
+
+        let,var,const 공통점 => 변수에 값을 저장 가능
+        let,const의 공통점=>1)둘다 중복 선언이 불가능함
+                                   2)블럭 내부에 변수를 선언하면 블럭 내부에서만 사용 가능
+                                   3)블럭 내부의 변수는 외부에서 불러다 사용할 수 없음(값을 변경 or 출력 X)
+        let,const의 차이점=>값을 변경시킬 수 있는가(let) 없는가(const)의 차이                           
+*/
+        let foo;//foo 변수 선언(=>데이터를 저장할 공간이 만들어진 것)
+        foo=123;//나중에 값을 저장
+        foo=789;
+        document.write('foo=>'+foo+'<br>');//789
+  
+        const TOO=123;
+        // TOO=456;
+        document.write('TOO=>'+TOO+'<br>');//브라우저 밖에서 출력
+        //2-3.let.const의 차이점 .html:22 Uncaught TypeError: Assignment(할당) to constant variable.
+        //할당=>값을 저장시키는 것
+        //디버깅(debug)->에러를 잡아주는 작업
+
+        {
+            const TOO=456; 
+            const BAR=456;
+            document.write('BAR=>'+BAR+'<br>');
+        }
+        document.write('블럭 밖에서 TOO=>'+TOO+'<br>');
+        document.write("블럭 밖에서 사용?(BAR=>)"+BAR+'<br>');// X
+   </script>
+</body>
+</html>

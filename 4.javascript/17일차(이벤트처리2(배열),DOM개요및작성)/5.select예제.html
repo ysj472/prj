@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.select예제.html</title>
+    <script>
+        function fg_color(form){//form=document.f_list.form 전달해줌
+            let list=form.selectedIndex;
+            //let list=document.f_list.form.selectedIndex;
+            //alert(list); 0~3
+            /*
+                document.fgColor(=글자색(전경색))<->~.bgColor(배경색)=선택한 색깔
+                document.f_list.form.options[내가 선택한 인덱스 번호].text(겉에 항목 이름)
+                document.f_list.form.options[내가 선택한 인덱스 번호].value(내부 항목 이름)
+            */
+            //  alert(document.f_list.form.options[f_list.form.selectedIndex].value);
+            //alert(form.options[list].value); 매개변수 O
+            //document.fgColor=form.options[list].value;
+            document.bgColor=form.options[list].value;
+        }
+    </script>
+</head>
+<body>
+    <center>
+        <h3>글자색 변경하기</h3>
+        원하시는 색상을 선택하시면 글자의 색깔이 변경됩니다.
+        <p></p>
+        <!-- 
+            size=항목수 ->(리스트박스가 됨)
+            multiple=>동시에 한개 이상의 항목을 다중선택할때 필요로 하는 속성
+         -->
+        <form name="f_list">
+            <!-- <select name="form" size="4" multiple> -->
+                <select name="form" onchange="fg_color(document.f_list.form)"><!--select 태그 정보 전달(객체)-->
+                <option value="blue">푸른색</option><!-- option 배열 -->
+                <option value="green" selected>초록색</option>
+                <option value="orange">주황색</option>
+                <option value="gray">회색</option>
+            </select>
+        </form>
+    </center>
+</body>
+</html>

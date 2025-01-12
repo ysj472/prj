@@ -1,0 +1,73 @@
+/* 
+기능: 드롭다운 상단메뉴 스타일 적용
+작성자:윤성진
+작성날짜:2024-01-09
+*/
+/* 1레벨 메뉴 */
+.dropdownmenu > li{/* 부모태그 > 자식태그(부모태그 밑의 자식태그들만) */
+    float: left; /*왼쪽을 기준으로 오른쪽으로 감*/
+    position: relative; /*absolute 크기와 위치가 같기에 맨 마지막에 메뉴*/
+    background: #67b0d1;
+    width: 25%; /* 메뉴가 4개, 너비 100%에서 적절하게 1/4로 분배 */
+    text-align: center;
+} 
+/* 1단계 레벨의 메뉴 항목의 글자크기,색, */
+.dropdownmenu > li > a{
+    display: block; /*하나의 행을 최대로 사용*/
+    font-size: 16px;
+    color: #ffffff;
+    text-align: center;
+    height: 60px; /* 100px->60px */
+    line-height: 60px;
+}
+/* 1레벨 메뉴의 hover 설정 항목:hover */
+.dropdownmenu > li:hover{
+    background: #7bbbd7;
+}
+/* 서브메뉴가 나오게해주는 옵션  */
+.dropdownmenu > li:hover>ul{
+    left: 0; /*x축은 움직여선 안됨*/
+    top: 60px; /*1단계 메뉴 높이가 60px임 -> 바로 밑에 나오게 하기위해서 */
+}
+
+/* 2단계~안보이게 설정 */
+.dropdownmenu ul{
+    /* 한칸 띄고 ul은 dropdown 밑에있는 모든 ul 태그에 적용됨 */
+    position: absolute; /* left,top,width,height부여 설정 */
+    top:-9999px; /*상단 끝에 배치*/
+    /* 추가 */
+    z-index: 9999; /* 다른 이미지 슬라이드와 겹치는 경우 무조건 맨 앞에 배치 */
+    width: 160px; /* 테두리 너비 얼추 맞추기 */
+    border: 1px solid #cccccc;
+} 
+/* 전체구조(relative)->세부적인 위치(absolute)를 줘서 메뉴 작성한다. */
+/* 2단계 메뉴의 위치 속성 지정 */
+.dropdownmenu ul li{
+    position: relative; /* 1->2->3->4 */
+}
+.dropdownmenu ul a{
+    display: block;
+    color: #aaaaaa;
+    font-size: 12px;
+    background: #ffffff;
+    line-height: 40px; /* 상단메뉴의 높이보다 적게 하는것이 더 어울림 */
+   /* padding-left: 20px;2단계 메뉴의 들여쓰기 */
+}
+/* 2단계 메뉴에 마우스 갖다댈때 배경색 설정 */
+.dropdownmenu ul a:hover{ /* 2단계 글자 */
+    color: #ffffff;
+    background: #67b0d1;
+}
+/* 2단계 메뉴에 메뉴항목 갖다댈때 li 태그 미테 ul태그 설정(하위메뉴)3단계 */
+.dropdownmenu ul li:hover > ul{
+    position: absolute; /* 정확하게 좌표값을 이용해서 하위메뉴를 나오게 설정 */
+    top:0;/*y축 변화없고 그대로 위치 2단계 메뉴 바로 아래에 화면에 출력(html 구조상)*/
+    left: 100%;/* 2단계 메뉴의 폭만큼 */
+}
+
+body,ul{ /* 선택자를 *(모든 태그)로 설정해도 된다. */
+    margin: 0; /*바깥 여백*/
+    padding: 0; /*안쪽 여백*/
+}
+ul{list-style: none; /* ul태그 점 없애기 */}
+a{text-decoration: none; /* 밑줄 제거 */} /* underline,overline,line-through */

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.함수와 document예제.html</title>
+    <style>
+        div{
+            font-weight: bolder;
+            font-size: 14pt;
+        }
+    </style>
+    <script>
+        //1.문자열을 링크
+        function ex(link,alink,vlink){
+            //1.링크 문자열의 색깔 2.눌렀을때 변경되는 색깔지정 3.방문한 적이 있는 색깔
+            document.linkColor=link;//red
+            document.alinkColor=alink;//green
+            document.vlinkColor=vlink;//gold
+        }
+        //2.문서내부의 글자색과 배경색을 지정
+        function ex2(A,B){
+            document.fgColor=A;//전경색(글자색)
+            document.bgColor=B;//배경색
+        }
+    </script>
+</head>
+<!-- 
+    onload=>문서를 읽어들일때 호출되는 이벤트를 처리해주는 경우=>코딩
+    onunload=>다른사이트로 이동하는 경우(브라우저 특성을 탄다.) 거의 안됨
+ -->
+<!-- <body onload="alert('반갑습니다!')"> -->
+<body onload="ex('red','green','gold')">
+    <a href="http://www.daum.net">다음</a>
+    <form action="">
+        <input type="button" value="navy" onclick="ex2('blue','navy')">
+        <input type="button" value="white" onclick="ex2('red','yellow')">
+        <div>클릭하면 배경색이 변경됩니다.</div>
+        <hr>
+        <a href="JavaScript:ex2('green','cyan')">ex2함수호출</a>
+    </form>
+</body>
+</html>

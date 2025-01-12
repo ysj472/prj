@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.CSS속성단위(1).html</title>
+    <!-- html4-> font-size:23, html5에서는 px or pt 등등 단위 반드시 기재
+        CSS에서 사용하는 단위
+
+        1.절대단위=>cm,mm,pt(point)약자
+        2.상대단위=>px(모니터상의 점 개수)해상도 jpg>gif>png,%,em(vs rem와 차이가 있다.)
+    
+        기본단위=>px(글자를 기준)=>1em=100%=16px
+    -->
+    <style>
+        #test{
+            font-size: 20px;
+            border: 5px dotted green;/*굵기,선의 종류,선 색깔*/
+        }
+        #test > p{ /*부모태그>자식태그(직계자식)*/
+            font-size: 2em;/* 16px*2=32px */
+            text-decoration: underline;
+            color: red;
+        }
+        /*
+        em{
+            color: cyan;
+            text-decoration: overline;
+        }
+        */
+        /*
+            인접한 태그를 가리키는 예약어 +를 사용(부모와 자식과의 관계 설정)
+        */
+        p+em+em{ /* p태그의 인접한 em태그 찾기*/
+            color: aqua;
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+    <div>단위연습</div>
+    <!--div#test{여긴 상위 div}>p{여기는 하위 p요소}-->
+    <div id="test">여긴 상위 div
+        <p>여기는 하위 p요소</p>
+    </div>
+    <p>여기는 하위 p요소2</p>
+    <!-- em{여기는 하위 p요소3}*2 가로로 생성{인라인계열의 태그}-->
+    <!-- <em class="t1">여기는 하위 p요소</em>-->
+    <em>여기는 하위 p요소3</em>
+    <em>여기는 하위 p요소3</em>
+</body>
+</html>

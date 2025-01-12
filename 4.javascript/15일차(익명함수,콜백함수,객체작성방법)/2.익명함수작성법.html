@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.익명함수작성법.html</title>
+</head>
+<body>
+    <script>
+        /*
+        1.함수의 매개변수,반환값에 따라 구분(보편적)
+        2.함수의 이름에 따라 구분-이름 O or 이름X=>익명함수
+
+        함수선언 이전에도 호출이 가능
+        aaa()
+        function aaa(){}함수선언
+        함수선언후에도 호출이 가능
+
+        aaa()(x)
+        let aaa=function(){}
+        =>익명함수는 함수가 선언이 된 후에만 호출이 가능
+        */
+       //x,y,z->가장 큰값을 구하시오.(12,4,19) 매개변수 O  반환값x
+        getMaxPrint(10,20,30);//max=30
+
+       function getMaxPrint(x,y,z){//function 함수명(매개변수,,,,)
+        let max;
+        max=(x>y)?x:y;
+        max=(max>z)?max:z;
+        document.write("max=>"+max+"<br>");
+       }
+
+       getMaxPrint(40,50,60);
+       //반환값이 있게 함수 작성 getMaxPrint2(x,y,z)
+       //형식) let 변수명=function() or function(x,y,z){함수의 기능}
+       //변수명이 함수이름으로 대신 사용->변수명() or 변수명(x,y,z)
+    //    let result2=getMaxPrint2(70,80,90);
+    //    document.write("result2=>"+result2+"<br>");//익명함수에는 함수선언전에 호출x
+
+       let getMaxPrint2=function(x,y,z){
+       //function getMaxPrint2(x,y,z){//function 함수명(매개변수,,,,)
+        let max;//가장 큰값을 구할 변수
+        //12>4
+        max=(x>y)?x:y;//12
+        //12>19
+        max=(max>z)?max:z;//19
+        // document.write("max=>"+max+"<br>");
+        return max;
+       }
+
+       getMaxPrint(12,4,19);
+       let result=getMaxPrint2(34,12,65);
+       document.write("result=>"+result+"<br>");
+       document.write(getMaxPrint2(89,6,23));//직접 받아서 바로 출력
+    </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+/* 
+기능:드롭다운 상단메뉴 스타일 적용
+작성자:김수진
+작성날짜:2024.01.09
+*/
+/* 1 레벨 메뉴 */
+.dropdownmenu > li{ /* 부모태그 > 자식태그(부모태그 밑의 자식태그들만) */
+    float:left;  /*왼->오*/
+    position: relative; /*absolute 설정시 크기와 위치가 같기때문에 맨마지막 메뉴만 출력 */
+    background: #67b0d1;
+    width: 25%; /*메뉴가 4개이기 때문에 4/100=25 */
+}
+/* 1단계 레벨의 메뉴항목(상단메뉴글자)의 글자크기,색 */
+.dropdownmenu > li > a{
+    display: block; /* 하나의 행을 최대로 사용, width,height O */
+    font-size: 16px;
+    color: #ffffff;
+    text-align: center;
+    height:60px; /* height는 %를 잘 쓰지않음 */
+    line-height: 60px;
+}
+/* 1레벨 메뉴의 hover 설정 항목:hover */
+.dropdownmenu > li:hover{
+    background: #7bbbd7;
+}
+/* 서브메뉴가 나오게해주는 옵션 */
+.dropdownmenu > li:hover > ul{
+    left:0; /* x축 움직이지 X */
+    top: 60px; /* 1단계메뉴 높이가 60px이기 때문=>바로 밑에 나오게 하기위해서 */
+}
+/* 2단계~4단계 안보이게 설정 */
+.dropdownmenu ul{
+    position:absolute; /* left,top,width,height 부여 설정 */
+    top: -9999px; /* 상단끝에 위에 배치 */
+    /* 추가 */
+    z-index:9999; /* 다른 이미지 슬라이드와 겹치는 경우 무조건 맨 앞에 배치 */
+    width: 160px; /* 테두리때문에 얼추 160px */
+    border:1px solid #cccccc;
+}
+/* 전체구조(relative)->세부적인 위치(absolute)를 줘서 메뉴를 작성한다. */
+/* 2단계 메뉴의 위치 속성 지정 */
+.dropdownmenu ul li { /* 항목 list */
+    position: relative; /* 1->2->3->4 */
+}
+/* 2단계 메뉴의 텍스트 속성,배경색,여백 설정 */
+.dropdownmenu ul a{ /* 항목의 글자 */
+    display: block;
+    color: #aaaaaa; /* 회색 */
+    font-size:12px;
+    background: #ffffff;
+    line-height: 40px; /* 상단메뉴의 높이보다 적게 하는것이 더 어울림 */
+    padding-left: 20px; /* 2단계 메뉴의 들여쓰기 */
+}
+/* 2단계 메뉴에 마우스를 갖다댈때 배경색 설정 */
+.dropdownmenu ul a:hover{
+    color: #ffffff;
+    background: #67b0d1;
+}
+/* 2단계의 메뉴항목에 갖다댈때 li태그 밑에 ul태그 설정(하위메뉴)3단계 */
+.dropdownmenu ul li:hover > ul{
+    position: absolute; /* 정확하게 좌표값을 이용해서 하위메뉴를 나오게 설정 */
+    top:0; /* y축은 변화없고 그대로 위치 2단계 메뉴 바로 아래의 화면에 출력(html구조상) */
+    left:100%; /* 2단계메뉴의 폭만큼 오른쪽 이동(100%)->3단계 폭만큼 오른쪽이동(4단계) */
+}
+
+body,ul{ /* 선택자를 *(모든태그)를 설정해도 된다.*/
+    margin: 0; /*바깥 여백*/
+    padding: 0; /*안쪽 여백*/
+}
+ul{list-style: none;} /* 마크 삭제 list-style-type:none */
+a{text-decoration: none;} /* underline, overline, line-through */

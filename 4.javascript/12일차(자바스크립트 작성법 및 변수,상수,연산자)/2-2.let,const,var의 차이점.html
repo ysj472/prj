@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-2.let,const,var의 차이점.html</title>
+</head>
+<body>
+    <script>
+        /*
+        데이터 타입=자료형=(Type)=>데이터를 저장시킬때 데이터의 종류(문자열,숫자,논리값)와 크기를
+                                                지정해주는 것.
+        int(숫자),소숫점(float,double),문자(char), 문자열->String, 논리값(true,false) -> boolean
+        var name="홍길동";
+             String name="홍길동";   
+             var의 특징
+             1)중복선언 가능->권장X->이름이 헷갈림
+             2)블럭 내부에 선언된 변수값을 외부에서 출력할 수 있다
+             (밑에 var foo=456;을 밑에 document.write 문장에서 출력함)                                 
+        */
+   var foo=123;//int foo=123;
+   document.write('foo=>'+foo+'<br>');//123
+   {
+    // 블럭(block)변수가 사용되는 범위
+    var foo=456;//중복선언(똑같은 이름으로 한번 더 변수를 만들어서 값을 저장=재정의)
+   }
+   document.write('두번째 foo->'+foo+'<br>');
+   
+   document.write("=========let의 특징================<p>");
+  
+   let foo2=789;
+   document.write('foo2=>'+foo2+'<br>');//브라우저 밖에서 출력
+   //디버깅(debug)->에러를 잡아주는 작업
+   console.log('foo2=>'+foo2);//내부적으로 체크할때 사용(크롬 브라우저에서 F12를 눌렀을때, console탭에서 확인 가능)
+   {
+    let foo2=456; //똑같은 변수를 두번 생성할 수 없음
+    let bar=456;
+    document.write('bar=>'+bar+'<br>');//456 블럭내부에서 선언된 변수는 블럭내부에서 출력됨
+   }
+   document.write('블럭 밖에서 foo2=>'+foo2+'<br>');//789
+   document.write('블럭 밖에서 사용?(bar=>)'+bar+'<br>');//애러
+   </script>
+</body>
+</html>

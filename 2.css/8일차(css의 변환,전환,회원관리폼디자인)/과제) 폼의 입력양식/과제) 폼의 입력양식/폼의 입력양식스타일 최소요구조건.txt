@@ -1,0 +1,12 @@
+
+
+1.input.html로 저장할것
+
+2.input box태그에 border속성을 부여할것.
+   1px dotted orange
+
+3.textarea태그에 border속성을 부여할것.
+   높이는 100px 부여할것.
+
+4.전송버튼태그에 글자색은 흰색, 배경색은 검정색을 부여
+                       border부여

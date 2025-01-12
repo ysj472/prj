@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<body>
+    <canvas id="myCanvas" width="400" height="600" style="border:1px solid black;">
+    </canvas> 
+    <script>
+        const canvas = document.getElementById("myCanvas");
+        const ctx = canvas.getContext("2d");
+
+        let length = 50;
+        let move = 20;
+
+        let x = 200;
+        let y = 120;
+
+        let rec = [
+            {rx:-1, ry:0},
+            {rx:0, ry:0},
+            {rx:1, ry:0},
+            {rx:0, ry:1}
+        ];
+
+        function rotate() {
+            for(let i=0;i<rec.length;i++){
+                let {rx, ry} = rec[i];
+
+                rec[i]={rx:-ry, ry:rx};
+            }
+          }
+
+        function left() {
+            if(x>0){
+                x= x-=20;
+            }else{
+                x=0;
+            }
+          }
+
+        function right() {
+            if(x<canvas.width-50){
+                x=x+=20;
+            }else{
+                x= canvas.width-50;
+            }
+          }
+
+        function down() {
+            if(y<canvas.height-50){
+                y+=20;
+            }else{
+                y=0;
+            }
+          }
+        function draw() {
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+
+            ctx.fillStyle="red";
+            ctx.strokeStyle="black";
+
+            for(let i=0;i<rec.length;i++){
+                let {rx,ry} = rec[i];
+                let dx = x+rx*length;
+                let dy = y+ry*length;
+                ctx.fillRect(dx,dy,length,length);
+                ctx.strokeRect(dx,dy,length,length);
+            }
+            ctx.strokeRect(10,10,150,100);
+            
+            //첫번째 사각형
+            ctx.fillStyle = "blue";
+            ctx.fillRect(45,20,40,40);
+            ctx.strokeStyle = "black";
+            ctx.strokeRect(45,20,40,40);
+            
+            //두번째 사각형
+            ctx.fillStyle = "blue";
+            ctx.fillRect(85,20,40,40);
+            ctx.strokeStyle = "black";
+            ctx.strokeRect(85,20,40,40);
+            
+            //세번째 사각형
+            ctx.fillStyle = "blue";
+            ctx.fillRect(45,60,40,40);
+            ctx.strokeStyle = "black";
+            ctx.strokeRect(45,60,40,40);
+            
+            //네번째 사각형
+            ctx.fillStyle = "blue";
+            ctx.fillRect(85,60,40,40);
+            ctx.strokeStyle = "black";
+            ctx.strokeRect(85,60,40,40);
+            
+            //스코어박스
+            ctx.strokeRect(240,10,150,50);
+            ctx.strokeStyle = "black";
+            
+            //글꼴
+            ctx.font = "25px Arial";
+            ctx.fillText("Score : 0", 265, 45);
+          }
+          
+          setInterval(draw, 16);
+          
+          </script>    
+    <div style="width: 400px; height: 80px; border: 1px solid black;">
+        <button onclick="left()">좌</button>
+        <button onclick="right()">우</button>
+        <button onclick="rotate()">회전</button>
+        <button onclick="down()">하강</button>
+    </div>
+    <style>
+        button{
+            width: 70px;
+            height: 50px;
+            margin: 15px 10px 20px 10px;
+            font-size: 20px;
+            border-radius: 0;
+            background-color: white;
+            border: 1px solid blue;
+        }
+    </style>
+</body>
+</html>

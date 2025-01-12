@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.toggle.html</title>
+    <script>
+        function toggle(){
+            // alert("toggle()"); 에러를 확인하는 코딩
+            //let b_val=document.f.b_name.value; document.form이름.버튼이름(입력양식).속성명 or 속성명=값
+             //console.log(b_val);
+            let b_val=document.getElementById("b_name").value;//객체명,속성명,객체명.메서드명(~)
+            //alert(b_val);
+            // if(b_val=="네이버")
+            //     document.f.b_name.value="다음";
+            
+            // else
+            //     document.f.b_name.value="네이버";
+            let text=(b_val=="네이버")?"다음":"네이버";
+            document.f.b_name.value=text;
+            // document.getElementById("b_name").value=text; => p423 참조할것.
+        }
+    </script>
+</head>
+<body>
+    <center>
+        <h1>버튼을 눌러주세요!</h1>
+        <p></p>
+    <form name="f"> 
+        <input type="button" value="네이버" name="b_name" onclick="toggle()" id="b_name">
+    </form>
+    </center>
+</form>
+</body>
+</html>

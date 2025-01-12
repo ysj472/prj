@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.이중for문예제.html</title>
+</head>
+<body>
+    <script>
+        /*
+        문제->제어문 중첩
+        이중 for문->for문 내부에 또 다른 for문이 들어간 경우
+        */
+       document.write("중첩 for문<p>");
+
+        for(let a=0;a<5;a++){ //outer for
+            for(let b=0;b<5;b++){ //inner for
+                document.write("a=>"+a+"b=>"+b+"<br>");
+            }
+            document.write("=====================<br>");
+        }
+        document.write("이중 for문 종료");
+    </script>
+</body>
+</html>

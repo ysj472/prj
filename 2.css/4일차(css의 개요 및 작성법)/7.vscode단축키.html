@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7.vscode단축키.html</title>
+</head>
+<body>
+    <h3>visual studio code에서 자주 사용되는 단축키</h3>
+    <ol>
+        <li>html문서 템플릿 작성법->html파일 작성후! enter or html:5 enter</li>
+        <li>태그 작성하는 방법=>태그 이름 enter=>자동 완성 기능 ex)div enter
+            <div></div>
+        </li>
+        <li>태그를 여러개 생성하는 방법-태그명*n(반복할 수) 
+            (ex)div*5
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </li>
+        <li>태그 중첩해서 생성하는 방법=>태그명>태그명2>태그명3 
+            (ex) div>ul>ol*3 
+            <div>
+                <ul>
+                    <ol></ol>
+                    <ol></ol>
+                    <ol></ol>
+                </ul>
+            </div>
+        </li>
+        <li>인접한 태그 생성하는 방법=>태그명+태그명2+태그명3=>
+            (ex) div+h1+h2+h3 
+            <div></div>
+            <h1></h1>
+            <h2></h2>
+            <h3></h3>
+        </li>
+        <li>아이디 선택자 설정=> 태그명#아이디명
+            (ex div#name)
+            <div id="name"></div>
+        </li>
+        <li>클래스 선택자 설정=>태그명.클래스명 
+            (ex div.test)
+            <div class="test"></div>
+        </li>
+        <li>태그{입력하고 싶은 텍스트} 입력후 enter or table
+            (ex) p{안녕하세요}
+            <p>안녕하세요</p>
+        </li>
+        <li>숫자 삽입(숫자 1씩 자동증가) 
+            (ex)div#name$*n(아이디,클래스,텍스트 사용)</li>
+            <div id="name1"></div>
+            <div id="name2"></div>
+            <div id="name3"></div>
+            <div id="name4"></div>
+            <div id="name5"></div>   
+        <li>^입력시 상위계층으로 이동(중첩된 상황에서 상위계층으로 이동할때, 여러번 사용가능)
+            (ex) div>ul>li^p
+            <div>
+                <ul>
+                    <li></li>
+                </ul>
+                <p></p>
+            </div>
+        </li>
+        <li>^^p 한단계 아래로 이동
+            (ex) div>ul>li^^p
+             <div>
+                <ul>
+                    <li></li>
+                </ul>
+            </div>
+            <p></p>
+        </li>
+        <li>(태그...)그룹으로 묶는 경우=>(ex)div>(ul>li)+(ol>li) 입력 후 enter친 경우</li>
+        <div>
+            <ul>
+                <li></li>
+            </ul>
+            <ol>
+                <li></li>
+            </ol>
+        </div>
+    </li>
+<li>자동 완성 기능 div#myid.classA.classB 입력하고 enter 친 경우
+    동시에 div태그에 id와 class선택자를 만드는 방법(div#myid.classA)
+    <div id="myid" class="classA classB"></div>
+</li>
+
+</body>
+</html>

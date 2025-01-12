@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.callback함수작성법.html</title>
+</head>
+<body>
+    <script>
+        /*
+            콜백함수: 함수에서 다른 함수를 부르는 경우
+                    매개변수 전달(숫자,문자열,논리적인 값) X: 함수 이름이 전달 O
+                    매개변수 형태로 함수이름이 전달이 되어서 호출된 함수 내부에서
+                    실행이 되는 함수(=콜백함수)
+        */
+       function callFun(other){//다른 함수도 실행할 수 있음(콜백함수)
+            for(let i=0;i<10;i++){//i=블록변수(for문 안에서만 존재)
+                other();//함수명() or 함수명(x,y,z)  test()
+                //test를 5번 반복하라
+            }
+       }
+       function test(){
+            console.log('happy day!');
+       }
+         //  let test=function(){console.log('happy day!');}
+    
+    /*   익명함수 형태
+    let test=function{
+        console.log('happy day!');
+    }
+    */
+    callFun(test);//이건 문자가 아닌, 함수의 이름: 문자로 인식하려면 callFun("test") 
+    console.log("-----함수 내부에서 익명함수 형태로 함수 이름을 전달받아서 실행");//react
+    callFun(function(){
+        console.log('happy day!');
+    });
+
+// 리액트에서 화살표함수x ()=>{함수내용}
+    callFun(()=>{
+        console.log('화살표 함수를 이용해서 익명함수 호출됨!');
+    });
+    </script>
+</body>
+</html>

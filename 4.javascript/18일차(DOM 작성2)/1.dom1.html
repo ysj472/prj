@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.dom1.html</title>
+    <script>
+        function test(){
+            //특정태그명을 이용해서 태그정보(=태그객체)를 얻어오는 경우
+            //~getElementsByTagName(태그이름)
+            let spans=document.getElementsByTagName("span");//[htmlcollection]: 태그정보가 한개이상
+            //alert(spans);
+            alert(spans[0].innerHTML);
+            spans[0].innerHTML='DOM 연습';
+            spans[1].innerHTML='이름으로 태그 정보를 가져오는 연습중입니다.';
+        }
+    </script>
+</head>
+<body onload="test()">
+    <span>연습1</span><br>
+    <span>연습2</span>
+</body>
+</html>

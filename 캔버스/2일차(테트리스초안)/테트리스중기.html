@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<body>
+    <canvas id="myCanvas" width="400" height="600" style="border:1px solid black;">
+    </canvas> 
+    <script>
+        const canvas = document.getElementById("myCanvas");
+        const ctx = canvas.getContext("2d");
+
+        ctx.strokeRect(10,10,150,100);
+
+        // 
+
+        //스코어박스
+        ctx.strokeRect(240,10,150,50);
+        ctx.strokeStyle = "black";
+
+        //글꼴
+        ctx.font = "25px Arial";
+        ctx.fillText("Score : 0", 265, 45);
+
+        //하강중인 사각형
+        ctx.fillStyle = "red";
+        ctx.fillRect(120,200,40,40);
+        ctx.strokeStyle = "black";
+        ctx.strokeRect(120,200,40,40);
+
+        ctx.fillStyle = "red";
+        ctx.fillRect(160,200,40,40);
+        ctx.strokeStyle = "black";
+        ctx.strokeRect(160,200,40,40);
+
+        ctx.fillStyle = "red";
+        ctx.fillRect(200,200,40,40);
+        ctx.strokeStyle = "black";
+        ctx.strokeRect(200,200,40,40);
+
+        ctx.fillStyle = "red";
+        ctx.fillRect(160,240,40,40);
+        ctx.strokeStyle = "black";
+        ctx.strokeRect(160,240,40,40);
+    </script>    
+    <div style="width: 400px; height: 80px; border: 1px solid black;">
+        <button>좌</button>
+        <button>우</button>
+        <button>회전</button>
+        <button>하강</button>
+    </div>
+    <style>
+        button{
+            width: 70px;
+            height: 50px;
+            margin: 15px 10px 20px 10px;
+            font-size: 20px;
+            border-radius: 0;
+            background-color: white;
+            border: 1px solid blue;
+        }
+    </style>
+</body>
+</html>

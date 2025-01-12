@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8.selecter 종합예제.html</title>
+    <style>
+       h3,li{ /*태그명으로 찾기(클래스 선택자와 사용방법 동일) */
+        color: brown;
+        font-weight: bold; /* 굵게 (<b>,<strong> */
+       }
+       /* 모든 strong 태그의 경우에 적용
+       strong{
+        background: yellow;
+       }*/
+       div>div>strong { /* 특정부모의 특정자식태그만 적용*/
+        background-color: aqua;
+       }
+       /*ul > li > strong{} 직계 자식만 적용*/
+       ul strong {
+        color: blue; /*자손태그까지 적용*/
+       }
+       .information { /*클래스 선택자*/
+        color: cyan;
+       }
+       body.main{/*태그명.클래스명*/
+        background: dodgerblue; /*body의 배경색 bgcolor="dodgerblue" */
+       }
+       ul#list{
+        background: orange;
+       }
+       h3:first-letter{ /*first-letter: 첫번째 글자(w) */
+        color:red;
+       }
+       h3::first-line{ /*first-line: 첫번째 라인 */
+        color: blueviolet;
+       }
+       li:hover{
+        background: yellowgreen;
+       }
+    </style>
+</head>
+<body class="main">
+    <h3>web programming</h3>
+    <hr>
+    <div>
+        <div><strong>학습내용</strong></div>
+        <strong>확인</strong>
+        <ul id="list"> 
+            <li>HTML5</li>
+            <li><strong>CSS3</strong></li>
+            <li><strong>JavaScript</strong></li>
+            <ol>
+                <li>
+                    <strong>JAVA</strong>
+                </li>
+            </ol>
+        </ul>
+        <div class="information">SQL을 배우는 DB</div>
+    </div>
+</body>
+</html>

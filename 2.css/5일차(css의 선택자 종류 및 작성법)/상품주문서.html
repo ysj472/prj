@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{ width: 600px;
+        margin: 0 auto;
+    }
+
+    h3{ text-align: center;
+
+    }
+    label{
+        font-weight: bold;
+        width: 80px;
+        margin-right:40px;
+        float: left;
+    }
+    fieldset{
+        margin: 15px 10px;
+    }
+    legend{
+        font-weight: bold;
+        font-size: 18px;
+        color: purple;
+    }
+    li{
+        list-style: none;
+    }
+</style>
+<body>
+    <form>
+        <h3>상품 주문서</h3>
+        <table>
+        <fieldset>
+            <legend>개인 정보</legend>
+        <ul><li><label for="name">이름</label>
+        <input type="text" name="name" id="name" placeholder="여백없이 입력"></li></ul> <p></p>
+        <ul><li><label for="tell">연락처</label>
+        <input type="tel" name="tell" id="tell" placeholder="연락가능한 번호"></li></ul>
+    </fieldset>
+        <fieldset>
+            <legend>배송지 정보</legend>
+        <ul><li><label for="addr">주소</label>
+        <input type="text" name="addr" id="addr" size="40"></li></ul> <p></p>
+
+        <ul><li><label for="phone">전화번호</label>
+        <input type="tel" name="phone" id="phone"></li></ul> <p></p>
+
+        <ul><li><label for="memo">메모</label>
+        <textarea name="memo" id="memo" cols="30" rows="2"></textarea></li></ul>
+    </fieldset>
+    <fieldset>
+        
+        <legend>주문 정보</legend>
+       <ul><input type="checkbox">과테말라 안티구아(100g)
+        <input type="number" min="0" max="20" value="0">개</ul> <p></p>
+        <ul><input type="checkbox">인도네시아 만델링(100g)
+        <input type="number" min="0" max="20" value="0">개</ul> <p></p>
+        <ul><input type="checkbox">탐라는도다(블렌딩)(100g)
+        <input type="number" min="0" max="20" value="0">개</ul> <p></p>
+        </fieldset> <p></p>
+        <center><ul name="1"><input type="submit" value="주문하기">
+        <input type="reset" value="다시작성"></ul></table></center>
+    </form>
+</body>
+</html>

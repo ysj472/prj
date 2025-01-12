@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.domcreate.html</title>
+    <script>
+        window.onload=function(){
+            //element ir node=>태그
+            // 1.h1태그 생성-> document.createElement(생성할 태그명)
+            let header=document.createElement('h1');//<h1></h1>
+            //alert(header); [object HTMLHeadingElement]
+            // 2.createTextNode('화면에 출력할 문자열')
+            let textNode=document.createTextNode('Hello,DOM 연습중');
+            /*
+                1.간단한 내용,짧은 구문: createTextNode or innerHTML 별차이 없음.
+                2.내용이 복잡(텍스트+태그): innerHTML을 사용할 것.
+            */
+            // 3.만든 태그에 내용 붙이기: 부모태그명.appendChild()
+            header.appendChild(textNode);
+            // 4.body에 자식태그로써 추가
+            document.body.appendChild(header);
+        }
+    </script>
+</head>
+<body>
+    <!-- <h1>Hello,DOM 연습중</h1> -->
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.css의 개요 및 작성법.html</title>
+    <link rel="stylesheet" type="text/css" href="./sub/test.css">
+    <style type="text/css">
+        /*
+        여러줄 주석(자바스크립트,자바 주석과 동일)
+        2.공동적으로 사용하는 색깔,이미지,글꼴 등을 head 태그 영역에 선언해서 사용하는 방법=>embedd 방식
+        형식)스타일 적용 태그,,(=선택자),, {속성명:속성값;~}
+        특징: 현재 보고 있는 페이지만 적용=>링크된 다른 페이지도 반영(X)
+
+       
+        h4,h3 {font-family: 돋움체;
+                color:blue;
+                font-size:27pt;
+              } */
+        @import url(mysite.css);        /* @import url(경로 포함해서 불러올 css 파일명)
+                                            color:darkred
+        */
+              /* @import url('mysite.css'); */
+    </style>
+    <!--
+    3.자주 사용이 되거나 반복적인 스타일이 있으면 파일로 만들어서 불러와라
+        link 태그 사용
+        rel(스타일 시트 파일) type="텍스트 형태의 css 파일"
+        href="경로(상대경로)포함해서 불러올 파일명"
+            color:green
+    -->
+    <!--<link rel="stylesheet" type="text/css" href="./sub/test.css">-->
+</head>
+<body>
+    <header><h3>css의 개요 및 특징</h3></header>
+    <section>
+        <!--
+            1.인라인 방식(style 속성을 이용)형식)style="속성명:값;속성명2:값2;~"
+             특정한 태그에만 스타일을 적용시킬때 사용
+             단점) 동일한 태그가 여러번 적용시키는 경우->복사(불편),구조가 복잡
+             특징=>우선순위가 높다.>embedd보다 높다.
+
+        -->
+        <header>
+            <h4>스타일 시트의 장점</h4>
+        </header>
+        <article><!--article*2>ol>li-->
+            <ol>
+                <li>디자인의 시간이 줄어든다.</li>
+                <li>문서의 로딩 속도가 빠르다.</li>
+            </ol>
+        </article>
+        <article>
+            <ol><h4>용어 정리</h4>
+                <li>스타일(style):문서의 글꼴,크기,간격 등의 출력형태(=레이아웃)에
+                    영향을 미치는 요소
+                </li>
+                <li>스타일 시트(style sheet):스타일의 내용만을 별도로 모아서
+                    &lt;header&gt; 태그 영역에 선언된 형태
+                </li>
+            </ol>
+        </article>
+    </section>
+</body>
+</html>

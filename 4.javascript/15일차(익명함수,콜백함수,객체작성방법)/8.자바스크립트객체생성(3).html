@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8.key와 value값을 이용해서 객체생성</title>
+</head>
+<body>
+    <script>
+        /*
+            형식)
+            let or const 객체명={
+                속성명:속성값,
+                속성명2:속성값2,,,
+                함수명:function(매개변수~){함수내용},,
+            }
+        */
+      // const person={} 빈객체 생성(=공간만 만들어진 상태)
+      const person={
+        name:"홍길동",//key(속성명):값(value)
+        age:23,
+        eat:function(food){//setter method
+            alert(this.name+'은 오늘'+food+'먹네요');//this: 현재 생성된 객체를 의미.
+        }   //person.name
+      }
+      //객체명.속성명= 꺼내올때 사용, 객체명.속성명=값, 객체명.메서드명(~)
+      document.write(person.name);//홍길동
+      person.eat('도시락');//객체명.호출할 메서드명(=함수)
+    </script>
+</body>
+</html>

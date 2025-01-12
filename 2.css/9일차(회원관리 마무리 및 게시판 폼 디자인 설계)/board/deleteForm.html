@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>글삭제</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+<script language="JavaScript" src="script.js"></script>
+    <style>
+        body{
+          background-color:#e0ffff;
+          text-align:center;
+        }
+        table{
+          width:360px;
+          background-color:#e0ffff;
+          border:1px solid black;
+          border-collapse:collapse;/* 이중선 제거 */
+          margin:0 auto;
+        }
+        /* 같은 td인데 하나는 text-align:center이고 나머지는 다른 td는 가운데 정렬이 아니면 클래스로 구분
+            input box는 가운데 정렬하면 어울리지 않는다.
+        */
+        tr{height: 30px;}
+
+        td{
+          border:1px solid black;
+          background-color:#b0e0e6;
+          text-align: center;
+        }
+      </style>
+</head>
+<body>
+    <span style="font-weight: 900; color: blueviolet;">글삭제</span><br>
+    <form name="delForm" action="#" onsubmit="" method="post">
+        <table>
+            <tr>
+                <td class="td1">비밀번호를 입력해 주세요.</td>
+            </tr>
+            <tr>
+                <td class="td2" style="background: #e0ffff;">비밀번호 :<input type="password" name="passwd" size="8" maxlength="10"></td>
+            </tr>
+            <tr>
+                <td class="td3">
+                    <input type="submit" value="글삭제">
+                    <input type="button" value="글목록" onclick="document.location='list.html'">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

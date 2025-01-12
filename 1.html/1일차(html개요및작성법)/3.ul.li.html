@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.ul.li.html</title>
+</head>
+<body>
+    <!--
+        1.순서가 없는 목록=>ul(unorder list)=>상단메뉴 작성
+        type="disk"(디폴트) square(네모) circle(원)
+        2.순서가 있는 목록=>ol(order list)
+        type="1"(디폴트)(숫자) 로마자 기호(I) II, III
+                                A(대문자) a(소문자)
+        3.정의 목록 =>dl 태그>dt+dd
+        태그명>태그명2>태그명3
+    -->
+    <h3>목록보기 예제</h3>
+            
+                <ul type="circle">
+                    <li>화면 구현</li>
+                    <li>HTML5</li>
+                    <li>CSS3</li>
+                    <li>JavaScript</li>
+                </ul>
+                <!--
+                    1.공백을 인식=>특수기호 &nbsp;
+                    태그->블록 계열의 태그=>자동으로 줄바꿈이 일어남
+                          인라인 계열의 태그=>지동X 수동으로 줄바꿈 <br>태그를 사용
+                    2.< => &lt; > =>&gt;
+                -->
+
+                <ol type="1">
+                    <li><h1>&lt;Java&gt;</h1></li>
+                    <li>Web &nbsp;&nbsp;&nbsp;&nbsp; Programming</li>
+                    <li>Spring</li>
+                </ol>
+                <hr>
+                <!-- 게시판을 작성할때 여러줄을 입력받아서 출력할때 필수 태그-->
+                <pre>    
+                <h3>
+                        html 문서에서 중간에 공백을 줄때                    
+                             중간에 이렇게 써도 공백을 인식 가능     하는지
+                             확인 바랍니다.
+                    </h3>
+                </pre>
+                <hr>
+                <!--
+                 정의 리스트(용어,설명)       
+                    dl->정의 리스트 전체
+                     dt=>각 아이템에서 용어 사용시
+                     dd=>각 아이템에서 설명 사용시
+                -->
+            <dl>
+            <dt><u>Internet Edge</u></dt>
+            <dd><i>마이크로소프트사에서 만든 브라우저로 현재 국내에서 가장 많이 사용</i></dd>
+            <dt><strong>Chrome</strong></dt><!--태그명+태그명2-->
+            <dd><b>구글에서 만든 것으로 좋은 디버거를 갖추고 있어서 자바스크립트 애러 잡을때 유용함</b></dd>
+            </dl>
+
+</body>
+</html>

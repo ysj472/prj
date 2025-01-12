@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9.z-index.html</title>
+    <style>
+        /* default position(static) 작성 순서대로 이미지가 나란히 정렬 */
+        div{
+            position: absolute;
+        }
+        img{
+            position: absolute;
+        }
+        #spadeA{z-index: -3; left:10px;top: 20px;}
+        #spade2{z-index: 2; left:40px;top: 30px;}/* 오른쪽 방향 40px 아래방향 10px */
+        #spade3{z-index: 3; left:80px;top: 40px;}
+        #spade7{z-index: 7; left:120px;top: 50px;}
+    </style>
+</head>
+<body>
+    <h3>z-index 속성테스트</h3>
+    <div>
+        <img id="spadeA" src="../media/spade-A.png" width="100px" height="140px" alt="스페이드A">
+        <img id="spade2" src="../media/spade-2.png" width="100px" height="140px" alt="스페이드2">
+        <img id="spade3" src="../media/spade-3.png" width="100px" height="140px" alt="스페이드3">
+        <img id="spade7" src="../media/spade-7.png" width="100px" height="140px" alt="스페이드7">
+    </div>
+</body>
+</html>

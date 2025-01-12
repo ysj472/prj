@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>왼쪽메뉴 리스트</title>
+</head>
+<body>
+    <!--
+        target=>특정 페이지를 어느 영역에 출력할 것인가를 지정해주는 속성
+            _self(default)=>현재 문서에 출력
+            _blank->새로운 창 또는 탭을 생성해서 페이지 이동
+            _top=>부모 브라우저에 출력 버튼생성(opener) - 자식 창(브라우저)
+            _parent=>최상위 브라우저
+            새로운 영역=>iframe의 name
+    -->
+    <h4>연결할 사이트 리스트</h4>
+    <ul>
+        <li><a href="http://www.chosun.com" target="_self">조선일보</a></li>
+        <li><a href="http://www.etnews.com" target="_blank">전자신문</a></li>
+        <li><a href="http://www.mk.co.kr" target="_top">매일경제신문</a></li>
+        <li><a href="https://www.naver.com" target="_parent">새창에 네이버</a></li>
+        <li><a href="http://www.empas.com" target="_right">사용자정의 지정</a></li>
+    </ul>
+</body>
+</html>

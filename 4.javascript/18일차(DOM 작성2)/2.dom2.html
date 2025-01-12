@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.dom2.html</title>
+    <script>
+        //function test(){
+            //형식)window.on이벤트종류명=처리구문(함수이용)=function(){}
+            window.onload=function(){
+            //특정태그명을 이용해서 태그정보(=태그객체)를 얻어오는 경우
+            //~getElementsByTagName(태그이름)
+            let spans=document.getElementsByTagName("span");
+            //alert(spans);
+            for(let i=0;i<spans.length;i++){
+                if(i%2==1)
+                    spans[i].innerHTML='테스트중';
+                else
+                    spans[i].innerHTML='임시';
+            }//for
+        }//onload
+    </script>
+</head>
+<!-- <body onload="test()"> -->
+    <body>
+    <span>연습1</span><br>
+    <span>연습2</span><br>
+    <span>연습3</span><br>
+</body>
+</html>

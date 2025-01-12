@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="500" height="600" style="border: 1px solid black;"></canvas>   
+    <script>
+        // 기존 코드 유지
+        let canvas = document.getElementById("myCanvas");
+        let ctx = canvas.getContext("2d");
+    
+        let x = 40;
+        let y = 20;
+    
+        let length = 50;
+    
+        let x2 = 50;
+        let y2 = 150;
+    
+        let x3 = 50;
+        let y3 = 450;
+    
+        let x4 = 150;
+        let y4 = 450;
+    
+        let x5 = 250;
+        let y5 = 450;
+    
+        let nemo = [
+            { nx: 0, ny: 0 },
+            { nx: 0, ny: 1 },
+            { nx: 1, ny: 1 },
+            { nx: 1, ny: 0 },
+        ];
+    
+        let nemo2 = [
+            { nx2: -1, ny2: 0 },
+            { nx2: 0, ny2: 0 },
+            { nx2: 0, ny2: 1 },
+            { nx2: 1, ny2: 0 },
+        ];
+    
+        let nemo3 = [
+            { nx3: 1, ny3: 2 },
+            { nx3: -1, ny3: 1 },
+            { nx3: 0, ny3: 2 },
+            { nx3: -1, ny3: 2 },
+        ];
+    
+        let nemo4 = [
+            { nx4: 2, ny4: 1 },
+            { nx4: 1, ny4: 1 },
+            { nx4: 0, ny4: 2 },
+            { nx4: 1, ny4: 2 },
+        ];
+    
+        let nemo5 = [
+            { nx5: 0, ny5: 2 },
+            { nx5: 1, ny5: 2 },
+            { nx5: 2, ny5: 2 },
+            { nx5: 3, ny5: 2 },
+        ];
+    
+        // 게임 필드 상태를 저장하는 배열 추가
+        const rows = 12; // 줄 수
+        const cols = 10; // 열 수
+        const grid = Array.from({ length: rows }, () => Array(cols).fill(0)); // 초기 상태는 비어 있음
+    
+        function drawNemo() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+            ctx.strokeRect(0, 0, 180, 140);
+    
+            for (let i = 0; i < nemo.length; i++) {
+                let { nx, ny } = nemo[i];
+                let dx = x + nx * length;
+                let dy = y + ny * length;
+                ctx.fillStyle = "blue";
+                ctx.strokeStyle = "black";
+                ctx.fillRect(dx, dy, length, length);
+                ctx.strokeRect(dx, dy, length, length);
+            }
+    
+            ctx.strokeRect(320, 0, 180, 100);
+            ctx.font = "25px Arial";
+            ctx.fillText("Score : 0", 365, 60);
+    
+            // 필드에 고정된 블록 그리기
+            for (let row = 0; row < rows; row++) {
+                for (let col = 0; col < cols; col++) {
+                    if (grid[row][col]) {
+                        ctx.fillStyle = "gray";
+                        ctx.fillRect(col * length, row * length, length, length);
+                        ctx.strokeRect(col * length, row * length, length, length);
+                    }
+                }
+            }
+    
+            for (let j = 0; j < nemo2.length; j++) {
+                let { nx2, ny2 } = nemo2[j];
+                let rx2 = x2 + nx2 * length;
+                let ry2 = y2 + ny2 * length;
+                ctx.fillStyle = "red";
+                ctx.strokeStyle = "black";
+                ctx.fillRect(rx2, ry2, length, length);
+                ctx.strokeRect(rx2, ry2, length, length);
+            }
+        }
+    
+        // 줄 삭제 확인 및 삭제 함수 추가
+        function checkAndClearLine() {
+            for (let row = rows - 1; row >= 0; row--) {
+                if (grid[row].every(cell => cell === 1)) {
+                    grid.splice(row, 1); // 줄 삭제
+                    grid.unshift(Array(cols).fill(0)); // 맨 윗줄에 빈 줄 추가
+                    row++; // 삭제한 줄 다시 검사
+                }
+            }
+        }
+    
+        function lockBlock() {
+            nemo2.forEach(({ nx2, ny2 }) => {
+                let gx = (x2 / length + nx2) | 0;
+                let gy = (y2 / length + ny2) | 0;
+                grid[gy][gx] = 1; // 현재 블록 위치를 고정
+            });
+            checkAndClearLine(); // 줄 삭제 검사
+            x2 = 50; // 새로운 블록 시작 위치
+            y2 = 150;
+        }
+    
+        function down() {
+            if (
+                !nemo2.some(({ nx2, ny2 }) => {
+                    let gx = (x2 / length + nx2) | 0;
+                    let gy = (y2 / length + ny2 + 1) | 0;
+                    return gy >= rows || grid[gy][gx]; // 바닥에 닿거나 블록에 닿았는지 확인
+                })
+            ) {
+                y2 += length;
+            } else {
+                lockBlock(); // 바닥에 닿았을 때 블록 고정
+            }
+            drawNemo();
+        }
+    
+        function left() {
+            if (
+                !nemo2.some(({ nx2, ny2 }) => {
+                    let gx = (x2 / length + nx2 - 1) | 0;
+                    let gy = (y2 / length + ny2) | 0;
+                    return gx < 0 || grid[gy][gx];
+                })
+            ) {
+                x2 -= length;
+            }
+            drawNemo();
+        }
+    
+        function right() {
+            if (
+                !nemo2.some(({ nx2, ny2 }) => {
+                    let gx = (x2 / length + nx2 + 1) | 0;
+                    let gy = (y2 / length + ny2) | 0;
+                    return gx >= cols || grid[gy][gx];
+                })
+            ) {
+                x2 += length;
+            }
+            drawNemo();
+        }
+    
+        function turn() {
+            let rotated = nemo2.map(({ nx2, ny2 }) => ({ nx2: -ny2, ny2: nx2 }));
+            if (
+                !rotated.some(({ nx2, ny2 }) => {
+                    let gx = (x2 / length + nx2) | 0;
+                    let gy = (y2 / length + ny2) | 0;
+                    return gx < 0 || gx >= cols || gy >= rows || grid[gy][gx];
+                })
+            ) {
+                nemo2 = rotated;
+            }
+            drawNemo();
+        }
+    
+        drawNemo();
+    </script>
+    
+    <div>
+        <button onclick="left()">왼쪽</button>
+        <button onclick="right()">오른쪽</button>
+        <button onclick="down()">하강</button>
+        <button onclick="turn()">회전</button>
+    </div>
+    <style>
+        canvas{
+            display: block;
+        }
+        div{
+            width: 500px;
+            height: 100px;
+            border: 1px solid black;
+            border-top: 0;
+        }
+        button{
+            background-color: white;
+            border: 1px solid blue;
+            width: 80px;
+            height: 60px;
+            margin-top: 20px;
+            margin-left: 20px;
+            font-size: 20px;
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원탈퇴 확인</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <style>
+        body{
+            background-color: #FFFFCC;
+            text-align: center;
+        }
+        span{
+            font-weight: bolder;
+            color: red;
+        }
+        table{
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- table>form>tr*3>td*2 -->
+    <table>
+        <form action="#" name="del" method="post">
+            <tr>
+                <td colspan="2">
+                    <span>nup님</span> 비밀번호를 입력해주세요.
+                </td>
+                <!-- <td></td> -->
+            </tr>
+            <tr>
+                <td>비밀번호</td>
+                <td><input type="password" name="passwd" id=""></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="button" value="탈퇴" onclick="">
+                    <input type="button" value="취소" onclick="document.location='LogSuccess.html'">
+                </td>
+                <!-- <td></td> -->
+            </tr>
+        </form>
+    </table>
+</body>
+</html>

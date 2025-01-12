@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10.while.do~while(sum).html</title>
+</head>
+<body>
+    <script>
+
+        let i=1,sum=0;//반복할 횟수를 기억할 변수,합계
+
+        // //(2) 무한루프=끝도없이 계속 수행이 되는 문장들=>강제종료=>반드시 블럭처리 O
+        let n=prompt("합계를 구할 숫자를 입력하세요.")
+
+        /*while(i<=n){ //일반적으로  while문은 바로 밑에 문장만 실행하기에 한문장 이상이면 {}로 묶어줌
+             sum+=i;//sum=sum+i;
+             document.write("i=>"+i,"sum=>"+sum+"<p>");
+             i++;//i=i+1
+         }
+            document.write("최종 sum=>"+sum+"<p>");*/
+        
+                do{ //일반적으로  while문은 바로 밑에 문장만 실행하기에 한문장 이상이면 {}로 묶어줌
+             sum+=i;//sum=sum+i;
+             document.write("i=>"+i,"sum=>"+sum+"<p>");
+             i++;//i=i+1
+         }  while(i<=n)
+            document.write("최종 sum=>"+sum+"<p>");
+        
+        
+                /*  
+            i=1 sum=sum+i=>sum=1
+            i=2 sum=1+2 =>sum=3
+            i=3 sum=3+3 =>sum=6
+            i=4 sum=6+4 => sum=10
+            i=5 sum=10+5 => sum=15
+             do{
+                document.write("while구문 연습"+i+"<br>");
+            i++;
+           }while(i<=5); //2<=5,3<=5,4<=5,5<=5,6<=5(거짓)*/
+            document.write("while 구문 종료");
+    </script>
+</body>
+</html>

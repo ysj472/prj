@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.배경색을 변경하는 예제.html</title>
+    <style>
+        div#box{
+            width: 200px;
+            height: 200px;
+            border: 2px solid black;
+        }
+    </style>
+    <script>
+        /*
+            DOM=>화면 구현에 관련된 영역(body 태그)->html 문서를 읽어들여서
+                특정태그를 변수(=객체)로 인식해서 그 값을 가져오거나 값을 변경(기법)
+
+        */
+        function setred(){
+            //id가 box인 태그의 정보를 가져와라(getElementById("id값"))
+            let box=document.getElementById("box");
+            // [object HTMLDivElement] div 태그객체 가져옴
+            //형식)style(상위속성)="background(하위속성:red)"
+            //태그정보(=객체).상위속성명.하위속성명 or ~하위속성명=변경할 값(저장할 값)
+            box.style.background="#ff0000"//"red"
+        }
+        let setgreen=function(){
+            let box=document.getElementById("box");
+            box.style.background="#00ff00"//"green"
+        }
+        function setblue(){
+            let box=document.getElementById("box");
+            box.style.background="#0000ff"//"blue"
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="red" onclick="setred()">
+    <input type="button" value="green" onclick="setgreen()">
+    <input type="button" value="blue" onclick="setblue()">
+    <p></p>
+    <!-- <div id="box" style="background-color: red;"></div> -->
+    <div id="box"></div>
+    <div id="box2"></div>
+</body>
+</html>

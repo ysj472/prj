@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>테트리스</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="500" height="600" style="border: 1px solid black;"></canvas>
+    <script>
+        let canvas = document.getElementById("myCanvas");
+        let ctx = canvas.getContext("2d");
+
+        let rows = 12;
+        let cols = 10;
+
+        let score = 0;
+
+        let length = 50;
+
+        let x = 150;
+        let y = 0;
+
+        let nemo = [
+            {nx:0,ny:0},
+            {nx:0,ny:1},
+            {nx:0,ny:2},
+            {nx:0,ny:3}
+        ];
+
+        //캔버스 분할
+        let grid = [];
+        for(let i=0; i<rows; i++){
+            let row = [];
+            for(let j=0; j<cols; j++){
+                row.push(0);
+            }
+            grid.push(row);
+        };
+
+        function drawNemo() {
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+
+            for(let r=0;r<rows;r++){
+                for(let c=0;c<cols;c++){
+                    if(grid[r][c]==1){
+                        ctx.fillStyle="gray";
+                        ctx.fillRect(c*length, r*length, length, length);
+                        ctx.strokeStyle="black";
+                        ctx.strokeRect(c*length, r*length, length, length);
+                    }
+                }
+            }
+
+            for(let i=0;i<nemo.length;i++){
+                let {nx,ny} = nemo[i];
+                let rx = x + nx*length;
+                let ry = y + ny*length;
+                ctx.fillStyle="dodgerblue";
+                ctx.fillRect(rx, ry, length, length);
+                ctx.fillStyle="black";
+                ctx.strokeRect(rx,ry,length,length);
+            }
+
+            ctx.strokeRect(320, 10, 160, 60);
+            ctx.font = "20px Arial";
+            ctx.fillStyle = "black";
+            ctx.fillText("Score : " + score, 350, 50);
+          }
+
+          function checkCollision(nemo, x, y) {
+            for (let i = 0; i < nemo.length; i++) {
+                let nx = nemo[i].nx;
+                let ny = nemo[i].ny;
+
+                let newX = x + nx * length;
+                let newY = y + ny * length;
+
+                if (
+                    newX < 0 || 
+                    newX >= cols * length || 
+                    newY < 0 || 
+                    newY >= rows * length || 
+                    grid[newY / length][newX / length] === 1
+                ) {
+                    return true; //움직이지 못함
+                }
+            }
+            return false;//움직임
+        }
+
+
+            function fixBlock() {
+                for(let i=0;i<nemo.length;i++){
+                    let nx = nemo[i].nx;
+                    let ny = nemo[i].ny;
+
+                    let gridX = (x+nx*length)/length;
+                    let gridY = (y+ny*length)/length;
+
+                    grid[gridY][gridX] = 1;
+                }
+
+            }
+
+            function clearFullRows() {
+                for(let r=rows-1;r>=0;r--){
+                    if(grid[r].every(cell => cell ===1)){
+                        grid.splice(r,1);
+                        grid.unshift(new Array(cols).fill(0));
+                        score += 100;
+                        r++;
+                    }
+                }
+            }
+
+            function left() {
+                if(!checkCollision(nemo,x-length,y)){
+                    x-=length;
+                }
+                drawNemo();
+            }
+
+            function right() {
+                if(!checkCollision(nemo,x+length,y)){
+                    x+=length;
+                }
+                drawNemo();
+              }
+
+              function down() {
+                if (!checkCollision(nemo, x, y + length)) {
+                    y += length;
+                } else {
+                    fixBlock(); // 블록 고정
+                    clearFullRows(); // 줄 제거
+                    x = 150; // 새로운 블록 초기화
+                    y = 0;
+                }
+                drawNemo();
+        }
+
+        // 블록 회전
+        function turn() {
+            const rotated = [];
+            for (let i = 0; i < nemo.length; i++) {
+                const {nx, ny} = nemo[i];
+                rotated.push({nx: -ny, ny: nx});
+            }
+            if (!checkCollision(rotated, x, y)) {
+                nemo = rotated;
+            }
+            drawNemo();
+        }
+            drawNemo();
+    </script>
+    <div>
+        <button onclick="left()">좌</button>
+        <button onclick="right()">우</button>
+        <button onclick="turn()">회전</button>
+        <button onclick="down()">하강</button>
+    </div>
+    <style>
+        canvas {
+            display: block;
+        }
+        div {
+            width: 500px;
+            height: 100px;
+            border: 1px solid black;
+            border-top: 0;
+            text-align: center;
+        }
+        button {
+            background-color: white;
+            border: 1px solid blue;
+            width: 80px;
+            height: 60px;
+            margin-top: 20px;
+            margin-left: 20px;
+            font-size: 20px;
+        }
+    </style>
+</body>
+</html>

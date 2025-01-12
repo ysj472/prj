@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.sangpumstyle.html</title>
+</head>
+<style>
+    .container{
+        width: 80%;
+        margin: 0 auto;
+        /*
+        margin:50px=>4군데 영역 동일값 부여
+        margin 0(상하) auto(좌우여백은 너비에 맞춰서 자동으로 설정)
+        */
+    }
+    ul{
+        list-style-type: none; /*list-style-type: none;*/
+    }
+    label.title{/*class=title인 label에 적용할 스타일*/
+        font-weight: bold; /*=<strong>*/
+        width: 120px;
+        float:left;/*왼쪽을 기준->오른쪽 방향으로 배치시킬때 필요로 하는 속성명(float)*/
+    }
+    h1,div.centered{
+        text-align: center; /*center 태그 대신*/
+    }
+    fieldset{
+        margin: 15px 10px; /*상하(15px) 좌우(10px)*/
+    }
+    fieldset legend{ /*fieldset안에 있는 모든 legend*/
+        font-weight: bold;
+        font-size: 18px;
+        color: purple;
+    }
+    ul li{ /*모든 항목*/
+        margin-bottom: 10px;
+    }
+</style>
+<body>
+<h1>상품 주문서</h1>
+<form action="form">
+<div class="container">
+    <fieldset>
+        <legend>개인정보</legend>
+        <ul>
+            <li>
+                <label for="uname" class="title">이름</label>
+                <input type="text" name="uname" id="uname" placeholder="여백없이 입력" required>
+            </li>
+            <li>
+                <label for="tell" class="title">연락</label>
+                <input type="text" name="tell" id="tell" placeholder="전화번호를 입력하세요." required>
+            </li>
+        </ul>
+    </fieldset>
+ 
+    <fieldset>
+        <legend>배송지 정보</legend>
+        <ul>
+            <li>
+                <label for="addr" class="title">주소</label>
+                <input type="text" size="40" name="addr" id="addr" required>
+            </li>
+            <li>
+                <label for="tel" class="title">전번</label>
+                <input type="tel" name="tel2" id="tel2" required>
+            </li>
+            <li>
+                <label for="memo" class="title">메모</label>
+                <textarea name="memo" id="memo" cols="30" rows="3"></textarea>
+            </li>
+        </ul>
+    </fieldset>
+    
+    <fieldset>
+        <legend>주문 정보</legend>
+        <ul>
+            <li>
+                <label><input type="checkbox" name="" id="">과테말라 안티구아(100g)</label><!-- name,id를 같이 사용(동일한 이름을 부여)-->
+                <input type="number" name="antigua" id="antigua" value="0" min="0" max="20">개
+            </li>
+            <li>
+                <label><input type="checkbox" name="" id="">인도네시아 만델링(100g)</label><!-- name,id를 같이 사용(동일한 이름을 부여)-->
+                <input type="number" name="man" id="man" value="0" min="0" max="20">개
+            </li>
+            <li>
+                <label><input type="checkbox" name="" id="">탐라는 도다(블렌딩)(100g)</label><!-- name,id를 같이 사용(동일한 이름을 부여)-->
+                <input type="number" name="do" id="do" value="0" min="0" max="20">개
+            </li>
+        </ul>
+    </fieldset>
+    
+    <div class="centered">
+            <input type="submit" value="주문하기">
+            <input type="reset" value="다시작성">
+    </div>
+</div></form>
+</body>
+</html>

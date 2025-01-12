@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8.switch구문(3)범위.html</title>
+</head>
+<body>
+    <script>
+        /* 
+        1~10 숫자중에 짝수,홀수를 판별하시오
+
+        prompt 함수는 입력하면 대부분 문자열로 인식 => 20 => "20"
+        ->parselnt 함수 사용
+        20========>"20" =>20으로 변환시켜서 찾는다.
+        */
+       let su=prompt("1~10까지의 숫자만 입력 요망");
+       su=parseInt(su);//문자열을 숫자로 변환(이거 없이 숫자로만 입력하면 문자로 인식해서 원하는 값이 안나옴)
+        switch(su){
+            case 2: case 4: 
+            case 6:
+            case 8:
+            case 10: 
+        document.write(su,"는 짝수입니다.","<br>");       
+            break;
+        case 1: case 3: case 5: case 7: case 9:    
+        document.write(su,"는 홀수입니다.","<br>"); 
+        break;
+        //추가
+        default: //if구문의 else if 구문의 맨 마지막 else 구문
+        document.write("입력받을 수 있는 값은 1~10까지만","<br>")
+        break;
+        }
+        document.write("switch 구문 연습 종료.");
+    </script>
+</body>
+</html>

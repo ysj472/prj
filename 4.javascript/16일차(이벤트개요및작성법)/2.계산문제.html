@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.계산문제.html</title>
+    <script>
+        /*
+            자바스크립트 코딩방식: window.document.폼객체이름(myform).입력양식객체명.속성 or ~속성=값
+        */
+        function sum(){//문자,숫자,논리값,객체도 전달
+            //alert("sum()호출");
+            //alert(document.myform.kor.value); document=페이지 전체,myform=전송할 데이터,kor=입력할객체명,value=속성
+            let k=document.myform.kor.value;//"70"
+            let e=document.myform.eng.value;//"80"
+            let m=document.myform.mat.value;//"90"
+            // let total=parseInt(k)+parseInt(e)+parseInt(m); "708090"=>parseInt("70")=70
+            let total=Number(k)+Number(e)+Number(m);//자바=>Wrapper 클래스(숫자도 객체)
+            //parseFloat("72.5")=>72.5
+            alert("합계는: "+total);
+        }
+    </script>
+</head>
+<body>
+    <form method="post" name="myform" action="sum.jsp">
+        국어:<input type="text" name="kor" placeholder="국어점수" required><br>
+        영어:<input type="text" name="eng" placeholder=" 영어점수" required><br>
+        수학:<input type="text" name="mat" placeholder="수학점수" required><p>
+        <input type="button" value="합계" onclick="sum()">
+        <input type="reset" value="다시작성"><p>
+    </form>
+</body>
+</html>

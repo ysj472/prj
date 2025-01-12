@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.텍스트스타일적용.html</title>
+    <style>
+        /* text-decoration(속성명):none(적용X) */
+        h3 {text-align: center;}
+        span{text-decoration: line-through;}/*취소선 underline,overline,none*/
+        strong{text-decoration: underline; color:rgb(255,0,0);}/* 글자위에 선 긋기*/
+        .p1{
+            /*기본 단위 =>px(글자를 기준) => 1em=100%=16px  */
+            text-indent: 3em; /* 16px*3=48px =3em */
+            text-align: justify;
+        }/*justtify(양쪽 정렬)*/
+        .p2{
+           text-indent: 1em; /*16px*/
+           text-align: center; 
+        }
+    </style>
+</head>
+<body>
+    <h3>텍스트 꾸미기</h3>
+    <hr><!--p.p&2 p1,p2순서대로 작성-->
+    <p class="p1">
+        <!--형식 유지 태그 pre-->
+        html의 태그만으로 &nbsp;&nbsp; 기존의 워드프로세스와 
+        같이 들여쓰기,정렬,공백,
+        간격 등과 같이 세밀한 <span>텍스트 제어</span>를 할 수 없음.
+        
+    </p>
+    <p class="p2">
+        <strong>스타일 시트를 이를 가능하게 한다.</strong> 
+        들여쓰기, 정렬에 대해서 적용되는지 확인해 봅시다.
+    </p><!-- p>a{밑줄없는 네이버 링크 태그 작성}-->
+    <p><a href="https://www.naver.com" style="text-decoration: none;">밑줄없는 네이버 링크 태그 작성</a></p>
+</body>
+</html>

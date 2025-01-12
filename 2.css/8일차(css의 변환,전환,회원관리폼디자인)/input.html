@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>input.html</title>
+    <style>
+        input[type=text]{
+            border: 1px dotted orange;
+        }
+        input[type=password]{
+            border: 1px dotted orange;
+        }
+        textarea{
+            border: 1px solid orange;
+        }
+        
+    #fileodds{
+        border: 0px;
+    }
+    input[type=button]{
+        background-color: black;
+        color: white;
+        margin: 3px;
+        border: 0px;
+    }
+    </style>
+</head>
+<body>
+   <div class="inputtype">
+    <form method="post">
+        <table>
+            <tr>
+                이름:<input type="text" name=""><br>
+                주소:<input type="text" name="" size="70px"><br>
+                암호:<input type="password" name="" size="10px">
+                계절:<input type="checkbox" name="" id="">봄
+                <input type="checkbox" name="" id="">여름
+                <input type="checkbox" name="" id="">가을
+                <input type="checkbox" name="" id="">겨울 <br>
+                국가 <input type="radio" name="" id="">한국
+                <input type="radio" name="" id="">중국
+                <input type="radio" name="" id="">일본
+            <p></p>
+            <select name="" id="">
+                <option value="프로그래머">프로그래머</option>
+                <option value="DB관리자" selected>DB관리자</option>
+                <option value="웹디자인">웹디자인</option>
+            </select>
+            <p></p>
+            <textarea name="" id="" cols="50" rows="7"></textarea>
+            <p></p>
+        파일첨부:<input type="file" name="" id="fileodds">
+        <p></p>
+            <input type="button" value="회원가입">
+            <input type="button" value="회원가입2">
+            <input type="button" value="입력취소">
+        </table>
+    </form>
+   </div>
+    
+</body>
+</html>

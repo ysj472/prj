@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.break테스트예제.html</title>
+</head>
+<body>
+    <script>
+        /*
+        break문=>반복문(while,do~while,for)에서 특정 조건에 만족하는 break문을 만나면
+            가장 가까운 반복문을 탈출하게 만들어주는 구문
+        */
+       document.write("레이블이 없는 break문(가장 가까운 루프 탈출)<p>");
+            //1)      2)
+        for(let a=0;a<5;a++){
+            //       3)   4)7)10)   6)b=1 9)b=2
+            for(let b=0;b<5;b++){
+                if(b==2) break;//추가 11)
+                document.write("a=>"+a+"b=>"+b+"<br>");//5) a=0,b=0 8)a=0,b=1
+            }
+            document.write("=================<br>");//12)
+        }
+        document.write("이중 for문 종료");
+    </script>
+</body>
+</html>

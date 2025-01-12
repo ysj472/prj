@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.const변수의 주의점.html</title>
+    <script>
+        /*
+            const: 
+            1. 상수화 된 변수(ex: const 변수명=34 -> 값이 고정됨)
+            2. const 변수명={key:value}->객체 생성->값을 중간에 변경할 수 있음
+            ->객체(=저장대상자) 생성(공간생성)->데이터 변경 O->주소값이 변경 안됨
+        */
+       const obj0={};//빈객체 생성->ex)임대 
+       const obj={id:7890};//obj.id(객체명.속성명(key명))
+       const obj2={bar:456};
+
+       console.log("변경전 obj.id=>"+obj.id);//7890
+       //객체명.속성=값
+       obj.id=2345;
+       console.log("변경후 obj.id=>"+obj.id);//2345=> 내용은 변경되지만 주소값은 변경되지 않음
+
+       const user={
+            name:'lee',
+            address:{
+                city:'seoul'
+            }
+       }
+       console.log(user);
+       user.name='kim';//'Lee'->'Kim'
+       console.log(user);
+    </script>
+</head>
+<body>
+    <script>
+
+    </script>
+</body>
+</html>

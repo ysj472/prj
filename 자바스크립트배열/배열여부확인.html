@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            자바스크립트에서는 배열이라는 타입(type)을 별도로 제공하지 않음.
+            자바스크립트의 타입을 확인하는 typeof 연산자를 사용해도
+            'object'를 반환할 뿐이다.
+            자바스크립트 배열은 일종의 객체(object) 타입이기 때문이다.
+        */
+       var arr = [1,true,"javascript"];
+       document.write(typeof arr);
+
+       /*
+        따라서 자바스크립트에서는 해당 변수가 배열인지 여부를 확인할 수 있도록
+        다음과 같은 방법을 제공하고 있다.
+
+        Array.isArray() 메서드
+        instanceof 연산자
+        constructor 프로퍼티
+       */
+
+       document.write(Array.isArray(arr));//true
+       document.write(Array.isArray("문자열"));//false
+
+       /*
+        ECMAScript5 부터는 Array 클래스에 isArray()라는 배열 여부를 확인할 수 있는 메서드를 추가함.
+        하지만 구형 버전의 브라우저는 ECMAScript5를 지원하지 않으므로
+        Array.isArray() 메서드가 정상적으로 동작하지 않을 수도 있다.
+        따라서 이때는 instanceof 연산자를 사용하여 해당 변수가 Array 객체인지를 판단하여
+        배열 여부를 확인할 수 있다.
+       */
+
+       document.write(arr instanceof Array);//true
+       document.write(123 instanceof Array);//false
+
+       document.write(arr.constructor === Array);
+       document.write("문자열".constructor === Array);
+    </script>
+</body>
+</html>

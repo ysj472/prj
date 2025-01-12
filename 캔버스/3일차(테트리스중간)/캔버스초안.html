@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>캔버스초안</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="500" height="600" style="border: 1px solid black;"></canvas>
+    <script>
+        let canvas = document.getElementById("myCanvas");
+        let ctx = canvas.getContext("2d");
+
+        ctx.clearRect(0,0,canvas.width,canvas.height);//캔버스 초기화
+
+        ctx.fillStyle="blue";//안쪽 사각형 배경색
+        ctx.strokeStyle="black";//바깥 사각형 테두리
+
+         ctx.strokeRect(0,0,140,140);
+
+        var x = 20; //x좌표
+        var y = 20; //y좌표
+
+        let length = 50; //사각형 길이
+
+        //첫번째 사각형
+        // ctx.fillStyle = "blue";
+        // ctx.fillRect(45,20,40,40);
+        // ctx.strokeStyle = "black";
+        // ctx.strokeRect(45,20,40,40);
+
+        // //두번째 사각형
+        // ctx.fillStyle = "blue";
+        // ctx.fillRect(85,20,40,40);
+        // ctx.strokeStyle = "black";
+        // ctx.strokeRect(85,20,40,40);
+
+        // //세번째 사각형
+        // ctx.fillStyle = "blue";
+        // ctx.fillRect(45,60,40,40);
+        // ctx.strokeStyle = "black";
+        // ctx.strokeRect(45,60,40,40);
+
+        // //네번째 사각형
+        // ctx.fillStyle = "blue";
+        // ctx.fillRect(85,60,40,40);
+        // ctx.strokeStyle = "black";
+        // ctx.strokeRect(85,60,40,40);
+        
+        //사각형 위치 배열
+        let res = [
+            {rx:1,ry:1},
+            {rx:0,ry:0},
+            {rx:0,ry:1},
+            {rx:1,ry:0}      
+        ];
+        
+        //사각형 위치 반복문
+        for(let i=0;i<res.length;i++){
+            let {rx,ry} = res[i];
+            let dx = x+rx*length; //사각형 x좌표
+            let dy = y+ry*length; //사각형 y좌표
+            ctx.fillRect(dx,dy,length,length); //사각형
+            ctx.strokeRect(dx,dy,length,length); //테두리
+        }
+        
+        //스코어보드 좌표
+
+        ctx.strokeRect(300,0,200,80);
+        ctx.font = "25px Arial";
+        ctx.fillText("Score : 0", 350, 50);
+
+        //중간지점 사각형 블록
+        var x2 = 200;
+        var y2 = 150;
+
+        ctx.fillStyle="red";//안쪽 사각형 배경색
+        ctx.strokeStyle="black";
+
+        
+        let res2 = [
+            {rx2:-1,ry2:0},
+            {rx2:0,ry2:1},
+            {rx2:0,ry2:0},
+            {rx2:1,ry2:0}
+        ];
+
+        // ctx.fillStyle = "red";
+        // ctx.fillRect(120,200,40,40);
+        // ctx.strokeStyle = "black";
+        // ctx.strokeRect(120,200,40,40);
+
+        // ctx.fillStyle = "red";
+        // ctx.fillRect(160,200,40,40);
+        // ctx.strokeStyle = "black";
+        // ctx.strokeRect(160,200,40,40);
+
+        // ctx.fillStyle = "red";
+        // ctx.fillRect(200,200,40,40);
+        // ctx.strokeStyle = "black";
+        // ctx.strokeRect(200,200,40,40);
+
+        // ctx.fillStyle = "red";
+        // ctx.fillRect(160,240,40,40);
+        // ctx.strokeStyle = "black";
+        // ctx.strokeRect(160,240,40,40);
+
+        for(let j=0;j<res2.length;j++){
+            let {rx2,ry2} = res2[j];
+            let dx2 = x2 + rx2*length;
+            let dy2 = y2 + ry2*length;
+            ctx.fillRect(dx2,dy2,length,length);
+            ctx.strokeRect(dx2,dy2,length,length);
+        };
+
+        
+        function left() {
+            if(x2>0){
+                x2-=20;
+            }else{
+                x2=0;
+            }
+          };
+
+          function right() {
+            if(x2<canvas.width-50){
+                x2+=20;
+            }else{
+                x2=canvas.width-50;
+            }
+            }
+
+        function turn() {
+            
+          }
+
+        function down() {
+            if(y2<canvas.height-50){
+                y2 = y+=20;
+            }else{
+                y2=0;
+            }
+          }
+
+    </script>
+    <div>
+        <button onclick="left()">좌</button>
+        <button onclick="right()">우</button>
+        <button onclick="turn()">회전</button>
+        <button onclick="down()">하강</button>
+    </div>
+    <style>
+        div{
+            width: 500px;
+            height: 100px;
+            border: 1px solid black;
+        }
+        button{
+            background-color: white;
+            border: 1px solid blue;
+            width: 80px;
+            height: 60px;
+            font-size: 30px;
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+    </style>
+</body>
+</html>

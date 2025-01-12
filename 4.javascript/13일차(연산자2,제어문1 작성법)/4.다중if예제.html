@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.다중if예제.html</title>
+</head>
+<body>
+    <script>
+        /*
+        조건에 따라서 처리할 문장이 하나 이상=>다중 if문
+        =>항목이 너무 길면 실행 속도가 느려짐(ex 사다리타기)
+            형식) if(조건식)
+                        수행1
+                    else if(조건식 2)
+                        수행2
+                    else if(조건식 3)
+                        수행3
+                    .....
+                    else
+                        수행n
+        */
+    //    반환값->특정함수가 처리하고 처리한 값을 변수에 넣어주는것
+       let qs=prompt("당신이 좋아하는 언어 선택 1.자바 2.자바스크립트 3.c언어");
+       //조건식=>1.변수의 값 체크(대소 >,<=) 2.수식=>3.조건식이 한개 이상
+    //    (조건식1) &&(or ||) (조건식2) &&(or ||) 조건식3
+       if((qs=="자바") || (qs==1))// =>qs=="1"도 가능(자동 변환이 됨)
+            alert("당신은 자바를 좋아하시는군요");
+       else if((qs=="자바스크립트") || (qs==2))//=>qs=="2"도 가능
+            alert("당신은 자바스크립트를 좋아하시는군요"); 
+        else //else if(qs=="c언어")로 표기해도 틀린건 아님.
+            alert("c언어 선택");
+        document.write("다중 if문 종료!");    
+    </script>
+</body>
+</html>

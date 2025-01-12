@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7.자바스크립트객체생성(2).html</title>
+</head>
+<body>
+    <script>
+        //익명함수를 이용해서 작성: 객체생성: new Object()이용
+        //window.onload 이벤트: 브라우저에서 맨 처음 html 문서를 읽어들일때 발생되는 이벤트 종류
+        window.onload=function(){
+
+            //형식) let 객체명(=저장 대상자)=new Object();//공간이 생성
+            //직접 객체명.속성=값;
+            let mem=new Object();//회원만 저장되는 공간을 새로 생성
+            mem.id=1234;//회원번호: 객체를 이용해서 직접적으로 속성을 추가(동적인 개념)
+            //자바스크립트에서 값을 저장할때 "문자열" 숫자 ,true,false 지정해줘야한다
+            mem.name="테스트";//회원명
+            mem.hobby="바둑";//취미
+            mem.sung="남자";//성별
+            //공통기능: 함수로 구현(=메서드):2개
+            // 형식) 객체명.함수명=function(저장할 값){this.속성명=저장할값;}
+            mem.setHobby=function(hobby){//수정목적
+                this.hobby=hobby;//this: mem을 가리킴. 함수내부에서는 직접적으로 객체명 사용불가
+            }
+            // 형식) 객체명.함수명=function() {return this.꺼내올 속성명;}
+            mem.getHobby=function(){
+                return mem.hobby;//return mem.hobby
+            }
+            //--------------------------------
+            mem.toString=function(){
+                return this.id+" "+this.name+" "+this.hobby+" "+this.sung;
+            }//
+            mem.setHobby("영화감상");
+            alert(mem.toString());//전체 데이터 가져오기.
+        }
+    </script>
+</body>
+</html>

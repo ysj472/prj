@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7.form태그관련예제.html</title>
+    <script>
+        function test(){//유효성 검사
+            //이름란에 글자를 입력하지 않았다면
+            if(document.myform.name.value==""){
+                alert("이름은 필수입니다.");
+                document.myform.name.focus();//~focus() 커서를 넣어달라
+                return false;//이름을 입력하기전까지는 밑의 if구문 실행 못하게 막음
+                //return; 탈출문: break,continue,return;
+            }
+            if(document.myform.tel.value==""){
+                alert("전번은 필수입니다.");
+                document.myform.tel.focus();//~focus() 커서를 넣어달라
+                return false;
+            //
+        }
+            if(document.myform.pwd.value==""){
+                alert("암호는 필수입니다.");
+                document.myform.pwd.focus();//~focus() 커서를 넣어달라
+                return false;
+            //
+        }
+            // 모두 입력했으면=>action="register.jsp"
+            //형식) document.폼객체이름.submit()
+            document.myform.submit();//input:submit은 생략가능
+        }
+        function test2(){//4자 이상 8자 이하면 입력 허용
+            if(document.myform.pwd.value!=""){
+                if(document.myform.pwd.value.length>=5 &&
+                    document.myform.pwd.value.length<=8){
+                        alert("정상적으로 암호를 입력했군요!!");
+                    }else{
+                        alert("암호는 최소 5자 이상이 되어야 합니다.");
+                        document.myform.pwd.focus();//커서 입력
+                    }
+            }
+        }
+        function test3(){
+            document.myform.name.focus();//이름부터 입력이 가능하도록 설계
+        }
+    </script>
+</head>
+<body>
+    <form name="myform" method="post" action="register.jsp">
+        이름:<input type="text" name="name" id="name"><br>
+        전번:<input type="text" name="tel" id="tel"><br>
+        암호:<input type="password" name="pwd" id="pwd"><p></p>
+        <input type="button" value="전송" onclick="test()">
+        <input type="button" value="암호입력" onclick="test2()">
+        <input type="reset" value="다시입력" onclick="test3()">
+    </form>
+</body>
+</html>

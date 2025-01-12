@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9.while.do~while.html</title>
+</head>
+<body>
+    <script>
+        /*
+        반복문=>똑같은 문장을 정해진 횟수만큼 계속해서 반복적으로 실행하는 구문.
+            =>while,do~while,for문을 이용
+                while,do~while=>반복할 횟수 O or 반복할 횟수 X(ex 외부의 파일을 불러오는 경우->파일길이 x)
+                for문=>반복할 횟수 O
+            형식) while(조건식)//1)
+                수행1;//2
+            특징) 처음부터 조건식이 거짓이면 한번도 수행되지 않음,
+            조건이 만족하면 수행 후 조건체크 시 거짓이 될때까지 반복   
+
+            do{
+                수행구문;1)
+            }while(조건식)2)
+            특징)처음부터 조건식이 거짓이어도 최소 한번은 무조건 수행 O, 조건체크시 거짓이 될때까지 반복
+        */ 
+       /*(1)
+         document.write("while 구문 연습1<br>");
+         document.write("while 구문 연습1<br>");
+         document.write("while 구문 연습1<br>");
+         document.write("while 구문 연습1<br>");
+         document.write("while 구문 연습1<br>");*/
+
+        let i=1;//반복할 횟수를 기억할 변수
+        //(2) 무한루프=끝도없이 계속 수행이 되는 문장들=>강제종료=>반드시 블럭처리 O
+
+        /* while(i<=5){ //일반적으로  while문은 바로 밑에 문장만 실행하기에 한문장 이상이면 {}로 묶어줌
+            document.write("while구문 연습"+i+"<br>");
+             i++;//i=i+1
+         }*/
+
+            do{
+                document.write("while구문 연습"+i+"<br>");
+             i++;
+            }while(i<=5); //2<=5,3<=5,4<=5,5<=5,6<=5(거짓)
+
+            document.write("while 구문 종료");
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.CSS의 boxmodel.html</title>
+</head>
+<style>
+    ul{ /* margin(바깥여백) padding(안쪽여백) */
+        background: dodgerblue;
+        margin: 10px 20px 30px 40px;/* top(상단),right,bottem(아래쪽),left*/
+        /* 형식)상위속성명-하위속성명-하위속성명2
+        margin-top:10px;(바깥여백의 상단)
+        margin-right:20px;(바깥여백의 오른쪽)
+        margin-bottom:30px;(바깥여백의 하단)
+        margin-left:40px;(바깥여백의 왼쪽)
+        와 같다.
+        */
+        padding: 50px;/*top->right->bottom->left*/
+        /*
+        padding-top:50px(안쪽여백상단)
+        padding-right:50px(안쪽여백오른쪽)
+        padding-bottom:50px(안쪽여백하단)
+        padding-left:50px(안쪽여백왼쪽)
+        */
+    }
+    li{
+        color: red;
+        list-style: none;/*li 태그의 점을 없애는 속성*/
+        background: yellow;
+        margin: 30px; /*li 태그의 바깥 여백=ul태그 입장에선 안쪽여백(padding)
+        50+30=80px */
+        padding: 30px;/*li태그의 안쪽여백=>글자와 li태그 사이의 거리(=테이블의 cellpadding과 유사함)*/
+    }
+    li.withborder{
+        /*
+        border(상위속성)-하위속성
+        border:double medium red;
+        
+        */
+        border-style: outset;/*선의 종류 solid(실선) double(이중선) dotted(점선), dashed(굵은점선)
+        책 189페이지에 inset,outset(양각,음각느낌)*/
+        border-width: 15px;/*테두리의 크기 지정(px크기로 설정)*/
+        border-color: red;/*테두리의 색깔*/
+    }
+</style>
+<body>
+    <!-- ul>li*2 -->
+    <ul>
+        <li>테두리가 없는 경우</li>
+        <li class="withborder">테두리가 있는 경우</li>
+    </ul>
+</body>
+</html>

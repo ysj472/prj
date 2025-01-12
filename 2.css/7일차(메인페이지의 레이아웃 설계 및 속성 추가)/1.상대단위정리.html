@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.상대단위정리(em,rem).html</title>
+    <style>
+        /*
+        em=>배수->body의 글자 크기에 따라서 기준이 변함.
+        rem=>브라우저 자체 설정이 변경되기 전까지 기준이 변하지 않음.
+        (1 rem=16px)
+        */
+        #text1 {
+            font-size: 1em;/* 20px->40px */
+        }
+        #text2 {
+            font-size: 2em;/* 20px*2=40px->80px */
+        }
+        
+        #text3{
+            font-size: 1rem; /* 1rem=16px(body의 글자 설정과 상관없이 항상 16px) */
+        }
+        #text4{
+            font-size: 2rem;/* 2rem=16px*2=32px */
+        }
+        #text5{
+            font-size: 20px;
+        }
+        body{/* 만약에 body 부분에 font-size 설정을 하지 않으면 1em=16px=1rem */
+            font-size: 40px; /* 20px->40px */
+        }
+    </style>
+</head>
+<body>
+    <p>Basic Text Size:20px</p>
+    <!--p#text$*5-->
+    <p id="text5">20px</p>
+    <p id="text1">1em</p>
+    <p id="text2">2em</p>
+    <hr>
+    <p id="text3">1rem</p>
+    <p id="text4">2rem</p>
+    <hr>
+    
+</body>
+</html>

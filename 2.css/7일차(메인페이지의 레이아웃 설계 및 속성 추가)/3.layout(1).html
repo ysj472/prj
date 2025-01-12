@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.layout(1).html</title>
+    <!--type html5에서 자동 인식 보통 생략 O-->
+    <style type="text/css">
+        #jb-container{
+            width: 940px; /* 1000px중에서 양쪽여백 30px를 뺀 나머지 계산
+                           ex) width:1940px (2000px) width:2940px (3000px)
+                          */
+            border: 1px solid #bcbcbc;       
+            margin: 0 auto; /* 상(margin-top),하(margin-bottom 0px), 
+            좌우여백은 브라우저 폭에 따라 자동 배치(auto) 
+            margin-left,margin-right */ 
+            padding: 20px;/* 안쪽여백 */     
+            
+        }
+        #jb-header{
+            border:1px solid #bcbcbc;
+            /* margin:20px 줘도 된다.(겹치는 부분)*/
+            padding: 40px;/*테두리->2-column layer 사이의 여백거리(글자,이미지,표)*/
+            /*padding-left: 20px; text-indent로 설정? */
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="jb-container"><!--문서의 전체테두리(container)-->
+        <div id="jb-header"><!--상단부분-->
+            <h2>2-Column Layout</h2>
+        </div>
+        <div id="jb-content"><!--본문내용-->
+
+        </div>
+        <div id="jb-sidebar"><!--sidebar-->
+
+        </div>
+        <div id="jb-footer"><!--꼬리말-->
+            <p>copyright</p>
+        </div>
+    </div>
+</body>
+</html>

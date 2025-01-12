@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--meta 태그를 이용해서 페이지 이동
+    http-equiv="refresh"(새로고침 F5) content="초;url=http://이동할 페이지명"
+                                            0초 뒤에 이동(즉시 이동하라)
+    -->
+    <meta http-equiv="refresh" content="0;url=https://www.mlb.com/">
+    <title>2.image.link.html</title>
+</head>
+<body>
+    <h3>이미지 불러오기</h3>
+    <!--
+        절대경로=>c:\webtest\1.client\1.html~ =>드라이브 표시(=탐색기)
+        상대경로=>현재폴더(.)을 기준으로 다른 경로를 지정해주는 방식
+                ..(상위폴더)..\..\
+                ./현재폴더명=>현재폴더명 /현재폴더/서브폴더명
+    1.src=>이미지를 불러올 경로를 지정(필수 속성)
+    2.width,height->이미지의 크기를 지정(확대 또는 축소할때)  
+        픽셀수(=모니터에 출력하는 점의 개수) 
+    4.alt=>이미지를 불러오지 못할 경우 출력되는 문자열 표시
+    jpg(인물,사진)>gif(웹상에서 표준)>png(모바일 화면)
+
+    html5->html4 기본 태그+추가된 태그(figure,figcaption 이미지에 대해서 사용)
+    figure->이미지를 주로 묶어주는 태그(블록화구조 태그)=>들여쓰기
+    figcaption=>이미지의 간단한 설명문을 부여할때
+    -->
+    <img title="망둥어" src="../images/fish.jpg" alt="이미지를 못불러올때 보여주는 특정 문자열">
+    <img src="../images/fish2.jpg" alt="이미지를 못불러올때 보여주는 특정 문자열">
+    <hr><!--경계선을 그어주는 역할-->
+    <figure>
+        <img title="우체통" src="../images/waiting.jpg">
+        <figcaption>이미지에 대한 설명글을 부여(우체통)</figcaption>
+        <img src="../images/Penguins.jpg" width="360" height="470">
+        <figcaption>펭귄사진</figcaption>
+    </figure>
+    <hr>
+    <!--
+        링크
+        href="이동시킬 페이지명(~.html)or 특정사이트 주소"
+            mailto:실제로 보낼 메일주소명=>메일창
+        #=>파일명이 정해져있지 않은 경우
+        #특정키워드명=>현재 문서 내부의 특정위치로 이동시킬 때 사용
+        target="_blank" =>새로운 창이 만들어지면서 이동(탭이 추가)
+        target="_self"=>현재 문서 내에서 페이지 이동
+        디폴트값(=기본값)=>값을 지정하거나 지정하지 않거나 동일한 값이 부여되는 것.
+
+    -->
+    <a href="https://www.naver.com/" target="_self">네이버</a>
+    <a href="https://www.daum.net/" target="_blank">다음</a>
+    <a href="#">회원가입</a><!--링크걸어서 이동할 페이지가 있는 경우(경로 포함해서 파일명)-->
+    <hr>
+    공부하시다가 문의가 있으시면
+    <a href="mailto:nup49rok1@empas.com">저한테 메일좀 보내주세요</a>
+
+</body>
+</html>

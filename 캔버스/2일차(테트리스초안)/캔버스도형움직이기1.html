@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<canvas id="myCanvas" width="400" height="600" style="border:1px solid black;">
+</canvas> 
+<button onclick="left()">left</button>
+    <button onclick="right()">right</button>
+    <button onclick="up()">up</button>
+    <button onclick="down()">down</button>
+<script>
+const canvas = document.getElementById("myCanvas");
+const ctx = canvas.getContext("2d");
+
+// 사각형의 현재 위치 (x,y)
+var x = 0;
+var y = 0;
+
+//왼쪽으로 이동
+function left() {
+    x = x<canvas.width - 50 ? x+= 20 : canvas.width - 50;
+  }
+
+//오른쪽으로 이동
+function right() {
+    x = x>0 ? x -= 20 : 0;
+  }
+
+  //아래로 이동
+function down() {
+    y = y < canvas.height - 50 ? y+=20 : canvas.height - 50;
+  }
+
+//위로 이동
+function up() {
+  y = y>0?y-=20 : 0;
+  }
+
+//사각형 그리기
+function nemo(){
+  ctx.fillStyle = 'dodgerblue';
+  ctx.fillRect(x,y,50,50)
+}
+
+//캔버스 화면 갱신
+function draw() {
+  ctx.clearRect(0,0,canvas.width, canvas.height);
+  nemo();
+  }
+
+  setInterval(draw, 10);
+    
+</script>
+</body>
+</html>

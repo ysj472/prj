@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3table그룹화(1).html</title>
+</head>
+<body>
+    <!--
+        문서(머리말)=>표의 머리글(header)=>thead태그=>관리
+            본문=>tbody=>내부에 하나 이상 또는 그 이상의 <tr> 태그를 갖고 있어야함.
+                            table 태그 안에 배치 O
+                            <caption>,<colgroup>,<thead>,<tfoot>태그 다음에 위치
+            꼬리말->tfoot=>중간에 배치 가능
+            본문은 항상 있는데 tbody로 묶어서 표를 작성
+
+    -->
+    <center>
+        <table border="1">
+            <thead><!--머리말-->
+                <tr>
+                    <th>HTML 강의</th>
+                    <th>CSS 강의</th>
+                    <th>JavaScript 강의</th>
+                </tr>
+            </thead>
+            <tfoot><!--중간에 배치-->
+                <tr>
+                    <td>HTML 초급</td>
+                    <td>CSS 초급</td>
+                    <td>JavaScript 초급</td>
+                </tr>
+            </tfoot>
+            <tbody><!--본문 최소 한개 이상의 tr 존재-->
+                <tr>
+                    <td>HTML 중급</td>
+                    <td>CSS 중급</td>
+                    <td>JavaScript 중급</td>
+                </tr>
+                <tr>
+                    <td>HTML 고급</td>
+                    <td>CSS 고급</td>
+                    <td>JavaScript 고급</td>
+                </tr>
+            </tbody>
+        </table>
+    </center>
+</body>
+</html>

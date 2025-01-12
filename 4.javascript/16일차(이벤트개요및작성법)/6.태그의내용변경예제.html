@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6.태그의내용변경예제.html</title>
+    <script>
+        /*
+        같은 태그 id 속성을 이용 1)css 사용 목적(id 선택자)
+                                        2)자바스크립트에서 특정태그를 구분하기 위해 사용되는 구분자(DOM 객체)
+        */
+       function change(){
+            let ch=document.getElementById("test1");
+            //alert(ch);
+            //alert(ch.innerHTML);//innerHTML속성=>태그의 내용을 꺼내거나 변경할때 사용하는 속성
+            //ch.innerHTML="화면상에 동적으로 변경이 되었습니다";
+            let input=prompt("변경시킬 문자열을 입력하세요.");
+            ch.innerHTML=input;
+       }
+    </script>
+</head>
+<body>
+    <div id="test1">자바스크립트 변수,연산자,제어문,함수,객체생성</div>
+    <div id="test2">DOM의 개요 및 활용법</div>
+    <form action="">
+        <input type="button" value="변경" onclick="change()">
+    </form>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>테트리스</title>
+    <style>
+        canvas {
+            display: block;
+        }
+        div {
+            width: 500px;
+            height: 100px;
+            border: 1px solid black;
+            border-top: 0;
+        }
+        button {
+            background-color: white;
+            border: 1px solid blue;
+            width: 80px;
+            height: 60px;
+            margin-top: 20px;
+            margin-left: 20px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" width="500" height="600" style="border: 1px solid black;"></canvas>
+    <div>
+        <button onclick="moveLeft()">왼쪽</button>
+        <button onclick="moveRight()">오른쪽</button>
+        <button onclick="moveDown()">하강</button>
+        <button onclick="rotate()">회전</button>
+    </div>
+    <script>
+        const canvas = document.getElementById("myCanvas");
+        const ctx = canvas.getContext("2d");
+
+        const rows = 12;
+        const cols = 10;
+        const blockSize = 50;
+
+        // 게임 보드 초기화
+        let board = Array.from({ length: rows }, () => Array(cols).fill(0));
+
+        // 현재 블록, 다음 블록
+        let currentBlock = [];
+        let nextBlock = [];
+        let currentColor = "";
+        let nextColor = "";
+        let x = 4; // 블록의 시작 x좌표 (칸 단위)
+        let y = 0; // 블록의 시작 y좌표 (칸 단위)
+
+        // 점수
+        let score = 0;
+
+        // 블록 색상
+        const blockColors = ["red", "blue", "green", "orange", "purple"];
+
+        // 블록 모양 정의
+        const blockShapes = [
+            [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 0, y: 1 }, { x: 1, y: 1 }], // 네모
+            [{ x: 0, y: 0 }, { x: 0, y: 1 }, { x: 0, y: 2 }, { x: 0, y: 3 }], // 막대
+            [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 2, y: 1 }], // Z
+            [{ x: 1, y: 0 }, { x: 0, y: 0 }, { x: 0, y:1 }, { x: -1, y: 1 }], // 반대 Z
+            [{ x: 0, y: 0 }, { x: -1, y: 1 }, { x: 0, y: 1 }, { x: 1, y: 1 }]  // T
+        ];
+
+        // 랜덤 블록 생성
+        function getRandomBlock() {
+            const shapeIndex = Math.floor(Math.random() * blockShapes.length);
+            const block = blockShapes[shapeIndex];
+            const color = blockColors[shapeIndex];
+            return { block, color };
+        }
+
+        function createBlock() {
+            if (!nextBlock.length) {
+                const { block, color } = getRandomBlock();
+                nextBlock = block;
+                nextColor = color;
+            }
+            currentBlock = nextBlock.map(part => ({ ...part }));
+            currentColor = nextColor;
+
+            const { block, color } = getRandomBlock();
+            nextBlock = block;
+            nextColor = color;
+
+            x = 4;
+            y = 0;
+            if (checkCollision(0, 0)) {
+                alert("Game Over!");
+                board = Array.from({ length: rows }, () => Array(cols).fill(0)); // 보드 초기화
+                score = 0; // 점수 초기화
+                createBlock(); // 새 게임 시작
+            }
+        }
+
+        function checkCollision(offsetX, offsetY) {
+            return currentBlock.some(part => {
+                const newX = x + part.x + offsetX;
+                const newY = y + part.y + offsetY;
+                return (
+                    newX < 0 || newX >= cols || newY >= rows || (newY >= 0 && board[newY][newX] !== 0)
+                );
+            });
+        }
+
+        function mergeBlockToBoard() {
+            currentBlock.forEach(part => {
+                const newX = x + part.x;
+                const newY = y + part.y;
+                if (newY >= 0) board[newY][newX] = currentColor; // 색상으로 보드 채움
+            });
+        }
+
+        function clearFullRows() {
+            let clearedRows = 0;
+            for (let row = rows - 1; row >= 0; row--) {
+                if (board[row].every(cell => cell !== 0)) {
+                    board.splice(row, 1); // 해당 줄 삭제
+                    board.unshift(Array(cols).fill(0)); // 위에 빈 줄 추가
+                    clearedRows++;
+                    row++; // 같은 줄 다시 확인
+                }
+            }
+            score += clearedRows * 100; // 한 줄당 100점 추가
+        }
+
+        function rotate() {
+            const rotatedBlock = currentBlock.map(part => ({
+                x: -part.y,
+                y: part.x
+            }));
+            if (!checkCollision(0, 0, rotatedBlock)) {
+                currentBlock = rotatedBlock;
+            }
+            draw();
+        }
+
+        function moveLeft() {
+            if (!checkCollision(-1, 0)) x--;
+            draw();
+        }
+
+        function moveRight() {
+            if (!checkCollision(1, 0)) x++;
+            draw();
+        }
+
+        function moveDown() {
+            if (!checkCollision(0, 1)) {
+                y++;
+            } else {
+                mergeBlockToBoard();
+                clearFullRows();
+                createBlock();
+            }
+            draw();
+        }
+
+        function drawBoard() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let row = 0; row < rows; row++) {
+                for (let col = 0; col < cols; col++) {
+                    if (board[row][col] !== 0) {
+                        ctx.fillStyle = board[row][col];
+                        ctx.fillRect(col * blockSize, row * blockSize, blockSize, blockSize);
+                        ctx.strokeRect(col * blockSize, row * blockSize, blockSize, blockSize);
+                    }
+                }
+            }
+        }
+
+        function drawBlock(block, offsetX, offsetY, color) {
+            ctx.fillStyle = color;
+            block.forEach(part => {
+                const drawX = (offsetX + part.x) * blockSize;
+                const drawY = (offsetY + part.y) * blockSize;
+                ctx.fillRect(drawX, drawY, blockSize, blockSize);
+                ctx.strokeRect(drawX, drawY, blockSize, blockSize);
+            });
+        }
+
+        function drawScore() {
+            ctx.fillStyle = "black";
+            ctx.font = "20px Arial";
+            ctx.fillText(`Score: ${score}`, canvas.width - 150, 30);
+        }
+
+        function drawNextBlock() {
+            ctx.fillStyle = "black";
+            ctx.font = "16px Arial";
+            ctx.fillText("Next Block:", 20, 20);
+            drawBlock(nextBlock, 0.5, 1, nextColor); // 좌측 상단에 미리보기 블록 표시
+        }
+
+        function draw() {
+            drawBoard();
+            drawBlock(currentBlock, x, y, currentColor);
+            drawScore();
+            drawNextBlock();
+        }
+
+        createBlock();
+        draw();
+
+        // 자동 하강
+        setInterval(moveDown, 500);
+    </script>
+</body>
+</html>

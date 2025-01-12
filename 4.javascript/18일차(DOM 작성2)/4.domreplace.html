@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.domreplace.html(특정태그의 내용을 변경)</title>
+    <script>
+        window.onload=function(){
+            //1.<div></div>
+            let newNode=document.createElement('div');
+            // 2.내용추가
+            newNode.innerHTML="replacechild를 이용한 태그 내용 변경"//createTextNode() (X) 가능
+            let oldNode=document.getElementById('foo');
+            // 3.부모태그 정보=>document.body 대신에 다른 방법이 있다.
+            // let 부모=자식태그.parentNode
+            let parentNode=oldNode.parentNode;
+            // 4.바꿔치기(replaceChild(new,old))
+            parentNode.replaceChild(newNode,oldNode);
+        }
+    </script>
+</head>
+<body>
+    <p id="foo">태그의 내용변경 연습</p>
+    <!-- <div>replacechild를 이용한 태그내용변경</div> -->
+</body>
+</html>

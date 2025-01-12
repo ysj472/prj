@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6.video.audio.html</title>
+</head>
+<body>
+    <!--
+        video(영상)
+        1.width,height=>동영상의 크기를 지정
+        2.controls=>동영상 화면에 컨트롤 막대를 추가   
+        source 태그 
+        3.src=경로 포함해서 불러올 동영상 파일명
+        4.type="video/확장자(mp4)"
+        5.autoplay=>동영상을 자동으로 재생=>모바일 적용 x(IE는 사용 O)
+                chrome에서는 적용x =>muted 속성을 주면 되는데 음소거가 된 상태에서 실행
+        6.poster=>동영상이 화면에 나오지 않을때 대신 표시할 그림을 지정하고 싶을때 사용하는 속성        
+            -->
+    <video width="640" height="368" controls>
+        <source src="../screen/spring.mp4" type="video/mp4">
+    </video>
+    <p></p>
+    <video src="../screen/ThankYou.mp4" width="480" height="320" autoplay muted controls></video>
+    <p></p>
+    <video src="../screen/ThankYou.mp4" width="480" height="320" 
+    poster="../images/poster.jpg"></video>
+    <p></p>
+    <hr>
+    <!--음악파일-->
+    <img src="../screen/landscape.jpg" width="500" height="380">
+    <p></p>
+    <audio controls autoplay>
+        <source src="../screen/old_melody.mp3">
+    </audio>
+</body>
+</html>

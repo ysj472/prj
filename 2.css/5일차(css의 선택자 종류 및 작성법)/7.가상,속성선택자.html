@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7.가상,속성선택자.html</title>
+    <style>
+        /*
+        가상선택자=형식)태그명:link, visited, hover(마우스로 특정 태그를 갖다댈때), :active
+        
+        */
+        a:link{ /* 링크한 문자열 */
+            text-decoration: none;
+            color:red; /*브라우저에 따라 적용이 되기도(마이크로소프트) 하고 안되기도(크롬) 함*/
+        }
+        a:visited { /*이미 클릭한 경우의 색(이미 방문한 적 있음)*/
+            color:blue;
+        }
+        a:hover { /*마우스를 갖다댈때 어떻게 처리할 것인가? */
+            color:orange;
+        }
+        a:active{ /* 링크 문자열을 누르고 있는 동안*/
+            background-color: green;
+            text-decoration: overline;
+        }
+        /* 속성선택자가 필요한 이유 
+            태그 이름으로는 서로를 구분하기가 어려운 경우->속성이름 또는 속성값으로 서로를 구분 O
+            형식)태그명[속성명] {속성명:값;~}=>속성명을 가지고 적용 O
+            태그명[속성명:값] {속성명:값}=>특정 속성값을 가지고 태그를 구분해서 스타일 적용 O
+        */
+        input[type=text]{
+            background: yellow;
+        }
+        label[for=userid]{
+            background: rgb(45, 8, 146);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h2>HyperText link속성</h2>
+    <!-- a{네이버}*2-->
+    <a href="https://www.naver.com">네이버</a><br>
+    <a href="http://www.google.com">구글</a>
+    <hr>
+    <form>
+        <label for="userid">이름:</label><input type="text" name="userid" id="userid"><br>
+        <label for="userpwd">암호:</label><input type="password" name="userpwd" id="userpwd">
+    </form>
+</body>
+</html>

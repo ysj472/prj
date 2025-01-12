@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.논리,삼항연산자.html</title>
+</head>
+<body>
+    <script>
+        /*
+        제어문=>조건식
+        논리연산자=>참과 거짓을 판별하는 연산자(true or false)=>계산식이 한 개 이상일 경우를 계산할때 사용하는 연산자
+                and(&&)                   or(||) 또는            not(!)
+
+        True  True -> T                    T                      !(T)=>F
+        True  False -> F                   T                      !(F)=>T
+        False  True -> F                   T
+        False  False -> F                  F
+        */
+        let a=30,b=40,c=50,d=80;//각각의 변수를 선언하고 값을 저장시켜라
+        document.write(a<b && c>d,"<br>");//30<40 and 50>80
+        document.write(a<b || c>d,"<br>");//true || false =>true
+        document.write(!(a<b || c>d),"<br>");//true의 부정->false =>!(수식), false의 부정은 true
+            //조건연산자(=삼항연산자)
+            //형식) let 변수명=(조건식)?값1:값2;(값1=true,값2=false)
+       // document.write(pass=(b>=60)?"합격":"불합격","<br>");
+        let pass=(d>=60)?"합격":"불합격";
+        document.write("pass=>"+pass+"<br>");
+    </script>
+</body>
+</html>

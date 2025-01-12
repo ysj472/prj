@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.Opacity예제.html</title>
+    <style>
+        
+        /*
+            opacity=>대상(이미지)가 얼마는 불투명한지를 나타내는 수치(불투명도)
+            0.0~1.0 숫자가 클수록 불투명하고, 숫자가 적을수록 투명합니다.        
+        */
+        div{
+            width: 200px;
+            border: 1px solid black;
+        }
+        .my_img1{opacity: 1.0;}
+        .my_img2{opacity: 0.5;}
+        .my_img3{opacity: 0.0;}
+    </style>
+</head>
+<body>
+    <!--(div>img+p)*3-->
+    <div>
+        <img src="../images/Desert.jpg" width="200" height="200" class="my_img1">
+        <p>opacity 1.0</p>
+    </div>
+    <div>
+        <img src="../images/Desert.jpg" width="200" height="200" class="my_img2">
+        <p>opacity 0.5</p>
+        <p></p>
+    </div>
+    <div>
+        <img src="../images/Desert.jpg" width="200" height="200" class="my_img3">
+        <p>opacity 0.0</p>
+        <p></p>
+    </div>
+</body>
+</html>

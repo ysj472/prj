@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.domremove.html(노드삭제)</title>
+    <script>
+        window.onload=function(){
+            // 1.삭제하기 위해서는 삭제할 태그 정보 검색
+            let remove=document.getElementById("will_remove");
+            // 2.부모태그정보.removeChild(삭제시킬 자식태그정보)
+            document.body.removeChild(remove);
+            // setTimeout(호출할 함수명(),초단위(1000))
+            setTimeout(function(){
+                //body태그 내부의 모든 태그 내용을 삭제
+                document.body.innerHTML='';
+            },3000)
+        }
+        //function test(){}
+    </script>
+</head>
+<body>
+    <h1 id="will_remove">header</h1>
+    <h1>Header2</h1>
+</body>
+</html>

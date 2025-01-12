@@ -1,0 +1,41 @@
+/* 
+파일명:main.css
+기능:pc상태에서 보여주는 스타일시트 화면용
+작성날짜:2024-01-09
+작성자:윤성진
+*/
+/* 상단메뉴 부분 좌측상단에 고정하기위해 */
+
+*{
+    margin: 0;
+    padding: 0;
+    background: azure; /*하늘색*/
+}
+/* 전체 컨테이너 영역(전체 넓이,양쪽여백 설정*/
+.wrap{
+    width: 1000px; /* width:70%=>양쪽 여백은 15%+15%=30% */
+    margin: 0 auto; /*좌우 여백 자동 조절하라*/
+}
+/* pc상태에서는 넓이 768px보다 크면 보이지 않게 설정해주는 요소(태블릿의 구성요소 이미지) */
+.hd2,.sc2,.sc3{display:none;}
+/* 로고(left(x축)들여쓰기,top(y축) */
+h1{
+    float:left;
+    position: relative;
+    left: 3%;
+    top: 30px;/*맨 처음에 나오는 이미지의 위치 설정부분*/
+}
+/* 회사로고 이미지 옆에 상단메뉴 배치 */
+.nv1{
+    width: 60%;/* 1000px=100%->60% 600px 정도 */
+    height: 50px; /*회사 로고 이미지와 같은 선을 맞추기 위해서*/
+    float: left;/*left->left,,,,right*/
+    border: 1px solid black;
+    position: relative;/*.nv2를 .nv1을 기준으로 오른쪽 배치(relative)*/
+    left: 15%;/*회사 이미지보다 옆에 배치*/
+    top: 30px;
+    z-index: 5;/*동영상,슬라이드,이미지와 겹치는 경우 메뉴를 맨 앞에 배치(z-index)*/
+}
+ul{
+    list-style-type: none;/*메뉴의 점 제거 list-style:none*/
+}

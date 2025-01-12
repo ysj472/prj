@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ㅗ 모양 블록</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="400" height="600" style="border: 1px solid black;"></canvas>
+    <button onclick="left()">왼쪽</button>
+    <button onclick="right()">오른쪽</button>
+    <button onclick="up()">위</button>
+    <button onclick="down()">아래</button>
+    <button onclick="rotate()">회전</button>
+
+    <script>
+        const canvas = document.getElementById("myCanvas");
+        const ctx = canvas.getContext("2d");
+
+        const RECT_SIZE = 50; // 사각형 크기
+        const MOVE_DISTANCE = 50; // 이동 거리
+
+        // 기준점
+        let baseX = 150;
+        let baseY = 150;
+
+        // ㅗ 모양의 상대 좌표
+        let relativePositions = [
+            { dx: -1, dy: 0 }, // 왼쪽
+            { dx: 0, dy: 0 },  // 중심
+            { dx: 1, dy: 0 },  // 오른쪽
+            { dx: 0, dy: 1 }   // 아래
+        ];
+
+        // 이동 함수
+        function left() {
+            if (baseX > MOVE_DISTANCE) baseX -= MOVE_DISTANCE;
+        }
+
+        function right() {
+            if (baseX + RECT_SIZE * 2 < canvas.width) baseX += MOVE_DISTANCE;
+        }
+
+        function up() {
+            if (baseY > MOVE_DISTANCE) baseY -= MOVE_DISTANCE;
+        }
+
+        function down() {
+    // 가장 아래쪽 사각형의 y좌표를 찾음
+    const maxY = Math.max(
+        ...relativePositions.map(({ dx, dy }) => baseY + dy * RECT_SIZE)
+    );
+
+    // 가장 아래쪽 사각형이 캔버스를 벗어나지 않을 경우만 이동
+    if (maxY + RECT_SIZE < canvas.height) {
+        baseY += MOVE_DISTANCE;
+    }
+}
+
+
+        // 회전 함수
+        function rotate() {
+            relativePositions = relativePositions.map(({ dx, dy }) => ({
+                dx: -dy, // x' = -y
+                dy: dx   // y' = x
+            }));
+        }
+
+        // 블록 그리기
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = "blue";
+            ctx.strokeStyle = "black";
+
+            // 각 상대 좌표를 기준점과 더해 블록의 각 사각형을 그립니다.
+           // 상대 좌표를 순회하는 일반적인 for문 예시
+        for (let i = 0; i < relativePositions.length; i++) {
+            const { dx, dy } = relativePositions[i]; // 배열의 각 요소를 dx, dy로 분해
+            const rectX = baseX + dx * RECT_SIZE;
+            const rectY = baseY + dy * RECT_SIZE;
+            ctx.fillRect(rectX, rectY, RECT_SIZE, RECT_SIZE);
+            ctx.strokeRect(rectX, rectY, RECT_SIZE, RECT_SIZE);
+        }
+        }
+
+        // 60fps로 화면 갱신
+        setInterval(draw, 16);
+    </script>
+</body>
+</html>

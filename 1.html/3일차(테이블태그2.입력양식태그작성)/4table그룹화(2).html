@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3table그룹화(1).html</title>
+</head>
+<body>
+    <!--
+        colegroup=> 직접적으로 thead에 있는 tr에 스타일 적용 x
+                    따로 thead앞에 colegroup태그=>속성을 이용=>적용O
+                    column(컬럼값)
+                    style=적용시킬 속성명:값;속성명2:값2~ 인라인방식의 css
+    -->
+    <center>
+        <table border="1">
+            <!--colgroup colgroup>col*3-->
+            <colgroup>
+                <col width="50px" style="background:red">
+                <col width="200px" style="background:burlywood">
+                <col width="100px" style="background:greenyellow">
+            </colgroup>
+            <!---->
+            <thead><!--머리말-->
+                <tr>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>이름</th>
+                </tr>
+            </thead>         
+            <tbody><!--본문 최소 한개 이상의 tr 존재-->
+                <tr>
+                    <td>1</td>
+                    <td>colegroup의 이해</td>
+                    <td>홍길동</td>
+                </tr>
+            </tbody>
+        </table>
+    </center>
+</body>
+</html>

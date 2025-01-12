@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6.selecter조합.html</title>
+    <style>
+        /* 모든 태그를 가리키는 예약 
+        => * 
+        2. 특정 태그명 h3,h2,li,,,,,
+        3. id 선택자
+        4. class 선택자
+        5. 부모 자식관계에서의 선택자
+            부모태그>자식태그=>부모태그 밑에 있는 자식 태그를 가리키는 선택자
+        6. 부모태그 자식태그=>부모태그 밑에 있는 자식태그+관련된 자식태그 전부 다 적용   
+        7. 복수선택자=>클래스 선택자가 한개 이상 적용시킨 경우->두 클래스의 스타일을 합친다.(겹치는 경우 맨나중) 
+        8. 가상선택자=>ex) 링크문자열에 적용되는 스타일=>a태그(디폴트)
+        */
+        *{color:dodgerblue;}
+        div>strong{ /* div태그 밑에 자식태그 strong 태그를 찾아라 */
+            color: greenyellow;
+            background: rgb(91, 91, 91);/* 회색 */
+        }
+        ul > li > strong{ /* ol>li 적용x 부모가 다름 */
+            color:gold;
+            background: blue;
+        }
+        /* ul > li > strong{} */
+        ul li strong {
+            background-color: aqua;
+            color: darkblue;
+        } /*ul 밑에있는 li, li 밑에있는 strong은 모두 적용(부모,자식,손자 태그 모두 적용)*/
+    </style>
+</head>
+<body>
+    <h3>web programming</h3>
+    <hr>
+    <div><!-- 중첩(겹쳐있다=부모(바깥태그)자식(안쪽태그) 관계)-->
+        <strong>학습내용</strong>
+        <strong>확인</strong>
+        <strong>테스트</strong>
+    </div>2024 1월달
+     <strong>확인</strong><!--적용X(div태그의 자식이 아님)-->
+     <ul> <!-- ul>li*2>strong-->
+        <li>HTML5</li>
+        <li><strong>CSS3</strong></li>
+        <li><strong>JavaScript</strong></li>
+        <ol>
+            <li>
+                <strong>JAVA</strong>
+            </li>
+        </ol>
+     </ul>
+     <div>SQL을 배우는 DB</div>
+</body>
+</html>

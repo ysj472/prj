@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<canvas id="myCanvas" width="400" height="600" style="border:1px solid black;">
+</canvas> 
+<script>
+    let canvas = document.getElementById("myCanvas");
+    let ctx = canvas.getContext("2d");
+
+    let x = 0;
+    let y = 0;
+
+    function left() {
+        if(x>0){
+            x-=20;
+        }else{
+            x=0;
+        }
+      }
+
+    function right() {
+        if(x<canvas.width-30){
+            x+=20;
+        }else{
+            x=canvas.width-30;
+        }
+      }
+
+    function up() {
+        if(y>0){
+            y-=30;
+        }else{
+            y=0;
+        }
+      }
+
+    function down() {
+        if(y<canvas.height-30){
+            y+=30;
+        }else{
+            y=canvas.height-30;
+        }
+      }
+    function draw() {
+        ctx.clearRect(x,y,canvas.width,canvas.height);
+        ctx.beginPath();
+        ctx.arc(x,y,30,0,2 * Math.PI);
+        ctx.fillStyle='red';
+        ctx.fill();
+      }
+
+      setInterval(draw, 10);
+</script>
+<button onclick="left()">왼</button>
+<button onclick="right()">오른</button>
+<button onclick="up()">위</button>
+<button onclick="down()">아래</button>
+</body>
+</html>

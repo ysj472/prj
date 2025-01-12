@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7.table(1).html</title>
+</head>
+<body>
+    <!--
+        표를 작성
+        1.table->border=n(선의 굵기)0 width,height=(표의 크기를 지정)
+                                    픽셀수(숫자),상대적인 단위(%)
+                 align="left(default) | center | right"
+                 cellspacing=쉘과 쉘 사이의 거리
+                 cellpadding=쉘과 문자열 사이의 거리                  
+
+        2.tr(행)
+        3.td(열)
+          태그명*개수(n)=>n개만큼 번복해서 만들어진다.table>tr>td*3
+          2*3표
+
+    -->    
+      <!--<center>+<strong>=<th>(가운데 정렬+글자 굵게)-->
+        <center>
+                    <table border="1" width="70%" height="100%" bordercolor="red"
+                    cellspacing="0" cellpadding="0">
+                    <tr span style="color:#584b4b;">
+                        <th bgcolor="red">월</th>
+                        <th bgcolor="orange">수</th>
+                        <th bgcolor="yellow">금</th>
+                    </tr>
+                    <tr span style="color:#ffffff;">
+                        <th bgcolor="green">왼쪽</th>
+                        <th bgcolor="blue">가운데</th>
+                        <th bgcolor="purple">오른쪽</th>
+                    </tr>
+                </table>
+                <hr>
+                <h3>테이블태그 작성 뒤의 문장까지도 모두 가운데에 배치함</h3>
+    </center>
+</body>
+</html>

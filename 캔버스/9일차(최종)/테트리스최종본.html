@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>테트리스</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="500" height="600" style="border: 1px solid black;"></canvas>   
+    <script>
+        let canvas = document.getElementById("myCanvas");
+        let ctx = canvas.getContext("2d");
+
+        //캔버스를 12행 10열로 분할
+        const rows = 12;
+        const cols = 10;
+
+        //블록의 길이
+        const length = 50;
+
+        //점수
+        let score = 0;
+
+        //블록의 최초 좌표
+        let x = 150;
+        let y = 0;
+
+        let gameLoop;
+
+        //블록
+        let block = [
+            {bx:0, by:0},
+            {bx:0, by:1},
+            {bx:0, by:2},
+            {bx:0, by:3}
+        ];
+
+        //캔버스를 grid라는 배열로 분배
+        let grid = [];
+        for(let i=0;i<rows;i++){
+            let row = [];
+            for(let j=0;j<cols;j++){
+                row.push(0);
+            }
+            grid.push(row);
+        };
+
+        //블록의 좌표 변경을 반영하기 위한 함수 처리
+        function drawBlock() {
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+
+            //캔버스 하단에 누적된 블록 처리
+            for(let r=0;r<rows;r++){
+                for(let c=0;c<cols;c++){
+                    if(grid[r][c] == 1){
+                        ctx.fillStyle="gray";
+                        ctx.fillRect(c*length,r*length,length,length);
+                        ctx.strokeStyle="block";
+                        ctx.strokeRect(c*length,r*length,length,length);
+                    }
+                }
+            };   
+            
+            // 스코어박스 좌표
+            ctx.strokeRect(320, 10, 160, 60);
+            ctx.font = "20px Arial";
+            ctx.fillStyle = "black";
+            ctx.fillText("Score : " + score, 350, 50);
+
+            //현재 블록
+            for (let i = 0; i < block.length; i++) {
+                let bx = block[i].bx;
+                let by = block[i].by;
+                let dx = x + bx * length;
+                let dy = y + by * length;
+                ctx.fillStyle = "dodgerblue";
+                ctx.strokeStyle = "black";
+                ctx.fillRect(dx, dy, length, length);
+                ctx.strokeRect(dx, dy, length, length);
+            }
+        };
+
+            //충돌 제어
+            function checkCollision(block,x,y) {
+                for(let i=0;i<block.length;i++){
+                    const {bx,by} = block[i];
+                    let newX = Math.floor((x + bx * length) / length);
+                    let newY = Math.floor((y + by * length) / length);
+
+                    if(newX<0 || 
+                    newX>=cols || 
+                    newY<0 || newY>=rows || 
+                        newY>=0 && grid[newY][newX]===1){
+                        return true;
+                    }
+                }
+                return false;
+              };
+
+            //블록 고정
+            function fixBlock() {
+                for(let i=0;i<block.length;i++){
+                    let bx = block[i].bx;
+                    let by = block[i].by;
+
+                    let gridX = Math.floor((x + bx * length) / length);
+                    let gridY = Math.floor((y + by * length) / length);
+
+                    grid[gridY][gridX] = 1; //값을 대입하므로 = 하나 사용
+                }
+              }
+
+            //줄삭제
+            function deleteRows() {
+            // 아래에서 위로 행을 확인
+            for (let r = rows - 1; r >= 0; r--) {
+                let full = true; // 이 행이 꽉 차있는지 체크할 변수
+
+                // 행의 모든 칸을 확인
+                for (let c = 0; c < cols; c++) {
+                    if (grid[r][c] !== 1) {
+                        full = false; // 하나라도 비어있으면 꽉 차있지 않음
+                        break; // 더 이상 확인할 필요 없음
+                    }
+                }
+
+                // 만약 행이 꽉 차있으면
+                if (full) {
+                    // 이 행을 삭제하고, 맨 앞에 빈 행을 추가
+                    grid.splice(r, 1);
+                    grid.unshift(new Array(cols).fill(0));
+                    score += 100; // 점수 100점 추가
+                    r++; // 한 행을 삭제했으므로, 다시 한 행을 건너뛰어야 함
+                }
+            }
+        }
+
+            function left() {
+                if(!checkCollision(block,x-length,y)){
+                    x-=length;
+                }
+                drawBlock();
+            };
+
+            function right() {
+                if(!checkCollision(block,x+length,y)){
+                    x+=length;
+                }
+                drawBlock();
+            };
+
+            function resetGame() {
+                  // 초기 상태로 리셋
+                  x = Math.floor(cols / 2) * length - length;
+                  y = 0;
+                  score = 0;
+
+                  // grid 초기화
+                  grid = [];
+                  for (let i = 0; i < rows; i++) {
+                      let row = [];
+                      for (let j = 0; j < cols; j++) {
+                          row.push(0);
+                      }
+                      grid.push(row);
+                  }
+
+                  // 블록 초기화
+                  block = [
+                      { bx: 0, by: 0 },
+                      { bx: 1, by: 0 },
+                      { bx: 0, by: 1 },
+                      { bx: 1, by: 1 }
+                  ];
+
+                  // 다시 게임 루프 시작
+                  gameLoop = setInterval(down, 500);
+
+                  drawBlock();
+              }
+
+            function down() {
+                if(!checkCollision(block,x,y+length)){
+                    y+=length;
+                }else{
+                    fixBlock(x,y);
+                    deleteRows();
+                    //x = 150;
+                    x = Math.floor(cols / 2) * length - length;
+                    y = 0;
+                    //새블록 생성
+                    block = [
+                        {bx:0, by:0},
+                        {bx:0, by:1},
+                        {bx:1, by:0},
+                        {bx:-1, by:0}
+                    ];
+                    // 만약 새 블록이 즉시 충돌하면 게임 종료 가능
+                    if (checkCollision(block, x, y)) {
+                        alert("게임 종료!");
+                        clearInterval(gameLoop); // 게임 루프 정지
+                        resetGame(); // 게임 리셋
+                        return;
+                    }
+                }
+                drawBlock();
+              }
+
+
+            function turn() {
+                let rotated = [];
+                for(let i=0;i<block.length;i++){
+                    let {bx,by} = block[i];
+                    rotated.push({bx:-by, by:bx});
+                }
+                if(!checkCollision(rotated,x,y)){
+                    block = rotated;
+                }
+                drawBlock();
+              }
+            
+            drawBlock();
+            setInterval(down, 500);
+    </script>
+    <div>
+        <button onclick="left()">왼쪽</button>
+        <button onclick="right()">오른쪽</button>      
+        <button onclick="down()">하강</button>      
+        <button onclick="turn()">회전</button>
+    </div>
+    <style>
+        canvas {
+            display: block;
+        }
+        div {
+            width: 500px;
+            height: 100px;
+            border: 1px solid black;
+            border-top: 0;
+            text-align: center;
+        }
+        button {
+            background-color: white;
+            border: 1px solid blue;
+            width: 80px;
+            height: 60px;
+            margin: 10px;
+            font-size: 20px;
+        }
+    </style>
+</body>
+</html>

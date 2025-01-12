@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.classdouble.html</title>
+    <style>
+        /*
+        클래스명은 여러개를 사용할 수 있다.(복수 클래스 가능)
+        형식)태그명 class="클래스명 클래스명2 클래스명3...."
+        질문=>id,class 두개를 모두 스타일로 적용? yes=>잘 사용 X
+        id=>태그를 구분하는 인자(자바스크립트 DOM)
+        class=>스타일 또는 style 속성을 이용
+
+        */
+        .a{color: red;}
+        .b{background: yellow;}
+        .c{font-size: 25pt; font-family:바탕체;color:blue}/* 겹치는 경우 맨 마지막으로 덮어쓴다.  */
+        #test{text-align: center;} /*<center>, align="center" 대신 사용이 가능*/
+    </style>
+</head>
+<body>
+    <div>중복 연습(디폴트)</div>
+    <div class="a">중복연습</div>
+    <div class="a b">중복연습2</div><!--div.a.b로 작성 복수 클래스 선택자 O-->
+    <div id="test" class="a b c">중복연습3</div><!--div#test.a.b.c로 작성 id와 복수 클래스 선택자O-->
+</body>
+</html>

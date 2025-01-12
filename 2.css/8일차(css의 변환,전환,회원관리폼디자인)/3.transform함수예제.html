@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.transform함수예제.html</title>
+    <style>
+        /*
+        변환함수
+        1.translate(x,y)=>특정 태그를 x,y축 방향으로 x,y만큼 (위치 이동)
+        2.scale(w,h)=>태그의 폭,높이를 각각 w,h만큼 조절(확대 or 축소)
+        3.rotate(angle)=>태그를 angle각도 만큼 시계방향 회전(회전함수)
+        4.skew(x-angle,y-angle)=>태그를 x축과 y축을 기준=>x-angle,y-angle 기울임 변환
+        */
+        div{
+            display: inline-block;/*왼->오른쪽으로 나란히 정렬(크기 지정)*/
+            padding: 5px;
+            color: white;
+            background: olivedrab;
+        }
+        div#rotate{transform: rotate(20deg);}/* 시계방향으로 20도 기울어짐
+            선택자 {transform:적용함수명(인수,,)} */
+        div#skew{transform: skew(0deg,-20deg);}
+        div#translate{transform: translateY(100px);}
+        div#scale{transform: scale(3,1);}
+        /* 마우스를 갖다대면 추가 변환 */
+        div#rotate:hover{transform: rotate(80deg);}/*시계방향 20->80도 회전(시계방향)*/
+        div#skew:hover{transform: skew(0deg,-60deg);}/*y축 기준으로 -20->-60도*/
+        div#translate:hover{transform: translate(50px,200px);}/*x(50px) y(200px)*/
+        div#scale:hover{transform: scale(4,2);}/*w->4 h->2배로 확대*/
+        /* 마우스를 누를때 추가 변환 */
+        div#scale:active{transform: scale(1,5);}
+    </style>
+</head>
+<body>
+    <h3>다양한 변환함수 정리</h3>
+    <div id="rotate">rotate(20deg)</div>
+    <div id="skew">skew(0,-20deg)</div>
+    <div id="translate">translate(100px)</div>
+    <div id="scale">scale(3,1)</div>
+</body>
+</html>

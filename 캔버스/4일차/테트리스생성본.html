@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>테트리스</title>
+</head>
+<body>
+ <canvas id="myCanvas" width="500" height="600" style="border: 1px solid black;"></canvas>   
+<script>
+    let canvas = document.getElementById("myCanvas");
+    let ctx = canvas.getContext("2d");
+
+    // 미리보기 블록 좌표
+    let x = 40;
+    let y = 20;
+
+    //사각형 길이
+    let length = 50;
+    
+    // 움직이는 블록 좌표
+    let x2 = 50;
+    let y2 = 150;
+
+    let x3 = 50;
+    let y3 = 450;
+
+    let x4 = 150;
+    let y4 = 450;
+
+    let x5 = 250;
+    let y5 = 450;
+
+    let nemo = [
+        {nx:0,ny:0},
+        {nx:0,ny:1},
+        {nx:1,ny:1},
+        {nx:1,ny:0}
+    ];
+
+    let nemo2 = [
+        {nx2:-1,ny2:0},
+        {nx2:0,ny2:0},
+        {nx2:0,ny2:1},
+        {nx2:1,ny2:0}
+    ];
+
+    // let nemo3 = [
+    //     {nx3:1,ny3:2},
+    //     {nx3:-1,ny3:1},
+    //     {nx3:0,ny3:2},
+    //     {nx3:-1,ny3:2}
+    // ];
+
+    // let nemo4 = [
+    //     {nx4:2,ny4:1},
+    //     {nx4:1,ny4:1},
+    //     {nx4:0,ny4:2},
+    //     {nx4:1,ny4:2}
+    // ];
+
+    // let nemo5 = [
+    //     {nx5:0,ny5:2},
+    //     {nx5:1,ny5:2},
+    //     {nx5:2,ny5:2},
+    //     {nx5:3,ny5:2}
+    // ];
+
+    function drawNemo() {
+
+        //캔버스 초기화
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+
+        //미리보기 블록 테두리
+        ctx.strokeRect(0,0,180,140);
+
+        //미리보기 블록 배열
+        for(let i=0;i<nemo.length;i++){
+            let {nx,ny} = nemo[i];
+            let dx = x + nx*length;
+            let dy = y + ny*length;
+            ctx.fillStyle = "blue";
+            ctx.strokeStyle = "black";
+            ctx.fillRect(dx,dy,length,length);
+            ctx.strokeRect(dx,dy,length,length);
+        }
+
+        //스코어박스 좌표
+        ctx.strokeRect(320,0,180,100);
+        ctx.font = "25px Arial";
+            ctx.fillText("Score : 0", 365, 60);
+
+        //가운데 블록 배열
+        for(let j=0;j<nemo2.length;j++){
+            let {nx2,ny2} = nemo2[j];
+            let rx2 = x2 + nx2*length;
+            let ry2 = y2 + ny2*length;
+            ctx.fillStyle="red";
+            ctx.strokeStyle="black";
+            ctx.fillRect(rx2,ry2,length,length);
+            ctx.strokeRect(rx2,ry2,length,length);
+        }
+
+        // for(let k=0;k<nemo3.length;k++){
+        //     let {nx3,ny3} = nemo3[k];
+        //     let rx3 = x3 + nx3*length;
+        //     let ry3 = y3 + ny3*length;
+        //     ctx.fillStyle="green";
+        //     ctx.strokeStyle="black";
+        //     ctx.fillRect(rx3,ry3,length,length);
+        //     ctx.strokeRect(rx3,ry3,length,length);
+        // }
+
+        // for(let l=0;l<nemo4.length;l++){
+        //     let {nx4,ny4} = nemo4[l];
+        //     let rx4 = x4 + nx4*length;
+        //     let ry4 = y4 + ny4*length;
+        //     ctx.fillStyle="purple";
+        //     ctx.strokeStyle="black";
+        //     ctx.fillRect(rx4,ry4,length,length);
+        //     ctx.strokeRect(rx4,ry4,length,length);
+        // }
+
+        // for(let m=0;m<nemo5.length;m++){
+        //     let {nx5,ny5} = nemo5[m];
+        //     let rx5 = x5 + nx5*length;
+        //     let ry5 = y5 + ny5*length;
+        //     ctx.fillStyle="yellow";
+        //     ctx.strokeStyle="black";
+        //     ctx.fillRect(rx5,ry5,length,length);
+        //     ctx.strokeRect(rx5,ry5,length,length);
+        // }
+
+    };
+    //왼쪽 이동
+    function left() {
+        if(x2>0){
+            x2-=25;
+        }else{
+            x2=0;
+        }
+        drawNemo();
+      };
+
+      //오른쪽 이동
+      function right() {
+        if(x2<canvas.width-50){
+            x2+=25;
+        }else{
+            x2 = canvas.width-50;
+        }
+        drawNemo();
+        };
+
+        //하강
+        function down() {
+            if(y2<canvas.height-50){
+                y2+=25;
+            }else{
+                y2=0;
+            }
+            drawNemo();
+          };
+
+          //회전
+          function turn() {
+            for(let i=0;i<nemo2.length;i++){
+                let {nx2, ny2} = nemo2[i];
+                nemo2[i]={nx2:-ny2, ny2:nx2};
+            }
+            drawNemo();
+            }
+
+   
+   drawNemo();
+</script>
+<div>
+    <button onclick="left()">왼쪽</button>
+    <button onclick="right()">오른쪽</button>
+    <button onclick="down()">하강</button>
+    <button onclick="turn()">회전</button>
+</div>
+<style>
+    canvas{
+        display: block;
+    }
+    div{
+        width: 500px;
+        height: 100px;
+        border: 1px solid black;
+        border-top: 0;
+    }
+    button{
+        background-color: white;
+        border: 1px solid blue;
+        width: 80px;
+        height: 60px;
+        margin-top: 20px;
+        margin-left: 20px;
+        font-size: 20px;
+    }
+</style>
+</body>
+</html>

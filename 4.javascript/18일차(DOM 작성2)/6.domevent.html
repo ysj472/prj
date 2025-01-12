@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6.domevent이벤트연결방법1.html</title>
+    <script>
+        window.onload=function(){
+            //화면 디자인에 관련된 항목의 특정 이벤트를 연결
+            let header=document.getElementById("header");
+            // 초기값을 설정
+            header.style.border='2px solid black';
+            header.style.color='orange';
+            header.style.fontFamily='helvertica';
+            header.style.backgroundColor='yellow'
+
+            function whenClick(){
+                alert('click');
+            }
+            // 이벤트 연결방법: 태그정보.on이벤트종류=호출할 함수명 or function() { }
+            header.onclick=function(){
+                alert('익명함수를 이용해서 호출됨');
+                /* (1)
+                header.style.color='yellow';
+                header.style.backgroundColor='red';*/
+                // (2) this=>이벤트를 발생시킨 대상자 태그정보
+                this.style.color='yellow';
+                this.style.backgroundColor='red';
+            }
+            //header.onclick=whenClick;
+        }
+    </script>
+</head>
+<body>
+    <h1 id="header">클릭</h1>
+</body>
+</html>

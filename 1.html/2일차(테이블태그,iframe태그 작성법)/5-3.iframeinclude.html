@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5-3.iframeinclude.html</title>
+</head>
+<body>
+    <!--
+        iframe을 지원 안하는 브라우저
+        name=>target을 위한 영역 이름 지정
+        srcdoc:직접 html 태그로 작성된 텍스트로써 출력될 내용(iframe에 출력될 내용을 작성하는 부분)
+        =>SRC=>이 부분은 적용 X
+    -->
+   <iframe src="iframe1.html" width="200" height="150"
+    srcdoc="HTML 문서 텍스트 연습중입니다.">
+    불러올 문서가 없거나 브라우저에서 iframe을 지원해주지 않습니다.
+   </iframe> 
+   <iframe src="iframe2.html" width="200" height="100"></iframe>
+</body>
+</html>

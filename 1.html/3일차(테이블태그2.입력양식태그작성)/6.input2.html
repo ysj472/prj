@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6.input2.html(html5에서 추가속성)</title>
+</head>
+<body>
+    <h3>html5에서 추가된 속성 목록</h3>
+    <!--
+        form>fieldset>legend>input
+        form 태그도 여러개면 구분하기 위해서 이름이 필요 name
+        ex)마이페이지 -> 주문상품,배송연락처
+    -->
+    <form name="mookie">
+        <fieldset><!--입력받는 부분을 그룹으로 묶어줄때 사용-->
+            <legend>회원가입정보</legend><!--묶어줄때의 타이틀 제목-->
+            이름:<input type="text" name="name" size="10"><br>
+            주소:<input type="text" name="address" size="30"><br>
+            메일:<input type="text" name="mail" size="10"><br>
+            <input type="submit" value="전송">
+        </fieldset>
+        <p></p>
+        <hr>
+        <!--
+         유효성검사=>사용자가 올바른 값만 입력을 받을 수 있도록 규칙을 정해주는 것.(공백 x,엉터리값)
+          www.empas.com=>이메일 이용=>회원 아이디
+         1.required=>필수입력=>반드시 입력할값을 설정(ex 이름, 아이디)=>전송버튼을 눌렀을 때 확인 가능
+         2.placeholder=>"툴팁문자열" =>미리보기 기능을 제공(입력받을 값을 알려준다.)
+         3.autofocus=>"autofocus" 입력받은 값중에서 특정항목에 커서를 넣고 싶을때 사용하는 속성
+         4.readonly=>"readonly" 회원수정 시 절대로 수정하면 안되는 항목에 부여하는 속성.       
+            이메일만 전용으로 입력받는 box ->input:email
+            input type="url" =>홈페이지 주소가 있는 사람의 경우에 입력을 받을때 사용
+        -->
+        <fieldset><!--입력받는 부분을 그룹으로 묶어줄때 사용-->
+            <legend>회원가입정보</legend><!--묶어줄때의 타이틀 제목-->
+            주문번호:<input type="text" name="ordernumber" value="order2034" readonly><br>
+            이름:<input type="text" name="name" placeholder="이름을 입력하시오." 
+                        autofocus="autofocus" size="30" required><br>
+            주소:<input type="text" name="address" size="30" placeholder="주소를 입력하시오." required><br>
+            사이트:<input type="url" name="url" placeholder="http://사이트명"><br>
+            메일:<input type="email" name="mail" placeholder="계정이름@주소"  size="30" required><br>
+            <input type="submit" value="전송">
+        </fieldset>
+        <p></p>
+        <hr>
+        <!--추가2
+            input:text=>문자열 입력=>숫자=>"23"(text면 문자로 인식함)=>문자열 상수(숫자처럼 생긴 문자열)
+            input:number=>숫자 입력=>숫자로 인식함 min=최소값 max=최대값 step=증가/감소(마우스 커서를 갖다대면 증가/감소 버튼이 만들어짐)
+                                                  value=현재설정값 
+            input=range=>bar로 숫자표시(음악 볼륨)                                       
+        -->
+        원하는 주문 개수를 설정해주세요<br>
+        <input type="number" name="su" min="1" max="20" step="2" value="1"><br>
+        <input type="range" name="su" min="1" max="20" step="1" value="1">
+
+
+    </form>
+</body>
+</html>

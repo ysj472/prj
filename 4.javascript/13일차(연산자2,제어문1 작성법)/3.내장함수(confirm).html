@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.내장함수(confirm).html</title>
+</head>
+<body>
+    <script>
+        /*
+        사용자에게 확실한지 물어보는 경우?
+        형식) let 변수명=confirm("동의를 구하는 메시지");    
+        */
+       let result=confirm("정말로 탈퇴하시겠습니까?");//함수가 처리한 값을 변수에 저장(변환값)
+       alert(result);//true(yes) or false(no)=>논리적인 값(true or false)
+       console.log(result)//에러를 체크하거나 중간값을 확인할때 많이 사용
+       if(result)//if (result==true) => if 변수값이 논리값인 경우(true)인 경우는 ==true 생략 가능(false는 생략 불가)
+            alert("정상적으로 회원탈퇴 처리가 완료되었습니다.");
+       else//취소->false
+            alert("회원탈퇴가 취소되었습니다.");
+            //유효성 검사->올바른 값을 입력했는지 체크하기 위해서 필요한 검사
+    </script>
+</body>
+</html>

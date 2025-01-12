@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.이벤트종류예제.html</title>
+    <!-- 
+        이벤트=>운영체제(window 11)가 인식가능한 사용자들의 모든 행동양식(키보드,마우스)
+            형식) on이벤트 종류명=""
+        1.click=>마우스를 클릭(ex 버튼,링크문자열)=>onclick="호출할 함수명() or ~(변수,,,)"
+        2.load=>제일 먼저 문서를 읽어들일때->onload
+        3.unload=>현재 사이트에서 다른 사이트로 이동할때 발생(잘 작동 안됨)
+        4.change=>콤보박스에서 특정항목을 선택했을때 onchange 이벤트
+        5.mouseover=>특정항목에 마우스를 갖다대는 경우 발생함 onmouseover
+        6.mouseout=>특정항목에 마우스를 벗어나는 경우 발생 onmouseout
+        7.blur=>입력하는 경우(input:text)에서 커서가 이동할때 발생하는 이벤트
+            onblur="~" 커서를 다음 항목에 이동시키기 전에, 전의 데이터를 제대로 입력했는지 체크
+
+            this=>이벤트 처리해주는 예제=>이벤트를 발생시킨 객체를 가리키는 예약어
+                                                =>일반적인 객체를 생성시키는 예제->현재 생성된 객체를 가리키는 예약어
+     -->
+</head>
+<body onload="alert('환영합니다.')" onunload="alert('다음 기회에 또')">
+    <!-- (a>img)+img -->
+    <a href="https://www.naver.com" onmouseover="document.img.src='../images/kid2.gif'"
+    onmouseout="document.img.src='../images/kid.gif'">
+        <img src="../images/kid.gif" name="img">
+    </a>
+    <img src="../images/kid3.gif" name="img2">
+</body>
+</html>

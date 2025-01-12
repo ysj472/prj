@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<canvas id="myCanvas" width="500" height="600" style="border: 1px solid black;"></canvas>
+    <script>
+        let canvas = document.getElementById("myCanvas");
+        let ctx = canvas.getContext("2d");
+
+        let length = 50;
+        let move = 20;
+
+        let x = 100;
+        let y = 100;
+
+        let rec = [
+            {rx:-1, ry:0},
+            {rx:0, ry:0},
+            {rx:1, ry:0},
+            {rx:0, ry:1}
+        ];
+
+        function rotate() {
+            for(let i=0;i<rec.length;i++){
+                let {rx, ry} = rec[i];
+
+                rec[i]={rx:-ry, ry:rx};
+            }
+          }
+
+        function draw() {
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+
+            ctx.fillStyle="red";
+            ctx.strokeStyle="black";
+
+            for(let i=0;i<rec.length;i++){
+                let {rx,ry} = rec[i];
+                let dx = x+rx*length;
+                let dy = y+ry*length;
+                ctx.fillRect(dx,dy,length,length);
+                ctx.strokeRect(dx,dy,length,length);
+            }
+          }
+
+          setInterval(draw, 16);
+    </script>
+    <button onclick="rotate()">회전</button>
+</body>
+</html>

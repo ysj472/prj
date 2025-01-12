@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.imagemap.html</title>
+</head>
+<body>
+    <!--
+        http://www.image-map.net
+    사이트=>지도를 보여주는 사이트(지도 이미지에 링크걸때 사용)
+    이미지맵=>map 태그를 사용(이미지맵을 만드는 태그)=>영역별로 이미지의 특정 부분을 클릭->이동하는 페이지를 작성
+    1. 이미지 태그(usemap)와 map태그(name)를 연결=>키워드 단어가 일치
+    2. shape="속성값(영역의 모임)"
+        -rect:직사각형, circle->원, poly:다각형,default:전체 영역
+    3.coords="영역의 좌표값을 의미"
+    4. href=클릭 시 이동할 페이지 명 또는 url 경로
+    
+    -->
+    <img src="../images/jeju.jpg" usemap="#image-map">
+    <map name="image-map">
+        <area target="_blank" alt="jeje" title="jeje" href="https://www.naver.com" coords="125,84,96,52" shape="rect">
+        <area target="_self" alt="daum" title="daum" href="http://www.empas.com" coords="214,89,32" shape="circle">
+        <area target="_blank" alt="net" title="net" href="http://www.chosun.com" coords="100,119,84,134,126,130,90,159,125,157" shape="poly">
+    </map>
+</body>
+</html>

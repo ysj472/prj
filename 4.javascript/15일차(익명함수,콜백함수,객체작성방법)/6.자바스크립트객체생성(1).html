@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6.자바스크립트객체생성(1).html</title>
+    <script>
+        /*
+        추상화: 현실세계에 존재하는 모든 사물의 공통특징과 
+        공통기능을 유추해서 객체를 만들기위한 설계도를 만드는 과정(사람): 객체(사물을 저장할 수 있는 하나의 단위)
+        
+        객체: 현실세계에 존재하는 사물(=Object): 컴퓨터 작업을 통해서 데이터로 저장
+        ex) let name="홍길동" let age=23 let address="서울시 강남구~(주소만)"
+        프로토타입: 저장하고싶은 대상자를 지정하고 저장하기 위한 설계도(=class)
+
+        형식) function 대상자(=함수명)(공통특징을 잘 알수있는 말(변수로 선언,,,)){
+            this.저장할 대상자명=값
+        }
+        :기존에 존재하지 않은 새로운 데이터만을 전문으로 저장할 타입을 만들수있다(=객체)
+        */
+       function person(name,age,sung,addr){//설계도
+        //this: 현재 생성된 객체를 가리키는 예약어
+        // 내부에서는 직접적으로 객체명을 사용안함
+            this.name=name;//this.저장하고싶은 멤버변수=매개변수(저장할값) hong.name="홍길동"
+            this.age=age;//hong.age=23
+            this.sung=sung;//hong.sung="남"
+            this.addr=addr;//hong.addr="서울시 강남구"
+            //저장된 값을 꺼내오거나 (Getter 함수) 저장시키는 함수(Setter 함수)
+       }
+    </script>
+</head>
+<body>
+    <script>
+        //객체(=저장하고싶은 대상자)를 생성: 그 데이터만 저장할 수 있는 공간이 생성
+        // 객체명=new 함수명(저장할값: 매개변수,,,)
+        hong=new person("홍길동",23,"남","서울시 강남구 303");//객체생성=공간생성
+        alert(hong)//[object object](객체 생성) 객체(홍길동이 저장된 주소값이 기록): 변수(문자,숫자,논리적인 값)
+        //저장된 데이터 꺼내오기: 객체명.속성(멤버변수),객체명.속성=값
+        alert(hong.name+" "+hong.age+" "+hong.addr);
+        test=new person("테스트김",34,"여","서울시 강남구 302");
+        alert(test.name+" "+test.age+" "+test.addr);
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.continue예제.html</title>
+</head>
+<body>
+    <script>
+        /*
+        continue=>반복문(while,do~while,for)에서 특정 조건에 만족하는 continue문(skip)을 만나면
+               continue문 이하를 수행하지 않고(=건너뛰고)
+                do~while,while문의 경우에는 조건식으로 이동한다.
+                for문의 경우에는 증감식으로 이동한다.
+        */
+       document.write("continue문(=skip문)<p>");
+            //1)      2)14)1<5     13)a=1    
+            //A: ->continue 뒤에 A
+            for(let a=0;a<5;a++){
+            //       3)   4)7)10)   6)b=1 9)b=2
+            for(let b=0;b<5;b++){
+                if(b==2) continue;//추가 11) 형식)조건식 continue b가 2가 되는 경우만 출력되지 않음
+                document.write("a=>"+a+"b=>"+b+"<br>");//5) a=0,b=0 8)a=0,b=1
+            }
+            document.write("=================<br>");//12)
+        }
+        document.write("이중 for문 종료");
+    </script>
+</body>
+</html>

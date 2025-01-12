@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.CSS3 추가된 속성(1).html</title>
+    <style>
+        div {
+                border:4px solid #aaaaaa;
+                /*border-radius(둥근모서리) */
+                border-radius: 50px;/*숫자가 커질수록 모서리 둥근 각이 커짐*/
+                /*오른쪽 크기 아래쪽 크기 흐림정도*/
+                box-shadow: 20px 20px 70px #666666;
+                padding: 10px;/*테두리와 글자사이의 여백*/
+        }
+    </style>
+</head>
+<body><!--div>pre>h1-->
+    <div>
+        <pre>
+            <h1>CSS3에서 스타일을 적용시킬때 브라우저 별로 적용이 안되는 경우
+                접두어 Chrome,Opera,Safari-> webkit(ex -webkit-animation-duration:3s)
+                FileFox -> -moz-속성명
+                IE기준 -> -ms-속성명
+            </h1>
+        </pre>
+    </div>
+</body>
+</html>

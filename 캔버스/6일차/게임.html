@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게임</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="500" height="600" style="border: 1px solid black;"></canvas>
+    <script>
+        let canvas = document.getElementById("myCanvas");
+        let ctx = canvas.getContext("2d");
+
+        let rows = 12; // 행 분할
+        let cols = 10;  // 열 분할
+
+        let score = 0;
+
+        let length = 50; // 사각형 길이
+
+        let x = 150;
+        let y = 0; // 블록 좌표
+
+        //블록 배열
+        let nemo = [
+            { nx: 0, ny: -1 },
+            { nx: 0, ny: 0 },
+            { nx: 0, ny: 1 },
+            { nx: 0, ny: 2 }
+        ];
+
+        //캔버스 분할
+        let grid = []; //그리드 배열 초기화
+        //2d 배열로 게임 보드의 상태를 나타냄. 각 셀이 0 또는 1로 채워져있고
+        //0은 빈 공간을, 1은 블록이 존재하는 공간을 나타냄
+        for(let i=0; i< rows; i++){
+            let row = []; // 각 줄을 저장할 배열
+            for(let j=0; j< cols; j++){
+                row.push(0); // 각 줄에 0을 추가하여 빈 칸을 나타냄
+            }
+            grid.push(row); // 각 줄을 그리드에 추가
+        };
+
+        function drawNemo() {
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+
+            //고정된 블록
+            for(let r=0;r<rows;r++){
+                for(let c=0;c<cols;c++){
+                    if(grid[r][c] == 1){
+                        ctx.fillStyle="gray";
+                        ctx.fillRect(c*length, r*length, length, length);
+                        ctx.strokeStyle="black";
+                        ctx.strokeRect(c*length, r*length, length, length);
+                    }
+                }
+            }
+
+            //움직이는 블록
+            for(let i=0;i<nemo.length;i++){
+                let {nx, ny} = nemo[i];
+                let rx = x + nx*length;
+                let ry = y + ny*length;
+                ctx.fillStyle="dodgerblue";
+                ctx.fillRect(rx, ry, length, length);
+                ctx.fillStyle="black";
+                ctx.strokeRect(rx,ry,length,length);
+            }
+            
+            ctx.strokeRect(320, 10, 160, 60);
+            ctx.font = "20px Arial";
+            ctx.fillStyle = "black";
+            ctx.fillText("Score : " + score, 350, 50);
+          }
+
+          function checkCollision(block, x, y) {
+    // block: 현재 움직일 블록의 배열
+    // x, y: 블록이 움직일 위치
+
+    for (let i = 0; i < block.length; i++) {
+        // 블록의 상대적인 좌표 가져오기
+        let nx = block[i].nx; // 블록의 x 위치
+        let ny = block[i].ny; // 블록의 y 위치
+
+        // 새 위치 계산하기
+        let newX = x + nx * length; // 블록의 새로운 x 좌표
+        let newY = y + ny * length; // 블록의 새로운 y 좌표
+
+        // 새 위치가 화면 밖이거나 이미 채워진 곳인지 확인
+        if (
+            newX < 0 || // 왼쪽 경계 넘어감
+            newX >= cols * length || // 오른쪽 경계 넘어감
+            newY < 0 || // 위쪽 경계 넘어감
+            newY >= rows * length || // 아래쪽 경계 넘어감
+            grid[newY / length][newX / length] === 1 // 해당 위치에 블록이 이미 있음
+        ) {
+            return true; // 충돌 발생
+        }
+    }
+
+    return false; // 충돌 없음
+}
+
+function fixBlock() {
+    // 현재 블록(nemo)을 고정시킴
+    for (let i = 0; i < nemo.length; i++) {
+        // 블록의 상대 좌표(nx, ny)를 가져오기
+        let nx = nemo[i].nx;
+        let ny = nemo[i].ny;
+
+        // 그리드 좌표(gridX, gridY)로 변환
+        let gridX = (x + nx * length) / length; // 블록의 x 위치를 그리드 칸 번호로 계산
+        let gridY = (y + ny * length) / length; // 블록의 y 위치를 그리드 칸 번호로 계산
+
+        // 그리드에서 해당 위치를 1로 설정 (블록 고정)
+        grid[gridY][gridX] = 1;
+    }
+}
+
+    // 한줄 다 차면 없어지고 점수 100점 오름
+    function clearFullRows() {
+    for (let r = rows - 1; r >= 0; r--) {
+        // 한 줄이 모두 채워졌으면
+        if (grid[r].every(cell => cell === 1)) {
+            grid.splice(r, 1); // 줄 삭제
+            grid.unshift(new Array(cols).fill(0)); // 빈 줄 추가
+            score += 100; // 점수 증가
+            r++; // 한 줄 삭제했으니 다시 확인
+        }
+    }
+}
+
+
+// 블록 이동(checkCollision 함수로 충돌 확인, 없다면 이동)
+function left() {
+        if (!checkCollision(nemo, x - length, y)) {
+            x -= length;
+        }
+        drawNemo();
+    }
+
+    function right() {
+        if (!checkCollision(nemo, x + length, y)) {
+            x += length;
+        }
+        drawNemo();
+    }
+
+    function down() {
+        if (!checkCollision(nemo, x, y + length)) {
+            y += length;
+        } else {
+            fixBlock(); // 블록 고정
+            clearFullRows(); // 줄 제거
+            x = 150; // 새로운 블록 초기화
+            y = 0;
+        }
+        drawNemo();
+    }
+
+    // 블록 회전
+    function turn() {
+        const rotated = [];
+        for (let i = 0; i < nemo.length; i++) {
+            const {nx, ny} = nemo[i];
+            rotated.push({nx: -ny, ny: nx});
+        }
+        if (!checkCollision(rotated, x, y)) {
+            nemo = rotated;
+        }
+        drawNemo();
+    }
+          drawNemo();
+          
+    </script>
+    <div>
+        <button onclick="left()">좌</button>
+        <button onclick="right()">우</button>
+        <button onclick="turn()">회전</button>
+        <button onclick="down()">하강</button>
+    </div>
+    <style>
+        canvas {
+            display: block;
+        }
+        div {
+            width: 500px;
+            height: 100px;
+            border: 1px solid black;
+            border-top: 0;
+            text-align: center;
+        }
+        button {
+            background-color: white;
+            border: 1px solid blue;
+            width: 80px;
+            height: 60px;
+            margin-top: 20px;
+            margin-left: 20px;
+            font-size: 20px;
+        }
+    </style>
+</body>
+</html>

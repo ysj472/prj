@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<body>
+    <canvas id="myCanvas" width="400" height="600" style="border:1px solid black;">
+    </canvas> 
+    <script>
+        const canvas = document.getElementById("myCanvas");
+        const ctx = canvas.getContext("2d");
+
+        ctx.strokeRect(10,10,150,100);
+
+        ctx.fillStyle = "blue";
+        ctx.fillRect(45,20,40,40);
+        ctx.strokeStyle = "black";
+        ctx.strokeRect(45,20,40,40);
+
+        ctx.fillStyle = "blue";
+        ctx.fillRect(85,20,40,40);
+        ctx.strokeStyle = "black";
+        ctx.strokeRect(85,20,40,40);
+
+        ctx.fillStyle = "blue";
+        ctx.fillRect(45,60,40,40);
+        ctx.strokeStyle = "black";
+        ctx.strokeRect(45,60,40,40);
+
+        ctx.fillStyle = "blue";
+        ctx.fillRect(85,60,40,40);
+        ctx.strokeStyle = "black";
+        ctx.strokeRect(85,60,40,40);
+
+        // ctx.strokeRect(240,10,150,50);
+        // ctx.strokeStyle = "black";
+
+        // ctx.font = "25px Arial";
+        // ctx.fillText("Score : 0", 265, 45);
+    </script>    
+    <!-- <div style="width: 400px; height: 80px; border: 1px solid black;">
+        <button>좌</button>
+        <button>우</button>
+        <button>회전</button>
+        <button>하강</button>
+    </div> -->
+</body>
+</html>

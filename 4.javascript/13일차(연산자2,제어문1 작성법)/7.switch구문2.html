@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7.switch구문2.html</title>
+</head>
+<body>
+    <script>
+        let code=prompt("학과 코드를 입력하세요.");//1,2,3,4,.....
+        switch(code){
+            case "1"://"1" => 문자열 상수, (문자도 올수있음)
+                document.write("정보처리 전공입니다.");
+                break;
+            case "2":
+                document.write("인터넷 정보 전공입니다.");
+                break;
+            case "3":
+                document.write("전자상거래 전공입니다.");
+                break;
+            case "4":
+                document.write("멀티미디어 전공입니다.");
+                break;
+            default://"1" => 문자열 상수
+                document.write("미래가 없으시군요.");
+                break;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.산술,관계연산자.html</title>
+</head>
+<body>
+    <script>
+        document.write("산술,관계연산자<p>");
+        /*
+            연산자=>연산(=계산)을 하기위한 기호
+            1.산술연산자=?+, -, *, /, %(나머지)=>3(계산이 되는 대상자(항))+5=8=>이항산술연산자
+                            단항산술연산자=>+5,-5(부호),++,-- (증강연산자)
+
+            2.관계연산자(=비교연산자)=> >, >=, <, <= 4>5(false),5>4(true)
+                            5=5(X)  5==5(O), 5!=4(5와 4는 같지않다)
+            
+            언제 변수를 사용하는지
+
+            1)입출력 프로그램을 작성하는 경우->변수 필요
+            2)계산할때 필요=>1+2+3....+100=5050 => 변수가 몇개 필요한가 => 2개 sum=5050(최종결과값) 변수3
+            3)현재 프로그램의 상태를 기억시킬 필요가 있을때 = ex) 그림판
+                맨처음에는 당연히 클릭X
+                
+                boolean mouseclick=false;
+
+                if(왼쪽 버튼을 눌렀다면)
+                그림을 그려라
+        */
+            //  +  
+            let res=20+30;//50
+       document.write("res=>"+res+"<br>");
+
+            // -
+            res=20-30;//-10
+       document.write("res=>"+res+"<br>");
+
+            // *
+            res=20*30;//600
+       document.write("res=>"+res+"<br>");
+            // /
+            res=20/30;//
+       document.write("res=>"+res+"<br>");
+        // 관계연산자
+            let a,b,c; /*변수를 한꺼번에 동시에 여러개 선언 ,로 나열*/
+            a=5,b=10;
+            c=a+b;
+            document.write("계산값 c=>"+c+"<p>");
+
+                c=a>b;//5>10
+                document.write("관계 c=>"+c+"<p>");
+
+                c=5*(7+4);// 먼저 계산하고픈 부분에 괄호 표시
+                document.write("c값:"+c+"<p>"); //반복적인 문장은 함수로 처리함
+
+                c=a==b;//a의 값,b의 값이 서로 같은자 5==10 =>5!=10(5와 10은 같지않다=>true)
+                document.write("c값:"+c+"<p>");
+    </script>
+</body>
+</html>

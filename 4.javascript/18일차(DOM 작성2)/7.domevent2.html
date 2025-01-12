@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7.domevent2.html</title>
+    <script>
+        window.onload=function(){
+            let header=document.getElementById('myHeader');
+            //인터넷 익스플로어
+            if(header.attachEvent){
+                header.attachEvent('onclick',function(){
+                    alert("낮은 IE버전의 경우")
+                }); //1.발생시킨 이벤트 종류명 2.처리해야할 함수명 or function(){}
+            }else{
+                header.addEventListener('click',function(){
+                    alert("높은 IE or Chrome에서의 이벤트 연결");
+                    this.style.color='blue';
+                });//1.발생시킨 이벤트 종류명(onX) 2.처리함수(function(){})
+            }
+            //비인터넷 익스플로어
+        }
+    </script>
+</head>
+<body>
+    <h1 id="myHeader">click</h1>
+</body>
+</html>

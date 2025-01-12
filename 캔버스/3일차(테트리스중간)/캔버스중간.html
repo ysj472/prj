@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>캔버스중간</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="500" height="600" style="border: 1px solid black;"></canvas>
+    <script>
+        let canvas = document.getElementById("myCanvas");
+        let ctx = canvas.getContext("2d");
+
+        var x = 20; //x좌표
+        var y = 20; //y좌표
+        let length = 50; //사각형 길이
+        var x2 = 200;
+        var y2 = 150;
+        
+        //사각형 위치 배열
+        let res = [
+            {rx:1,ry:1},
+            {rx:0,ry:0},
+            {rx:0,ry:1},
+            {rx:1,ry:0}      
+        ];
+        
+
+        //사각형2 위치 배열
+        let res2 = [
+            {rx2:-1,ry2:0},
+            {rx2:0,ry2:1},
+            {rx2:0,ry2:0},
+            {rx2:1,ry2:0}
+        ];
+
+        function draw() {
+            ctx.clearRect(0,0,canvas.width,canvas.height);//캔버스 초기화
+
+            ctx.strokeStyle="black";//바깥 사각형 테두리
+            ctx.strokeRect(0,0,140,140);
+            
+            ctx.fillStyle="blue";//안쪽 사각형 배경색
+            //사각형 위치 반복문
+            for(let i=0;i<res.length;i++){
+                let {rx,ry} = res[i];
+                let dx = x+rx*length; //사각형 x좌표
+                let dy = y+ry*length; //사각형 y좌표
+                ctx.fillRect(dx,dy,length,length); //사각형
+                ctx.strokeRect(dx,dy,length,length); //테두리
+            }
+
+            ctx.strokeStyle="black";
+            ctx.strokeRect(300,0,200,80);
+            ctx.font = "25px Arial";
+            ctx.fillText("Score : 0", 350, 50);
+
+            ctx.fillStyle="red";//안쪽 사각형 배경색
+            for(let j=0;j<res2.length;j++){
+                let {rx2,ry2} = res2[j];
+                let dx2 = x2 + rx2*length;
+                let dy2 = y2 + ry2*length;
+                ctx.fillRect(dx2,dy2,length,length);
+                ctx.strokeRect(dx2,dy2,length,length);
+            }
+          };
+        
+        function left() {
+            if(x2>0){
+                x2-=20;
+            }else{
+                x2=0;
+            }
+            draw();
+          };
+
+          function right() {
+            if(x2<canvas.width-50){
+                x2+=20;
+            }else{
+                x2=canvas.width-50;
+            }
+            draw();
+            }
+
+            function rotate() {
+            for(let i=0;i<res2.length;i++){
+                let {rx2, ry2} = res2[i];
+                res2[i]={rx2:-ry2, ry2:rx2};
+            }
+            draw();
+          }
+
+        function down() {
+            if(y2<canvas.height-50){
+                y2+=20;
+            }else{
+                y2=0;
+            }
+            draw();
+          }
+
+            draw();
+    </script>
+    <div>
+        <button onclick="left()">왼쪽</button>
+        <button onclick="right()">오른쪽</button>
+        <button onclick="rotate()">회전</button>
+        <button onclick="down()">하강</button>
+    </div>
+    <style>
+        div{
+            width: 500px;
+            height: 100px;
+            border: 1px solid black;
+        }
+        button{
+            background-color: white;
+            border: 1px solid blue;
+            width: 80px;
+            height: 60px;
+            margin-top: 20px;
+            margin-left: 20px;
+            font-size: 20px;
+        }
+    </style>
+</body>
+</html>

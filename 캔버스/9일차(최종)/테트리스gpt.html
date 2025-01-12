@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>테트리스</title>
+</head>
+<body>
+ <canvas id="myCanvas" width="500" height="600" style="border: 1px solid black;"></canvas>   
+<script>
+    let canvas = document.getElementById("myCanvas");
+    let ctx = canvas.getContext("2d");
+
+    let rows = 12;
+    let cols = 10;
+
+    // 사각형 길이
+    let length = 50;
+
+    //점수
+    let score = 0;
+
+    // 움직이는 블록 좌표
+    let x = 150;
+    let y = 0;
+
+    // 블록 색상들
+    const blockColors = [
+        "dodgerblue", // 직선형 블록
+        "green",      // 정사각형 블록
+        "orange",     // L형 블록
+        "purple",     // 반L형 블록
+        "red"         // ㅣ형 블록
+    ];
+
+    // 블록 모양들
+    const blocks = [
+        [
+            {nx: 0, ny: 0},
+            {nx: 0, ny: 1},
+            {nx: 0, ny: 2},
+            {nx: 0, ny: 3}
+        ],
+        [
+            {nx: 0, ny: 0},
+            {nx: 1, ny: 0},
+            {nx: 0, ny: 1},
+            {nx: 1, ny: 1}
+        ],
+        [
+            {nx: 0, ny: 0},
+            {nx: 0, ny: 1},
+            {nx: 1, ny: 1},
+            {nx: 1, ny: 2}
+        ],
+        [
+            {nx: 0, ny: 0},
+            {nx: 0, ny: 1},
+            {nx: 1, ny: 1},
+            {nx: 1, ny: 2}
+        ],
+        [
+            {nx: 0, ny: 1},
+            {nx: 1, ny: 1},
+            {nx: 2, ny: 1},
+            {nx: 3, ny: 1}
+        ]
+    ];
+
+    //현재 블록과 미리보기 블록
+    let currentBlock;
+    let previewBlock;
+
+    //블록 색상
+    let currentColor;
+
+    //캔버스를 일정 배열로 나누기
+    let grid = [];
+    for(let i=0;i<rows;i++){
+        let row = []; 
+        for(let j=0;j<cols;j++){
+            row.push(0); 
+        }
+        grid.push(row); 
+    }
+
+    //새로운 블록 랜덤 생성
+    function generateRandomBlock() {
+        const randomIndex = Math.floor(Math.random() * blocks.length);
+        currentBlock = blocks[randomIndex];
+        previewBlock = blocks[randomIndex];
+        currentColor = blockColors[randomIndex]; // 각 블록 색상 지정
+    }
+
+    function drawNemo() {
+        // 캔버스 초기화
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        //캔버스 하단 경계에 닿은 블록에 대한 처리
+        for(let r=0;r<rows;r++){
+            for(let c=0;c<cols;c++){
+                if(grid[r][c] !== 0){
+                    ctx.fillStyle = grid[r][c]; // 고정된 블록의 색상을 설정
+                    ctx.fillRect(c*length,r*length,length,length);
+                    ctx.strokeStyle="black";
+                    ctx.strokeRect(c*length,r*length,length,length);
+                }
+            }
+        }
+
+        // 현재 블록 반복문
+        for (let j = 0; j < currentBlock.length; j++) {
+            let {nx, ny} = currentBlock[j];
+            let rx = x + nx * length;
+            let ry = y + ny * length;
+            ctx.fillStyle = currentColor;
+            ctx.fillRect(rx, ry, length, length);
+            ctx.strokeStyle = "black";
+            ctx.strokeRect(rx, ry, length, length);
+        }
+
+        // 미리보기 블록
+        const previewX = 10;  // 미리보기 블록의 왼쪽 상단 X 좌표
+        const previewY = 10;  // 미리보기 블록의 왼쪽 상단 Y 좌표
+        const previewWidth = 4 * 20;  // 미리보기 박스의 너비 (최대 4칸)
+        const previewHeight = 4 * 20;  // 미리보기 박스의 높이 (최대 4칸)
+
+        // 미리보기 박스를 그린다 (배경)
+        ctx.strokeStyle = "black";
+        ctx.strokeRect(previewX, previewY, previewWidth, previewHeight);
+
+        // 미리보기 블록
+        for (let j = 0; j < previewBlock.length; j++) {
+            let {nx, ny} = previewBlock[j];
+            let rx = previewX + nx * 20; // 미리보기 위치
+            let ry = previewY + ny * 20;
+            ctx.fillStyle = currentColor; // 미리보기 블록 색상
+            ctx.fillRect(rx, ry, 20, 20);
+            ctx.strokeStyle = "black";
+            ctx.strokeRect(rx, ry, 20, 20);
+        }
+
+        // 스코어박스 좌표
+        ctx.strokeRect(320, 10, 160, 60);
+        ctx.font = "20px Arial";
+        ctx.fillStyle = "black";
+        ctx.fillText("Score : " + score, 350, 50);
+    }
+
+    //충돌감지
+    function checkCollision(nemo,x,y) {
+        for(let i=0;i<nemo.length;i++){
+            let nx = nemo[i].nx;
+            let ny = nemo[i].ny;
+
+            let newX = x+nx*length;
+            let newY = y+ny*length;
+
+            if(
+                newX<0 || 
+                newX>=cols*length || 
+               newY<0 || 
+               newY>= rows*length || 
+                grid[newY / length][newX / length]!== 0) 
+                {
+                return true; 
+            }
+        }
+        return false; 
+    }
+
+    //고정블록
+    function fixBlock() {
+        for(let i=0;i<currentBlock.length;i++){
+            let nx = currentBlock[i].nx;
+            let ny = currentBlock[i].ny;
+
+            let gridX = (x+nx*length)/length;
+            let gridY = (y+ny*length)/length;
+
+            grid[gridY][gridX] = currentColor; 
+        }
+    }
+
+    function clearFullRows() {
+        for(let r=rows-1;r>=0;r--){
+            if(grid[r].every(cell => cell !== 0)){
+                grid.splice(r, 1);
+                grid.unshift(new Array(cols).fill(0));
+                score += 100;
+                r++;
+            }
+        }
+    }
+
+    function left() {
+        if(!checkCollision(currentBlock,x-length,y)){
+            x-=length;
+        }
+        drawNemo();
+    }
+
+    function right() {
+        if(!checkCollision(currentBlock,x+length,y)){
+            x+=length;
+        }
+        drawNemo();
+    }
+
+    function down() {
+        if(!checkCollision(currentBlock,x,y+length)){
+            y+=length;
+        }else{
+            fixBlock();
+            clearFullRows();
+            x = 150;
+            y = 0;
+            generateRandomBlock(); 
+        }
+        drawNemo();
+    }
+
+    // 회전
+    function turn() {
+        const rotated = [];
+        for (let i = 0; i < currentBlock.length; i++) {
+            const {nx, ny} = currentBlock[i];
+            rotated.push({nx: -ny, ny: nx});
+        }
+        if (!checkCollision(rotated, x, y)) {
+            currentBlock = rotated;
+        }
+        drawNemo();
+    }
+
+    generateRandomBlock(); // 최초 블록 생성
+    drawNemo();
+    setInterval(down, 500); 
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowLeft") {
+            if (!checkCollision(currentBlock, x - length, y)) x -= length; // 왼쪽 이동
+        } else if (event.key === "ArrowRight") {
+            if (!checkCollision(currentBlock, x + length, y)) x += length; // 오른쪽 이동
+        } else if (event.key === "ArrowDown") {
+            while (!checkCollision(currentBlock, x, y + length)) {
+                y += length;
+            }
+            fixBlock(); 
+            clearFullRows(); 
+            x = 150;
+            y = 0;
+            generateRandomBlock();
+        } else if (event.key === "ArrowUp") {
+            let rotated = [];
+            for (let i = 0; i < currentBlock.length; i++) {
+                let { nx, ny } = currentBlock[i];
+                rotated.push({ nx: -ny, ny: nx });
+            }
+            if (!checkCollision(rotated, x, y)) currentBlock = rotated;
+        }
+        drawNemo();
+    });
+</script>
+
+<div>
+    <button onclick="left()">좌</button>
+    <button onclick="right()">우</button>
+    <button onclick="turn()">회전</button>
+    <button onclick="down()">하강</button>
+</div>
+
+<style>
+    canvas {
+        display: block;
+    }
+    div {
+        width: 500px;
+        height: 100px;
+        border: 1px solid black;
+        border-top: 0;
+    }
+    button {
+        background-color: white;
+        border: 1px solid blue;
+        width: 80px;
+        height: 60px;
+        margin-top: 20px;
+        margin-left: 20px;
+        font-size: 20px;
+    }
+</style>
+</body> 
+</html>

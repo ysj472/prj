@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8.dombutton.html(동적으로 버튼생성)</title>
+    <script>
+        count=0;//div태그를 구분하는 속성값번호
+
+        // 클릭할때 동적으로 버튼 생성
+        function appendItem(){
+            count++;//1,2,3,4,,,
+            //1. <div></div>
+            let newItem=document.createElement('div');
+            //2. 동일한 태그생성: 속성명을 부여: <div id="item_번호"> 새로 </div>
+            //2-1)태그정보.setAttribute("속성명","속성값")
+            newItem.setAttribute("id","item_"+count);
+            //3. 내용을 작성: innerHTML 속성
+            let html='새로 추가된 아이템['+count+']'+'<input type="button" value="삭제" '+
+                'onclick="removeItem('+count+')" />';
+            newItem.innerHTML=html;
+            //4. 부모태그
+            let itemlistNode=document.getElementById('itemlist');
+            //5. 트리구조로 만들어서 결합
+            itemlistNode.appendChild(newItem);
+        }
+        function removeItem(idCount){
+            //삭제시킬 자식태그정보 가져오기
+            let item=document.getElementById("item_"+idCount);
+            if(item!=null){
+                //부모태그=>자식태그정보.parentNode
+                item.parentNode.removeChild(item);
+            }
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="추가" onclick="appendItem()"><p></p>
+    <div id="itemlist">
+        <!-- <div id="item_1">새로 추가된 아이템[삭제]</div>
+            <div id="item_2">새로 추가된 아이템[삭제]</div> -->
+    </div>
+</body>
+</html>

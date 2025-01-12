@@ -1,0 +1,271 @@
+/* 
+파일명:main.css
+기능:pc상태에서 보여주는 스타일시트 화면용
+작성날짜:2024년 01월 09일
+작성자:김수진
+*/
+/* 상단메뉴 부분 좌측상단에 고정하기위해 */
+
+* {
+    margin: 0;
+    padding: 0;
+    background-color: azure; /*하늘색*/
+}
+/* 전체 컨테이너 영역(전체 넓이, 양쪽여백 설정 */
+.wrap{
+    width: 1000px; /* width:70%=>양쪽 여백은 15%+15%=30# */
+    margin: 0 auto; /* 좌우 여백 자동 조절 */
+}
+/* pc상태에서는 넓이 768px보다 크면 보이지 않게 설정해주는 요소(태블릿의 구성요소 이미지) */
+.hd2,.sc2,.sc3 {display: none;}
+
+/* 로고 (left(x축) 들여쓰기,top(y축)) */
+h1{
+   float: left;
+   position: relative;
+   left: 3%; /* left:30px; */
+   top: 30px; /* 맨 처음에 나오는 이미지의 위치 설정부분 */
+}
+/* 회사로고이미지 옆에 상단메뉴배치 */
+.nv1{
+    width: 60%; /* 1000px=100%=>60% 600px 정도 */
+    height: 50px; /* 회사 로고 이미지와 같은 선을 맞추기 위해서 */
+    float:left; /* left->left,,,,right */
+    border: 1px solid black; /* 영역 확인용 */
+    position: relative; /* .nv2를 .nv1 기준으로 오른쪽 배치 (relative) */
+    left:5%; /* 회사 이미지보다 옆에 배치 */
+    top:30px;
+    z-index:5; /* 동영상, 슬라이드 이미지와 겹치는 경우 메뉴가 맨 앞에 배치(z-index) */
+}
+
+ul{
+    list-style-type: none; /* 메뉴의 마크 제거 list-style:none; */
+}
+/*
+    대상자:hover->마우스를 갖다댈때 (=>onmouseover, onmouseout=>소스코드로 작성)
+    Shopping,Event,About us 색깔지정(배경색)
+    태그명.클래스명:hover
+*/
+.main1:hover{
+    background-color: mediumpurple; /* 진한정도(중간) */
+    color: white; 
+}
+.main2:hover{
+    background-color: mediumpurple;
+    color: white; 
+}
+.main3:hover{
+    background-color: mediumpurple;
+    color: white; 
+}
+/* 1단계 메뉴의 위치 설정
+거리감:조금 움직이는 경우->%보다는 px로 설정(~100px)
+        어느정도 움직이는 경우(폭 큰경우)-> %로 계산 width:80%,margin:0 aute
+
+*/
+.main1{
+    position: relative; /* absolute 써도 여기서는 별차이가 없음 */
+    left: 14%;/* left:35px; */
+    top:10px;
+}
+.main2{
+    position: absolute; /* position:relative 인접한 태그를 기준으로 삼기때문에 여기서는 absolute를 써야된다. */
+    left:40%;
+    top:10px;
+}
+.main3{
+    position: absolute;
+    right:20%;/* left:63%; 메뉴가 오른쪽에서 가까울땐 right 사용이 유리함 */
+    top: 10px;
+}
+/* 
+서브메뉴를 안나오게 설정 1)absolute사용->top:-9999를 이용해서 위로 배치
+                       2)display:none;->back,inline,inline-block
+*/
+.sub{
+    display: none; /* 안보이는 부분은 보이게 설정해서 영역확인 후 나중에 최종 설정 */
+    position: absolute; /* left,top을 이용해서 배치가 쉽기때문에 */
+    /* left:14% */
+    left:83px;
+    top:40px;
+    border: 1px solid black;
+}
+.sub li,.sub li a{ /* 유형별 제품의 항목의 색깔 */
+    z-index: 15; /* 숫자가 크면 맨앞에 배치 */
+    color: purple;
+}
+/* 3단계 메뉴 오른쪽에 배치 */
+.sub1{
+    display:none;
+    float: right;
+    position: relative; /* absolue 주게되면 ->left,top 계산 해야함*/
+}
+/* 여백 주기(메뉴와 테두리선) */
+.nv1 div a{ /* nv1에 있는 3개의 div에 들어있는 메뉴항목글자 */
+    display: inline-block; 
+    /* 가로로 정렬하면서(inline),width,height를 줄경우
+    줄바꿈도 되어야 하는경우에 사용하는 속성
+    */
+    padding: 3px;
+}
+/*nv2 영역 설정*/
+.nv2{
+    width: 14%;/*20%->14% 27%->양쪽여백*/
+    height: 50px;/*nav와 같은 높이 유지*/
+    border: 1px solid black;
+    position: relative;/*nv1 바로 옆에 배치*/
+    float: right;
+    top: 30px;
+    right: 3px;
+}
+/*상단메뉴2(메뉴항목의 정렬,여백설정 login Mypage)
+    여백줄때->테두리를 기준할지? 데이터(글자,이미지)를 기준할지?
+*/
+.nv2 ul>li{
+    float: left;/*왼쪽 기준*/
+    font-size: 11px;
+    margin-left: 10%;/*글자 자체를 box로 쳤다고 가정*/
+    margin-top: 20px;
+}
+.nv2 ul li a{
+    display: inline-block;
+    text-decoration: none;
+    padding: 2px;
+}
+.nv2 ul li a:hover{
+    background-color: mediumpurple;
+    color: white;
+}
+/* 이미지 슬라이드 */
+.cycle-slideshow{
+    position: relative; /*header를 기준으로해서 아래에 배치(ex 왼->오, 위->아래쪽에 배치 */
+    z-index: 1;
+    top: 100px;
+}
+.cycle-slideshow img{
+    height: 350px;/* 원래 이미지 400px */
+}
+/* 3개의 베스트셀러에 대한 영역 설정 */
+.at1{
+    width: 60%; height: 250px;/* width:600px=60%, 450px->200px로 만들어서 불러올 경우 */
+    border: 1px solid black;
+    float: left;/* 왼->오 */
+    position: relative;/*이미지 슬라이드를 기준->아래 배치*/
+    z-index: 3;
+    top: 100px;
+    left: 3%;
+}
+.d1>figure>img{
+    width: 200px;height: 200px;/*450px을 200px로 줄여서 넣기위함*/
+    border: 1px solid black;
+    z-index: 6;
+    display: inline-block;/*이미지를 왼쪽에서 오른쪽으로 향하게 배치 pc->모바일로 변환(세로)*/
+    position: absolute;/*이미지를 정확한 위치에 배치하기 위해서는 left,top이 필요함*/
+    top:60px;
+}
+.d2>figure>img{ /*200px(이미지 크기 만큼)오른쪽에 이동*/
+    width: 200px;height: 200px;/*450px을 200px로 줄여서 넣기위함*/
+    border: 1px solid black;
+    z-index: 5;
+    display: inline-block;/*이미지를 왼쪽에서 오른쪽으로 향하게 배치 pc->모바일로 변환(세로)*/
+    position: absolute;/*이미지를 정확한 위치에 배치하기 위해서는 left,top이 필요함*/
+    top:60px;
+    left: 200px;
+}
+.d3>figure>img{
+    width: 200px;height: 200px;/*450px을 200px로 줄여서 넣기위함*/
+    border: 1px solid black;
+    z-index: 4;
+    display: inline-block;/*이미지를 왼쪽에서 오른쪽으로 향하게 배치 pc->모바일로 변환(세로)*/
+    position: absolute;/*이미지를 정확한 위치에 배치하기 위해서는 left,top이 필요함*/
+    top:60px;
+    left: 400px;
+}
+/* 이미지 설명부분 영역 조절 */
+.fc1{
+    font-size: 11px;
+    float:left;
+    position: relative;
+    left: 5px;
+}
+.fc2{
+    font-size: 11px;
+    float:left;
+    position: relative;
+    left: 15px;
+}
+.fc3{
+    font-size: 11px;
+    float:left;
+    position: relative;
+    left: 45px;
+}
+/* Time Sale 영역 */
+.at2{
+    width: 34%;
+    height: 250px; /* 40%-34% */
+    border: 1px solid black;
+    position: relative;/*at1을 기준으로 해서 오른쪽에 배치*/
+    z-index: 3;
+    float: right;
+    top: 100px;
+}
+.at2>img{
+    width: 150px;
+    height: 170px; /* 40%-34% */
+    position: relative;/*at1을 기준으로 해서 오른쪽에 배치*/
+    display: inline-block;
+    z-index: 6;
+    top: 30px;
+}
+div#dv1{
+    position: relative;
+    float: right;
+    right: 50px;
+    z-index: 7;
+    top: 50px;
+}
+/* 동영상 위치, 여백 설정 */
+.at3>embed{
+    position: relative;
+    top:100px;
+    margin: 30px;
+    float: left;
+    width: 450px;height: 300px;
+}
+.at4>img{
+    width: 450px;height: 300px;
+    position: relative;
+    float: right;
+    top: 130px;
+    border: 1px solid black;
+    /* footer 부분 */
+}
+.ft1{
+    clear: both;
+    border: 1px solid black;
+    position: relative;
+    margin: 0 auto;
+    height: 100px;
+    top: 100px;
+}
+.nv3>ul{
+    position: relative;
+    top: 20px;
+    list-style: none;
+}
+.nv3 > ul >li{
+    float: left;
+    margin-left: 4.3%;
+}
+.nv3 ul li a{
+    text-decoration: none;
+}
+.nv4{
+    position: relative;
+    top: 40px;
+}
+.nv4 > ul >li{
+    float: left;
+    margin-left: 4.3%;
+}

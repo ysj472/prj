@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.iframetest.html</title>
+</head>
+<body>
+    <!--
+        특정 영역을 만들고 그 영역에 외부 문서를 불러오는 기법->frame 태그 사용X=>jsp(include 액션태그)O
+        1.iframe 태그는 body 태그 내에서만 사용 가능
+        2.src=>외부의 불러올 문서 or 특정사이트 주소
+         속성명="값" 속성명=값(""을 생략해도 됨)=>jsp 환경설정 xml 태그->속성명="값"
+         src 속성이 생략->빈영역 크기만 설정된다.
+         name 속성을 이용해서 특정한 인라인프레임 접근이 가능하다.
+    -->
+    <iframe src="http://www.etnews.com" frameborder="0" width="400" height="400"></iframe>
+    <iframe src="http://www.mk.co.kr" frameborder="0" width=500 height=500></iframe>
+    <iframe src="https:///www.naver.com" width="600" height="400"></iframe>
+</body>
+</html>

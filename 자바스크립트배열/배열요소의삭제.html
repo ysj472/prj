@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    /*
+        배열은 객체이기 때문에 배열의 요소를 삭제하기 위해 delete 연산자 사용 가능.
+        그런데 이때 length에는 변함이 없음.
+        따라서 해당 요소를 완전히 삭제하여 length 프로퍼티에도 반영되게 하기 위해서는
+        Array.prototype.splice 메소드를 사용해야 한다.
+    */
+   const numbersArr = ['zero', 'one', 'two', 'three'];
+
+   //요소의 값만 삭제된다
+   delete numbersArr[2];
+   document.write(numbersArr+"<br>");
+
+   //요소의 값만이 아니라 요소 자체를 완전히 삭제하여 배열의 크기가 줄어든다.
+   //splice(시작 인덱스, 삭제할 요소수)
+   numbersArr.splice(2,1);
+   document.write(numbersArr+"<br>");
+</script>
+<body>
+    
+</body>
+</html>

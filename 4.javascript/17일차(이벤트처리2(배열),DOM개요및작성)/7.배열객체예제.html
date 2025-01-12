@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7.배열객체예제.html</title>
+</head>
+<body>
+    <h3>배열과 객체</h3>
+    <script>
+        // 공통점: 둘다 객체 
+        /*
+        let test={} 비어있는 객체
+        let test2=[] 내용이 들어가있지않은 배열객체=>[10,20,"문자열"]=>객체도 배열에 저장(객체배열)
+        */
+       let persons=[]; //ex)아파트
+        // person 객체를 persons 배열에 저장
+        persons.push({이름:'테스트',국어:100,수학:90,영어:80});//자녀들의 성적계산
+        persons.push({이름:'임시',국어:76,수학:67,영어:90});
+        persons.push({이름:'테스트2',국어:34,수학:89,영어:54});
+        //자바스크립트 제어문의 for문 2가지->일반제어문 for문(for(let i=0;i<3;i++))
+        //배열에 저장된 데이터가 객체->for문(=확장 for문(자바) 형식) for(let 변수명(=객체) in 객체명(배열))
+        for(let i in persons){//내부적으로 자동 증가(i++ 같은 형식을 쓰지 않음)
+            // 총점=>/3=>평균
+            //동적으로 속성(=멤버변수)를 추가 or 메서드 추가
+            persons[i].getSum=function(){//function getSum(){}
+                return this.국어+this.수학+this.영어;
+            }
+            // for문 끝나면 세명의 합계를 자동구함
+            persons[i].getAvg=function(){
+                return this.getSum()/3;//각 꺼낸 자료들의 평균
+            }
+        }
+        //출력
+        let output='이름,총점,평균\n'// \n 줄바꿈(=enter)
+        for(let i in persons){
+            // persons[i](객체명).key명
+            output+=persons[i].이름+','+persons[i].getSum()+','+persons[i].getAvg()+'\n';
+        }
+        alert(output);
+
+    </script>
+</body>
+</html>

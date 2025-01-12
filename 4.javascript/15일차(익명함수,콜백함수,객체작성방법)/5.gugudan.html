@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.gugudan.html</title>
+    <script>
+        function gugudan(){
+            //alert("gugudan()호출"); 디버깅용(에러 잡는 용도)
+           // let dan=prompt("단을 입력?","");//매개변수 O 반환값 O =>지역변수
+            //NaN=>Not a number(숫자가 아니라는 에러메세지)
+            /* (1)
+            let i=1;//1~9
+            while(i<=9){
+                document.write(dan+"*"+i+"="+(dan*i)+"<br>");//입력받은값 문자열상수이 계산식과 연결=>숫자
+                i++;//무한루프에 빠짐
+            }*/
+            /* (2)
+            let dan=prompt("단을 입력?","");
+            if(dan!=""){ //입력을 했다면
+                if(dan <=0){//0이거나 음수를 입력한경우
+                    alert("0을 입력하거나 음수는 입력불가입니다.");
+                }else{
+                    for(let i=1;i<=9;i++){
+                        document.write(dan+"*"+i+"="+(dan*i)+"<br>");
+                    }
+                }
+            }else{
+                document.write("먼저 단을 입력해야됩니다.\n 자동종료됩니다.");
+            }*/
+            //(3)
+            let dan=prompt("단을 입력?","");
+            if(dan!=""){ //입력을 했다면
+                if(dan <=0){//0이거나 음수를 입력한경우
+                    alert("0을 입력하거나 음수는 입력불가입니다.");
+                    return;//break구문 대신 사용하는 탈출문  return;  return 변수 or 수식 or 객체;
+                }//else{
+                    for(let i=1;i<=9;i++){
+                        document.write(dan+"*"+i+"="+(dan*i)+"<br>");
+                    }
+                //}
+            }else{
+                document.write("먼저 단을 입력해야됩니다.\n 자동종료됩니다.");
+            }
+        }
+    </script>
+</head>
+<body>
+    <script>
+            gugudan();//자동 호출=>함수이름이 오타 O
+            document.write("==============<p>");
+            input_string="2+3";//계산식
+            a="444";
+            b="-123";
+            c="123.45";//실수(소수점)
+            document.write("input_string=>"+input_string+"<br>");//"2+3" =>문자열
+            document.write("eval()함수호출=>"+eval(input_string)+"<br>");//자바스크립트 코드로 변환시켜주는 함수
+            document.write("parseInt(a)=>"+parseInt(a)+"<br>");//"444"+"333"=>"444333" 계산X
+            document.write("parseInt(b)=>"+parseInt(b)+"<br>");//문자열 상수=>숫자로 변환시켜주는 함수
+            document.write("parseInt(c)=>"+parseFloat(c)+"<br>");//문자열 상수=>소수점으로 변환
+            //주문서 =>수량(input box)=>"23"=>웹상에서 숫자를 입력받을경우
+            document.write("isNaN(45)=>"+isNaN(45)+"<br>");//숫자이면 false
+            document.write("isNaN(ab)=>"+isNaN("ab")+"<br>");//문자이면 true
+    </script>
+    <p></p>
+    <!-- 버튼을 클릭한 경우에만 함수호출(수동호출) -->
+    <input type="button" value="구구단 계산" onclick="gugudan()">
+</body>
+</html>

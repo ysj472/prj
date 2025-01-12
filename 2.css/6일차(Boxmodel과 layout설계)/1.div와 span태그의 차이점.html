@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.div와 span태그의 차이점.html</title>
+    <!--
+        공통점:스타일 전용태그로 사용하는 이유=>기본적인 모양X=>스타일 적용이 잘됨.
+        
+        div 1.줄바꿈이 자동으로 일어나는 태그
+        (=블록계열의 태그(p나 br태그를 안줘도 줄바꿈이 됨))
+        =>ex)h1~h6,ul=>br(X)
+            2.영역을 설정할때 주로 사용(width,height)(O)
+            =>메인 페이지 작성에 필수
+            3.한라인을 최대로 확대해서 사용->block태그의 특성
+
+        span 1.줄바꿈이 자동으로 일어나지 않는 태그
+        (=인라인 계열의 태그)=><br>(O) 
+             2.width,height를 잘 사용하진 않음
+             =>화면상에 특정 위치의 에러메시지를 출력(JQuery)
+            3.글자가 있는 부분까지만 최소한으로 축소해서 사용(inline태그 특성)
+            span태그=>영역 설정 불가능해보이지만 가능=>display 속성 사용
+            display=>화면에 보여주는 속성->block,inline,
+            inline-block(두개 특성)->가로로 정렬,width,height 사용 가능
+     -->
+    <style>
+        div{
+            background: green;
+            width: 200px;
+            height: 50px;
+            display: inline;
+        }
+        span{
+            background: yellow;
+            width: 200px;
+            height: 50px;
+            display: block;
+        }
+        /**/
+    </style>
+</head>
+<body>
+    <h1>Div태그와 Span태그의 차이점</h1>
+    <!--div{div태그 연습입니다.}*3-->
+    <div>div태그 연습입니다.</div>
+    <div>div태그 연습2입니다.</div>
+    <div>div태그 연습3입니다.</div>
+
+    <!--span{span태그 연습입니다.}*3-->
+    <span>span태그 연습입니다.</span>
+    <span>span태그 연습2입니다.</span>
+    <span>span태그 연습3입니다.</span>
+</body>
+</html>

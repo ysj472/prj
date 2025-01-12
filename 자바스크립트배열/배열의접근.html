@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    /*
+        배열의 각 요소를 가져오기 위해 인덱스를 사용한다.
+        인덱스는 0부터 시작하며, 대괄호 []안에 인덱스 값을 넣어서 요소에 
+        접근할 수 있다.
+    */
+
+   //요소가 하나뿐인 배열을 생성함.
+   var arr = ["javascript"];
+
+   //배열의 첫 번째 요소를 읽어서 대입함.
+   var element = arr[0];
+
+   //배열의 두 번째 요소에 숫자 10을 대입함. 배열의 길이는 1에서 2로 늘어남.
+   arr[1] = 10;
+
+   //배열의 세 번째 요소에 변수 element 값을 대입함. 배열의 길이는 2에서 3으로 늘어남.
+   arr[2] = element;
+   console.log(arr);//배열의 요소를 모두 출력함. [javascript, 10, javascript]
+   console.log(arr.length);//3
+</script>
+<body>
+    
+</body>
+</html>

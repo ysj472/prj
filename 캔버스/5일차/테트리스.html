@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>테트리스</title>
+</head>
+<body>
+ <canvas id="myCanvas" width="500" height="600" style="border: 1px solid black;"></canvas>   
+<script>
+    let canvas = document.getElementById("myCanvas");
+    let ctx = canvas.getContext("2d");
+
+    // 사각형 길이
+    let length = 50;
+
+    let score = 0;
+
+    // 움직이는 블록 좌표
+    let x = 150;
+    let y = 150;
+
+    // 가운데 블록 배열
+    let nemo = [
+        {nx: -1, ny: 2},
+        {nx: 0, ny: 1},
+        {nx: 0, ny: 2},
+        {nx: 1, ny: 1}
+    ];
+
+    function drawNemo() {
+        // 캔버스 초기화
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // 스코어박스 좌표
+        ctx.strokeRect(320, 10, 160, 60);
+        ctx.font = "20px Arial";
+        ctx.fillStyle = "black";
+        ctx.fillText("Score : " + score, 350, 50);
+
+        // 가운데 블록 반복문
+        for (let j = 0; j < nemo.length; j++) {
+            let {nx, ny} = nemo[j];
+            let rx = x + nx * length;
+            let ry = y + ny * length;
+            ctx.fillStyle = "dodgerblue";
+            ctx.strokeStyle = "black";
+            ctx.fillRect(rx, ry, length, length);
+            ctx.strokeRect(rx, ry, length, length);
+        }
+    }
+
+    
+
+    // 왼쪽 이동
+    function left() {
+        if (x > 0) {  // 왼쪽 벽에 충돌 안하면 이동
+            x -= 25;
+        }
+        drawNemo();
+    }
+
+    // 오른쪽 이동
+    function right() {
+        if (x + length < canvas.width) {  // 오른쪽 벽에 충돌 안하면 이동
+            x += 25;
+        }
+        drawNemo();
+    }
+
+    // 하강
+    function down() {
+        if (y + length < canvas.height) {  // 아래 벽에 충돌 안하면 이동
+            y += 25;
+        } else {
+            score += 100;  // 아래 벽에 닿으면 점수 추가
+            y = 0;  // 위치를 처음으로 되돌림
+        }
+        drawNemo();
+    }
+
+    // 회전
+    function turn() {
+        for (let i = 0; i < nemo.length; i++) {
+            let {nx, ny} = nemo[i];
+            nemo[i] = {nx: -ny, ny: nx};  // 회전 로직
+        }
+        drawNemo();
+    }
+
+    drawNemo();
+</script>
+
+<div>
+    <button onclick="left()">좌</button>
+    <button onclick="right()">우</button>
+    <button onclick="turn()">회전</button>
+    <button onclick="down()">하강</button>
+</div>
+
+<style>
+    canvas {
+        display: block;
+    }
+    div {
+        width: 500px;
+        height: 100px;
+        border: 1px solid black;
+        border-top: 0;
+    }
+    button {
+        background-color: white;
+        border: 1px solid blue;
+        width: 80px;
+        height: 60px;
+        margin-top: 20px;
+        margin-left: 20px;
+        font-size: 20px;
+    }
+</style>
+</body>
+</html>

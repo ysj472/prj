@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.폼의 입력양식스타일적용</title>
+    <style>
+        .inp{
+            border: 1px dotted orange;
+            height: 18px;
+        }
+        /* 추가 */
+        .inp:hover{
+            background-color: aliceblue;
+        }
+        .inp:focus{ /* 가상선택자->input box에 커서를 클릭할때 */
+            font-size: 120%;
+            color: red;
+        }
+        textarea{
+            border: 1px solid orange;
+            height: 100px;
+        }
+        .submit{
+            border: 1px solid black;
+            color: white;
+            background-color: black;
+        }
+        .submit:hover{
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <!-- ctrl + / = 자동주석 form>(input:t4ext*3)+input:checkbox 
+    maxlength=문자열 수 제한-->
+    <form action="#" method="post">
+        이름:<input type="text" name="name" size="20" maxlength="20" class="inp"><br>
+        주소:<input type="text" name="addr" size="60" class="inp"><br>
+        암호:<input type="password" name="pass" size="8" class="inp"><p></p>
+        <!-- 여러개 중에 하나 선택 -->
+        계절:<input type="checkbox" name="season" value="봄" checked>봄
+            <input type="checkbox" name="season" value="여름">여름
+            <input type="checkbox" name="season" value="가을">가을
+            <input type="checkbox" name="season" value="겨울">겨울<p></p>
+        국가:
+        <!-- 여러개중의 하나(성별),직책,국가 -->
+            <input type="radio" name="country" value="한국" checked="true">한국
+            <input type="radio" name="country" value="중국">중국
+            <input type="radio" name="country" value="일본">일본 
+            <p></p>
+            <select name="job" id="">
+                <option value="프로그래머">프로그래머</option>
+                <option value="DB관리자" selected="true">DB관리자</option>
+                <option value="웹디자인">웹디자인</option>
+            </select>      
+            <p></p>
+            <!-- 여러줄 입력(이력서 경력부분,성장배경) -->
+            <textarea name="career" id="" cols="50" rows="5">
+
+            </textarea><p></p>
+            <!-- input:file 파일첨부 -->
+            파일첨부:<input type="file" name="file"><p></p>
+            <!-- input:submit+input:button+input:reset
+            동일한 태그에 동일한 스타일 적용(class 선택자 사용 O) -->
+            <input type="submit" value="회원가입" class="submit">
+            <input type="button" value="회원가입2" class="submit">
+            <input type="reset" value="다시입력" class="submit">
+    </form>
+</body>
+</html>

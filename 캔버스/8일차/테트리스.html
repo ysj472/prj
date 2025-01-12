@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>테트리스</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="500" height="600" style="border: 1px solid black;"></canvas>   
+    <script>
+        let canvas = document.getElementById("myCanvas");
+        let ctx = canvas.getContext("2d");
+
+        const rows = 12; // 캔버스 높이 / 블록 크기
+        const cols = 10; // 캔버스 너비 / 블록 크기
+        const length = 50;
+
+        let x = 150; // 블록 시작 위치
+        let y = 0;
+        let block = [
+            { nx: -1, ny: 0 },
+            { nx: 0, ny: 0 },
+            { nx: 1, ny: 0 },
+            { nx: 2, ny: 0 }
+        ]; 
+
+        let grid = [];
+        for (let i = 0; i < rows; i++) {
+            grid[i] = new Array(cols).fill(0);  // 각 행을 새로 생성하고 0으로 채움
+        }
+
+        function drawBlock() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // 그리드에 고정된 블록 그리기
+            for (let r = 0; r < rows; r++) {
+                for (let c = 0; c < cols; c++) {
+                    if (grid[r][c] === 1) {
+                        ctx.fillStyle = "gray";
+                        ctx.fillRect(c * length, r * length, length, length);
+                        ctx.strokeStyle = "black";
+                        ctx.strokeRect(c * length, r * length, length, length);
+                    }
+                }
+            }
+
+            //  블록 그리기
+            drawBlockShape(x, y, block, "red");
+        }
+
+        function drawBlockShape(x, y, block, color) {
+            for (let i = 0; i < block.length; i++) {
+                let nx = block[i].nx;
+                let ny = block[i].ny;
+                let dx = x + nx * length;
+                let dy = y + ny * length;
+                ctx.fillStyle = color;
+                ctx.strokeStyle = "black";
+                ctx.fillRect(dx, dy, length, length);
+                ctx.strokeRect(dx, dy, length, length);
+            }
+        }
+
+        function checkCollision(block, x, y) {
+            for (let i = 0; i < block.length; i++) {
+                const { nx, ny } = block[i];
+                let gridX = (x + nx * length) / length;  
+                let gridY = (y + ny * length) / length;  
+
+                // 그리드 범위 밖인지 확인
+                const isOutOfBounds = gridX < 0 || gridX >= cols || gridY < 0 || gridY >= rows;
+
+                // 범위 안일 때만 grid[gridY][gridX] 접근
+                const isBlocked = !isOutOfBounds && grid[gridY][gridX] === 1;
+
+                if (isOutOfBounds || isBlocked) {
+                    return true;  // 충돌이 있을 경우 true 반환
+                }
+            }
+            return false;  // 충돌이 없으면 false 반환
+        }
+
+        function fixBlock(x, y) {
+            block.forEach(({ nx, ny }) => {
+                let gridX = (x + nx * length) / length;
+                let gridY = (y + ny * length) / length;
+                if (gridY >= 0 && gridY < rows && gridX >= 0 && gridX < cols) {
+                    grid[gridY][gridX] = 1;
+                }
+            });
+        }
+
+        function clearFullRows() {
+            for (let row = rows - 1; row >= 0; row--) {
+                if (grid[row].every(cell => cell === 1)) {
+                    grid.splice(row, 1); 
+                    grid.unshift(Array(cols).fill(0)); 
+                    row++; 
+                }
+            }
+        }
+
+        function left() {
+            if (!checkCollision(block, x - length, y)) {
+                x -= length;
+            }
+            drawBlock();
+        }
+
+        function right() {
+            if (!checkCollision(block, x + length, y)) {
+                x += length;
+            }
+            drawBlock();
+        }
+
+        function down() {
+            if (!checkCollision(block, x, y + length)) {
+                y += length;
+            } else {
+                fixBlock(x, y); 
+                clearFullRows(); 
+                x = 150;
+                y = 0;
+            }
+            drawBlock();
+        }
+
+        function turn() {
+            let rotated = block.map(({ nx, ny }) => ({ nx: -ny, ny: nx }));
+            if (!checkCollision(rotated, x, y)) {
+                block = rotated;
+            }
+            drawBlock();
+        }
+
+        drawBlock();      
+        setInterval(down, 500);  
+
+    </script>
+    <div>
+        <button onclick="left()">왼쪽</button>
+        <button onclick="right()">오른쪽</button>      
+        <button onclick="down()">하강</button>      
+        <button onclick="turn()">회전</button>
+    </div>
+    <style>
+        canvas {
+            display: block;
+        }
+        div {
+            width: 500px;
+            height: 100px;
+            border: 1px solid black;
+            border-top: 0;
+            text-align: center;
+        }
+        button {
+            background-color: white;
+            border: 1px solid blue;
+            width: 80px;
+            height: 60px;
+            margin: 10px;
+            font-size: 20px;
+        }
+    </style>
+</body>
+</html>
